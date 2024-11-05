@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cla33c2qqx78a"]
+[gd_scene load_steps=10 format=3 uid="uid://cla33c2qqx78a"]
 
 [ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://components/player/player.tscn" id="1_gygqy"]
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="2_p8i8x"]
+[ext_resource type="Script" path="res://ladder.gd" id="3_gg6ev"]
 
 [sub_resource type="Environment" id="Environment_0aoev"]
 background_mode = 1
@@ -21,6 +22,17 @@ fog_depth_end = 30.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q3h73"]
 size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mcia"]
+size = Vector3(1, 6, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nq38v"]
+transparency = 1
+albedo_color = Color(0.392157, 0.588235, 0.392157, 0.392157)
+
+[sub_resource type="BoxMesh" id="BoxMesh_whph5"]
+material = SubResource("StandardMaterial3D_nq38v")
+size = Vector3(1, 6, 2)
 
 [node name="Main" type="Node3D"]
 
@@ -93,3 +105,14 @@ depth = 6.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, -6)
 polygon = PackedVector2Array(0, 0, 0, 2, 6, 0)
 depth = 6.0
+
+[node name="Ladder" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -20)
+monitorable = false
+script = ExtResource("3_gg6ev")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ladder"]
+shape = SubResource("BoxShape3D_7mcia")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ladder"]
+mesh = SubResource("BoxMesh_whph5")

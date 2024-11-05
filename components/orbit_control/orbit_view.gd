@@ -2,8 +2,11 @@ extends SpringArm3D
 
 var active : bool = true : set = set_active
 
-@export_range(-90.0, 90.0, 0.1, "radians") var min_limit_x : float
-@export_range(-90.0, 90.0, 0.1, "radians") var max_limit_x : float
+var min_limit_x : float = -PI/2.0
+var max_limit_x : float = PI/2.0
+var zoom_maximum: float = 7.0
+var zoom_minimum: float = 2.0
+var zoom_sensitivity: float = 10.0
 
 func _ready():
 	set_active(active)
@@ -27,6 +30,9 @@ func _input(event):
 func _process(delta):
 	var joy_dir = Input.get_vector("pan_left", "pan_right", "pan_up", "pan_down")
 	rotate_from_vector(joy_dir * Vector2(1.0, 0.5) * 2.0 * delta)
+	var zoom_input = int(Input.is_action_just_released("zoom_camera_out")) - int(Input.is_action_just_released("zoom_camera_in"))
+	spring_length += zoom_input * delta * zoom_sensitivity
+	spring_length = clamp(spring_length, zoom_minimum, zoom_maximum)
 
 func rotate_from_vector(v : Vector2):
 	if v.length() == 0: return

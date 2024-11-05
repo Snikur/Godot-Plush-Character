@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @export var jump_height : float = 2.5
 @export var jump_time_to_peak : float = 0.4
@@ -18,9 +19,14 @@ extends CharacterBody3D
 @onready var impact_audio = %ImpactAudio
 @onready var wave_audio = %WaveAudio
 
+@onready var coyote_timer: Timer = $CoyoteJump
+
+var can_climb: bool = false
+
 const JUMP_PARTICLES_SCENE = preload("./vfx/jump_particles.tscn")
 const LAND_PARTICLES_SCENE = preload("./vfx/land_particles.tscn")
 
+@onready var camera: Camera3D = $OrbitView/Camera3D
 var movement_input : Vector2 = Vector2.ZERO
 var target_angle : float = 0.0
 var last_movement_input : Vector2 = Vector2.ZERO
@@ -40,7 +46,6 @@ func _unhandled_input(event):
 		godot_plush_skin.wave()
 
 func _physics_process(delta):
-	var camera : Camera3D = get_viewport().get_camera_3d()
 	if camera == null: return
 	movement_input = Input.get_vector("left", "right", "up", "down").rotated(-camera.global_rotation.y)
 	var is_running : bool = Input.is_action_pressed("run") && !godot_plush_skin.is_waving()
@@ -66,8 +71,12 @@ func _physics_process(delta):
 
 	movement_dust.emitting = is_running && is_on_floor() && movement_input != Vector2.ZERO
 	
-	if is_on_floor():
+	if can_climb and not is_on_floor():
+		velocity = Vector3(0.0, 10.0 if Input.is_action_pressed("up") else -10.0 if Input.is_action_pressed("down") else 0.0, 0.0)
+	
+	if is_on_floor() or coyote_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("jump") && !godot_plush_skin.is_waving():
+			coyote_timer.stop()
 			godot_plush_skin.set_state("jump")
 			velocity.y = -jump_velocity
 			
@@ -79,16 +88,19 @@ func _physics_process(delta):
 	else:
 		godot_plush_skin.set_state("fall")
 		
-	var gravity = jump_gravity if velocity.y > 0.0 else fall_gravity
+	var gravity = 0.0 if can_climb else jump_gravity if velocity.y > 0.0 else fall_gravity
 	velocity.y -= gravity * delta
 	
 	var in_the_air : bool = !is_on_floor()
+	var was_on_floor: bool = is_on_floor()
 	
 	var previous_y_vel : float = velocity.y
 	
-	
 	velocity = velocity.limit_length(fall_gravity)
 	move_and_slide()
+	
+	if not is_on_floor() && was_on_floor and not Input.is_action_just_pressed("jump"):
+		coyote_timer.start()
 	
 	if is_on_floor() && in_the_air:
 		_on_hit_floor(previous_y_vel)
