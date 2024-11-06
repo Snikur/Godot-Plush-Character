@@ -70,11 +70,13 @@ func send_state():
 		else:
 			client_state.rpc_id(1, global_position, visual_root.rotation)
 
-@rpc("any_peer", "reliable", "call_local")
 func transition_to(state: ANIMATION_STATE):
 	if current_state == state:
-		print("already in state: ", current_state)
 		return
+	send_transition_to.rpc(state)
+
+@rpc("any_peer", "reliable", "call_local")
+func send_transition_to(state: ANIMATION_STATE):
 	movement_dust.emitting = false
 	current_state = state
 	match(current_state):
@@ -113,7 +115,7 @@ func _unhandled_input(event):
 	if (event.is_action_pressed("wave")
 		&& is_on_floor()
 		&& !godot_plush_skin.is_waving()):
-		transition_to.rpc(ANIMATION_STATE.WAVE)
+		transition_to(ANIMATION_STATE.WAVE)
 
 func _physics_process(delta):
 	if camera == null: return
@@ -122,7 +124,7 @@ func _physics_process(delta):
 	var vel_2d = Vector2(velocity.x, velocity.z)
 	
 	if movement_input != Vector2.ZERO && !godot_plush_skin.is_waving():
-		transition_to.rpc(ANIMATION_STATE.RUN if is_running else ANIMATION_STATE.WALK)
+		transition_to(ANIMATION_STATE.RUN if is_running else ANIMATION_STATE.WALK)
 		var speed = run_speed if is_running else base_speed
 		vel_2d += movement_input * speed * 8.0 * delta
 		vel_2d = vel_2d.limit_length(speed)
@@ -130,7 +132,8 @@ func _physics_process(delta):
 		velocity.z = vel_2d.y
 		target_angle = -movement_input.orthogonal().angle()
 	else:
-		transition_to.rpc(ANIMATION_STATE.IDLE)
+		if is_on_floor():
+			transition_to(ANIMATION_STATE.IDLE)
 		vel_2d = vel_2d.move_toward(Vector2.ZERO, base_speed * 4.0 * delta)
 		velocity.x = vel_2d.x
 		velocity.z = vel_2d.y
@@ -145,7 +148,7 @@ func _physics_process(delta):
 	if is_on_floor() or coyote_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("jump") && !godot_plush_skin.is_waving():
 			coyote_timer.stop()
-			transition_to.rpc(ANIMATION_STATE.JUMP)
+			transition_to(ANIMATION_STATE.JUMP)
 			velocity.y = -jump_velocity
 			
 			var jump_particles = JUMP_PARTICLES_SCENE.instantiate()
@@ -154,7 +157,7 @@ func _physics_process(delta):
 			
 			do_squash_and_stretch(1.2, 0.1)
 	else:
-		transition_to.rpc(ANIMATION_STATE.FALL)
+		transition_to(ANIMATION_STATE.FALL)
 		
 	var gravity = 0.0 if can_climb else jump_gravity if velocity.y > 0.0 else fall_gravity
 	velocity.y -= gravity * delta
