@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cla33c2qqx78a"]
 
-[ext_resource type="PackedScene" uid="uid://bgkmxyw21pc1m" path="res://components/player/player.tscn" id="1_gygqy"]
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="2_p8i8x"]
 [ext_resource type="Script" path="res://ladder.gd" id="3_gg6ev"]
+[ext_resource type="PackedScene" uid="uid://bxlfmqa5r8ta2" path="res://MainMenu.tscn" id="4_bs742"]
 
 [sub_resource type="Environment" id="Environment_0aoev"]
 background_mode = 1
@@ -43,8 +43,6 @@ environment = SubResource("Environment_0aoev")
 transform = Transform3D(0.422618, 0.640856, -0.640856, 0, 0.707107, 0.707107, 0.906308, -0.298836, 0.298836, 0, 0, 0)
 shadow_enabled = true
 directional_shadow_max_distance = 20.0
-
-[node name="Player" parent="." instance=ExtResource("1_gygqy")]
 
 [node name="Ground" type="StaticBody3D" parent="."]
 metadata/_edit_lock_ = true
@@ -116,3 +114,5 @@ shape = SubResource("BoxShape3D_7mcia")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ladder"]
 mesh = SubResource("BoxMesh_whph5")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_bs742")]

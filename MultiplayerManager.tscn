@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp52somki7sg2"]
+
+[ext_resource type="Script" path="res://MultiplayerManager.gd" id="1_lpxfq"]
+
+[node name="MultiplayerManager" type="Node"]
+script = ExtResource("1_lpxfq")
+player_scene_path = "res://components/player/player.tscn"
+
+[node name="TickTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
