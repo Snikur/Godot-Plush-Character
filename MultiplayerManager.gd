@@ -26,7 +26,11 @@ func _process(_delta):
 
 func host():
 	peer = WebSocketMultiplayerPeer.new()
-	peer.create_server(PORT)
+	var server_certs = load("res://generated.crt")
+	var server_key = load("res://generated.key")
+	var server_tls_options = TLSOptions.server(server_key, server_certs)
+	
+	peer.create_server(PORT, "*", )#server_tls_options)
 	#peer.max_queued_packets = 8192
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(client_connected)
@@ -63,7 +67,9 @@ func client_disconnected(id: int):
 
 func join():
 	peer = WebSocketMultiplayerPeer.new()
-	peer.create_client(IP_ADDRESS)
+	var client_trusted_cas = load("res://generated.crt")
+	var client_tls_options = TLSOptions.client(client_trusted_cas)
+	peer.create_client(IP_ADDRESS)#, client_tls_options)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(func(): print("Connection failed"))
@@ -71,7 +77,7 @@ func join():
 
 func connected_to_server():
 	DisplayServer.window_set_title(str("JOIN: Player ", multiplayer.get_unique_id()))
-	var random_position: Vector3 = Vector3(randf_range(-20.0, 20.0), 1.0, randf_range(-20.0, 20.0))
+	var random_position: Vector3 = Vector3(randf_range(-20.0, 20.0), 1.0, randf_range(0.0, 20.0))
 	send_setup.rpc_id(1, {"position": random_position})
 
 @rpc("any_peer", "reliable", "call_local")
