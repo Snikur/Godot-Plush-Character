@@ -35,7 +35,8 @@ func host():
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(client_connected)
 	multiplayer.peer_disconnected.connect(client_disconnected)
-	add_client(1, {"position": Vector3.UP})
+	var random_position: Vector3 = Vector3(randf_range(48.0, 80.0), 10.0, randf_range(48.0, 80.0))
+	add_client(1, {"position": random_position})
 	DisplayServer.window_set_title(str("HOST"))
 
 func add_client(id: int, data: Dictionary):
@@ -60,7 +61,7 @@ func client_disconnected(id: int):
 	for player in list_of_players:
 		if player.id == id:
 			list_of_players.erase(player)
-			player.queue_free()
+			player.remove.rpc()
 			break
 	if multiplayer.is_server():
 		DisplayServer.window_set_title(str("HOST Connections: ", list_of_players.size()))
@@ -77,7 +78,7 @@ func join():
 
 func connected_to_server():
 	DisplayServer.window_set_title(str("JOIN: Player ", multiplayer.get_unique_id()))
-	var random_position: Vector3 = Vector3(randf_range(-20.0, 20.0), 1.0, randf_range(0.0, 20.0))
+	var random_position: Vector3 = Vector3(randf_range(48.0, 80.0), 5.0, randf_range(48.0, 80.0))
 	send_setup.rpc_id(1, {"position": random_position})
 
 @rpc("any_peer", "reliable", "call_local")

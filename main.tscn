@@ -3,8 +3,8 @@
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="2_p8i8x"]
 [ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="2_rmfpn"]
 [ext_resource type="Script" path="res://ladder.gd" id="3_gg6ev"]
-[ext_resource type="PackedScene" uid="uid://cp035sc1hfpdg" path="res://Cyclops/Level1.tscn" id="4_3xt1w"]
 [ext_resource type="PackedScene" uid="uid://bxlfmqa5r8ta2" path="res://MainMenu.tscn" id="4_bs742"]
+[ext_resource type="PackedScene" uid="uid://bf1eusvt2vgis" path="res://terrain3d/terrain.tscn" id="5_rkia4"]
 
 [sub_resource type="Environment" id="Environment_0aoev"]
 background_mode = 1
@@ -14,7 +14,6 @@ ambient_light_color = Color(0.359069, 0.359069, 0.359069, 1)
 tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.15, 0.15, 0.15, 1)
 fog_density = 1.0
@@ -23,7 +22,7 @@ fog_depth_end = 50.0
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xuepk"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q3h73"]
-size = Vector2(100, 100)
+size = Vector2(128, 128)
 
 [sub_resource type="PrismMesh" id="PrismMesh_3f63d"]
 size = Vector3(2, 2, 2)
@@ -57,8 +56,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 20.0
 
 [node name="Ground" type="StaticBody3D" parent="."]
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0.01, 64)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape3D_xuepk")
@@ -69,6 +67,7 @@ mesh = SubResource("PlaneMesh_q3h73")
 skeleton = NodePath("../..")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.466448, 0, -0.884548, 0, 1, 0, 0.884548, 0, 0.466448, 50.5015, 0, 76.9548)
 material_override = ExtResource("2_p8i8x")
 use_collision = true
 
@@ -147,29 +146,28 @@ mesh = SubResource("PrismMesh_3f63d")
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 4, 5, -13)
 mesh = SubResource("PrismMesh_3f63d")
 
-[node name="Ladder" type="Area3D" parent="."]
+[node name="Ladder" type="Area3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -20)
 monitorable = false
 script = ExtResource("3_gg6ev")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ladder"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder"]
 shape = SubResource("BoxShape3D_7mcia")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ladder"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder"]
 mesh = SubResource("BoxMesh_whph5")
 
-[node name="Ladder2" type="Area3D" parent="."]
+[node name="Ladder2" type="Area3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 7, -15)
 monitorable = false
 script = ExtResource("3_gg6ev")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ladder2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder2"]
 shape = SubResource("BoxShape3D_22c2b")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ladder2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder2"]
 mesh = SubResource("BoxMesh_aexy6")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("4_bs742")]
 
-[node name="Level" parent="." instance=ExtResource("4_3xt1w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -20)
+[node name="Terrain" parent="." instance=ExtResource("5_rkia4")]

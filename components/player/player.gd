@@ -101,6 +101,10 @@ func send_transition_to(state: ANIMATION_STATE):
 func client_state(new_position: Vector3, new_rotation: Vector3):
 	server_state.rpc(new_position, new_rotation)
 
+@rpc("authority", "call_local", "reliable")
+func remove():
+	queue_free()
+
 @rpc("authority", "call_local", "unreliable_ordered")
 func server_state(new_position: Vector3, new_rotation: Vector3):
 	if id == multiplayer.get_unique_id():
