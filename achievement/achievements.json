@@ -1,0 +1,16 @@
+{
+	"exampleAchievement": {
+		"neededAmount": 1,
+		"description": "Example description",
+		"currentAmount": 0,
+		"name": "Example name",
+		"completed": false
+	},
+		"collect_coin": {
+		"neededAmount": 1,
+		"description": "Collect the golden pirate coin on top of the world.",
+		"currentAmount": 0,
+		"name": "Pirate coin!",
+		"completed": false
+	},
+}

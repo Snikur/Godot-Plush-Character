@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckcqtdfka0v40"]
+
+[ext_resource type="Script" path="res://target_dummy/target_dummy.gd" id="1_nhe4d"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_alqak"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8rcei"]
+
+[node name="TargetDummy" type="StaticBody3D"]
+script = ExtResource("1_nhe4d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_alqak")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8rcei")
+
+[node name="Status" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+billboard = 2
+text = "HP: 100/100"

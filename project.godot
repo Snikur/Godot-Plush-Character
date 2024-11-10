@@ -18,10 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MM="*res://MultiplayerManager.tscn"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+Achievements="*res://achievement/achievements.tscn"
 
 [input]
 

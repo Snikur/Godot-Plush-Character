@@ -58,6 +58,7 @@ func _ready():
 	set_physics_process(multiplayer.get_unique_id() == id)
 	set_process_unhandled_input(multiplayer.get_unique_id() == id)
 	if multiplayer.get_unique_id() == id:
+		camera.current = true
 		MM.tick.connect(send_state)
 	else:
 		$OrbitView.queue_free()
@@ -138,9 +139,9 @@ func _physics_process(delta):
 	else:
 		if is_on_floor():
 			transition_to(ANIMATION_STATE.IDLE)
-		vel_2d = vel_2d.move_toward(Vector2.ZERO, base_speed * 4.0 * delta)
-		velocity.x = vel_2d.x
-		velocity.z = vel_2d.y
+			#vel_2d = vel_2d.move_toward(Vector2.ZERO, base_speed * 8.0 * delta)
+			velocity.x = 0.0#vel_2d.x
+			velocity.z = 0.0#vel_2d.y
 	
 	visual_root.rotation.y = rotate_toward(visual_root.rotation.y, target_angle, 6.0 * delta)
 	var angle_diff = angle_difference(visual_root.rotation.y, target_angle)
