@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=21 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://components/godot_plush/godot_plush_skin.tscn" id="2_mtsks"]
@@ -9,6 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://byg4lkp3ws8kt" path="res://assets/sounds/footstep_concrete_002.ogg" id="7_4283i"]
 [ext_resource type="AudioStream" uid="uid://bly24bd3apvev" path="res://assets/sounds/jingles_SAX15.ogg" id="8_s241m"]
 [ext_resource type="Script" path="res://components/player/attack_component.gd" id="9_ghftm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_slah2"]
+radius = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhngq"]
 
@@ -66,11 +69,14 @@ unique_name_in_owner = true
 
 [node name="GodotPlushSkin" parent="VisualRoot" instance=ExtResource("2_mtsks")]
 
-[node name="AttackComponent" type="RayCast3D" parent="VisualRoot/GodotPlushSkin"]
+[node name="AttackComponent" type="ShapeCast3D" parent="VisualRoot/GodotPlushSkin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_slah2")
 target_position = Vector3(0, 0, 2)
+max_results = 1
 collide_with_areas = true
 script = ExtResource("9_ghftm")
+parent_node = NodePath("../../..")
 
 [node name="SwingTimer" type="Timer" parent="VisualRoot/GodotPlushSkin/AttackComponent"]
 one_shot = true
