@@ -1,20 +1,32 @@
 extends Control
 
-@onready var join: Button = $VBoxContainer/Join
-@onready var host: Button = $VBoxContainer/Host
-@onready var exit: Button = $VBoxContainer/Exit
-@onready var panel = $Panel
-@onready var exit_button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/ExitButton
-@onready var cancel_button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/CancelButton
+@onready var main: VBoxContainer = $Main
+@onready var quit_panel = $QuitPanel
+
+@onready var join: Button = $Main/Join
+@onready var host: Button = $Main/Host
+@onready var exit: Button = $Main/Exit
+
+@onready var exit_button = $QuitPanel/MarginContainer/VBoxContainer/HBoxContainer/ExitButton
+@onready var cancel_button = $QuitPanel/MarginContainer/VBoxContainer/HBoxContainer/CancelButton
 
 
 func _ready():
-	panel.visible = false
+	exit.visible = not OS.has_feature("web")
+	$Camera3D.fov = Global.get_fov()
+	Global.fov_changed.connect(func(new_fov):
+		$Camera3D.fov = new_fov
+	)
+	quit_panel.visible = false
+	main.visible = true
 	join.pressed.connect(join_server)
 	host.pressed.connect(host_server)
 	exit.pressed.connect(on_exit_pressed)
 	exit_button.pressed.connect(func(): get_tree().quit())
-	cancel_button.pressed.connect(func(): panel.visible = false)
+	cancel_button.pressed.connect(func(): 
+		main.visible = true
+		quit_panel.visible = false
+		)
 
 func join_server():
 	MM.join()
@@ -25,4 +37,5 @@ func host_server():
 	visible = false
 
 func on_exit_pressed():
-	panel.visible = true
+	main.visible = false
+	quit_panel.visible = true

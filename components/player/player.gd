@@ -13,8 +13,11 @@ var data: Dictionary
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
+var acceleration = 64.0
 @export var base_speed = 4.5
 @export var run_speed = 8.0
+var knockback_direction: Vector3 = Vector3.ZERO
+var is_knocked_back: bool = false
 
 @onready var visual_root = %VisualRoot
 @onready var godot_plush_skin = $VisualRoot/GodotPlushSkin
@@ -47,6 +50,10 @@ var target_angle : float = 0.0
 var last_movement_input : Vector2 = Vector2.ZERO
 
 func _ready():
+	camera.fov = Global.get_fov()
+	Global.fov_changed.connect(func(new_fov):
+		camera.fov = new_fov
+	)
 	godot_plush_skin.waved.connect(wave_audio.play)
 	move_and_slide()
 	godot_plush_skin.footstep.connect(func(intensity : float = 1.0):
@@ -122,17 +129,20 @@ func _unhandled_input(event):
 		&& !godot_plush_skin.is_waving()):
 		transition_to(ANIMATION_STATE.WAVE)
 
+func knockback(dir: Vector3):
+	knockback_direction = dir
+	is_knocked_back = true
+
 func _physics_process(delta):
 	if camera == null: return
 	movement_input = Input.get_vector("left", "right", "up", "down").rotated(-camera.global_rotation.y)
 	var is_running : bool = Input.is_action_pressed("run") && !godot_plush_skin.is_waving()
 	var vel_2d = Vector2(velocity.x, velocity.z)
 	
-	if movement_input != Vector2.ZERO && !godot_plush_skin.is_waving():
+	if movement_input != Vector2.ZERO && !godot_plush_skin.is_waving() && not is_knocked_back:
 		transition_to(ANIMATION_STATE.RUN if is_running else ANIMATION_STATE.WALK)
-		var speed = run_speed if is_running else base_speed
-		vel_2d += movement_input * speed * 8.0 * delta
-		vel_2d = vel_2d.limit_length(speed)
+		vel_2d += movement_input * acceleration * delta
+		vel_2d = vel_2d.limit_length(run_speed if is_running else base_speed)
 		velocity.x = vel_2d.x
 		velocity.z = vel_2d.y
 		target_angle = -movement_input.orthogonal().angle()
@@ -142,6 +152,9 @@ func _physics_process(delta):
 			#vel_2d = vel_2d.move_toward(Vector2.ZERO, base_speed * 8.0 * delta)
 			velocity.x = 0.0#vel_2d.x
 			velocity.z = 0.0#vel_2d.y
+		else:
+			velocity.x = vel_2d.x
+			velocity.z = vel_2d.y
 	
 	visual_root.rotation.y = rotate_toward(visual_root.rotation.y, target_angle, 6.0 * delta)
 	var angle_diff = angle_difference(visual_root.rotation.y, target_angle)
@@ -174,6 +187,10 @@ func _physics_process(delta):
 	
 	velocity = velocity.limit_length(fall_gravity)
 	move_and_slide()
+	if (knockback_direction):
+		velocity = knockback_direction
+		knockback_direction = Vector3.ZERO
+		move_and_slide()
 	
 	if not is_on_floor() && was_on_floor and not Input.is_action_just_pressed("jump"):
 		coyote_timer.start()
@@ -182,6 +199,7 @@ func _physics_process(delta):
 		_on_hit_floor(previous_y_vel)
 
 func _on_hit_floor(y_vel : float):
+	is_knocked_back = false
 	y_vel = clamp(abs(y_vel), 0.0, fall_gravity)
 	var floor_impact_percent : float = y_vel / fall_gravity
 	impact_audio.volume_db = linear_to_db(remap(floor_impact_percent, 0.0, 1.0, 0.5, 2.0))

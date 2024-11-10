@@ -28,7 +28,7 @@ func host():
 	peer = WebSocketMultiplayerPeer.new()
 	var server_certs = load("res://generated.crt")
 	var server_key = load("res://generated.key")
-	var server_tls_options = TLSOptions.server(server_key, server_certs)
+	#var server_tls_options = TLSOptions.server(server_key, server_certs)
 	
 	peer.create_server(PORT, "*", )#server_tls_options)
 	#peer.max_queued_packets = 8192
@@ -70,7 +70,7 @@ func join():
 	print("IP: ", IP_ADDRESS)
 	peer = WebSocketMultiplayerPeer.new()
 	var client_trusted_cas = load("res://generated.crt")
-	var client_tls_options = TLSOptions.client(client_trusted_cas)
+	#var client_tls_options = TLSOptions.client(client_trusted_cas)
 	peer.create_client(IP_ADDRESS)#, client_tls_options)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.connected_to_server.connect(connected_to_server)

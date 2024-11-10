@@ -10,7 +10,7 @@ func _ready() -> void:
 	if (not parent_node.is_empty()):
 		add_exception(get_node(parent_node))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_colliding():
 		var collider = get_collider(0) #TODO: check if 1 collider is enough, odd-case might require a few more
 		if (collider is Enemy):
