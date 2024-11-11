@@ -6,29 +6,27 @@ var tween: Tween
 var data: Dictionary
 
 @onready var state_chart: StateChart = $StateChart
+@onready var ground_state: GroundState = $Ground
+@onready var climb_state: ClimbingState = $Climbing
+@onready var water_state: WaterState = $Water
 
-@export var jump_height : float = 2.5
-@export var jump_time_to_peak : float = 0.4
-@export var jump_time_to_descent : float = 0.3
+var jump_height : float = 2.5
+var jump_time_to_peak : float = 0.4
+var jump_time_to_descent : float = 0.3
 
-@onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
-@onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
-@onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
+var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
+var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
+var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 var acceleration = 64.0
-@export var base_speed = 4.5
-@export var run_speed = 8.0
-var knockback_direction: Vector3 = Vector3.ZERO
-var is_knocked_back: bool = false
+var base_speed = 4.5
+var run_speed = 8.0
 
 @onready var visual_root = %VisualRoot
 @onready var godot_plush_skin = $VisualRoot/GodotPlushSkin
 @onready var movement_dust = %MovementDust
 @onready var foot_step_audio = %FootStepAudio
 @onready var impact_audio = %ImpactAudio
-@onready var wave_audio = %WaveAudio
-
-@onready var coyote_timer: Timer = $CoyoteJump
 
 const JUMP_PARTICLES_SCENE = preload("./vfx/jump_particles.tscn")
 const LAND_PARTICLES_SCENE = preload("./vfx/land_particles.tscn")
@@ -38,19 +36,14 @@ enum ANIMATION_STATE {
 	WALK,
 	RUN,
 	FALL,
-	JUMP,
-	WAVE
+	JUMP
 }
 
 var current_state: ANIMATION_STATE = ANIMATION_STATE.IDLE
 
 @onready var camera: Camera3D = $OrbitView/Camera3D
-var movement_input : Vector2 = Vector2.ZERO
-var target_angle : float = 0.0
-var last_movement_input : Vector2 = Vector2.ZERO
 
 func _ready():
-	godot_plush_skin.waved.connect(wave_audio.play)
 	move_and_slide()
 	godot_plush_skin.footstep.connect(func(intensity : float = 1.0):
 		foot_step_audio.volume_db = linear_to_db(intensity)
@@ -58,7 +51,6 @@ func _ready():
 		
 	if data.has("position"):
 		global_position = data["position"]
-	set_physics_process(multiplayer.get_unique_id() == id)
 	set_process_unhandled_input(multiplayer.get_unique_id() == id)
 	if multiplayer.get_unique_id() == id:
 		camera.current = true
@@ -69,7 +61,9 @@ func _ready():
 		)
 	else:
 		$OrbitView.queue_free()
-		coyote_timer.queue_free()
+		$StateChart.queue_free()
+		$Ground.queue_free()
+		$Climbing.queue_free()
 
 func send_state():
 	if multiplayer:
@@ -81,7 +75,6 @@ func send_state():
 func transition_to(state: ANIMATION_STATE):
 	if current_state == state:
 		return
-	print(ANIMATION_STATE.keys()[state])
 	send_transition_to.rpc(state)
 
 @rpc("any_peer", "reliable", "call_local")
@@ -101,8 +94,6 @@ func send_transition_to(state: ANIMATION_STATE):
 			godot_plush_skin.set_state("fall")
 		ANIMATION_STATE.JUMP:
 			godot_plush_skin.set_state("jump")
-		ANIMATION_STATE.WAVE:
-			godot_plush_skin.wave()
 		_:
 			godot_plush_skin.set_state("idle")
 
@@ -124,106 +115,16 @@ func server_state(new_position: Vector3, new_rotation: Vector3):
 	tween.tween_property(self, "global_position", new_position, 0.1).from_current()
 	tween.parallel().tween_property(visual_root, "rotation", new_rotation, 0.1).from_current()
 
-func _unhandled_input(event):
-	if (event.is_action_pressed("wave")
-		&& is_on_floor()
-		&& !godot_plush_skin.is_waving()):
-		transition_to(ANIMATION_STATE.WAVE)
-
-func knockback(dir: Vector3):
-	knockback_direction = dir
-	is_knocked_back = true
-
-func _physics_process(delta):
-	if camera == null: return
-	movement_input = Input.get_vector("left", "right", "up", "down").rotated(-camera.global_rotation.y)
-	var is_running : bool = Input.is_action_pressed("run") && !godot_plush_skin.is_waving()
-	var vel_2d = Vector2(velocity.x, velocity.z)
-	if is_knocked_back:
-		movement_input = Vector2.ZERO 
-	
-	if movement_input != Vector2.ZERO && !godot_plush_skin.is_waving():
-		if is_on_floor():
-			transition_to(ANIMATION_STATE.RUN if is_running else ANIMATION_STATE.WALK)
-		vel_2d += movement_input * acceleration * delta
-		vel_2d = vel_2d.limit_length(run_speed if is_running else base_speed)
-		velocity.x = vel_2d.x
-		velocity.z = vel_2d.y
-		target_angle = -movement_input.orthogonal().angle()
-	else:
-		if is_on_floor():
-			#vel_2d = vel_2d.move_toward(Vector2.ZERO, base_speed * 8.0 * delta)
-			velocity.x = 0.0#vel_2d.x
-			velocity.z = 0.0#vel_2d.y
-		else:
-			velocity.x = vel_2d.x
-			velocity.z = vel_2d.y
-	
-	visual_root.rotation.y = rotate_toward(visual_root.rotation.y, target_angle, 6.0 * delta)
-	var angle_diff = angle_difference(visual_root.rotation.y, target_angle)
-	godot_plush_skin.tilt = move_toward(godot_plush_skin.tilt, angle_diff, 2.0 * delta)
-	
-	if is_on_floor() or coyote_timer.time_left > 0.0:
-		if Input.is_action_just_pressed("jump") && !godot_plush_skin.is_waving():
-			coyote_timer.stop()
-			transition_to(ANIMATION_STATE.JUMP)
-			velocity.y = -jump_velocity
-			
-			var jump_particles = JUMP_PARTICLES_SCENE.instantiate()
-			add_sibling(jump_particles)
-			jump_particles.global_transform = global_transform
-			
-			do_squash_and_stretch(1.2, 0.1)
-		
-	var gravity = jump_gravity if velocity.y > 0.0 else fall_gravity
-	velocity.y -= gravity * delta
-	
-	var in_the_air : bool = !is_on_floor()
-	var was_on_floor: bool = is_on_floor()
-	
-	var previous_y_vel : float = velocity.y
-	
-	velocity = velocity.limit_length(fall_gravity)
-	move_and_slide()
-	if (knockback_direction):
-		velocity = knockback_direction
-		knockback_direction = Vector3.ZERO
-		move_and_slide()
-	
-	if not is_on_floor() && was_on_floor and not Input.is_action_just_pressed("jump"):
-		coyote_timer.start()
-		transition_to(ANIMATION_STATE.FALL)
-	
-	if is_on_floor() && in_the_air:
-		_on_hit_floor(previous_y_vel)
-	
-	if velocity.is_equal_approx(Vector3.ZERO) and is_on_floor():
-		transition_to(ANIMATION_STATE.IDLE)
-	if not is_on_floor():
-		if velocity.y > 0.0:
-			transition_to(ANIMATION_STATE.FALL)
-		if velocity.y < 0.0:
-			transition_to(ANIMATION_STATE.JUMP)
-
-func enter_climb_state():
+func enter_climb_state(climbing: Node3D):
 	state_chart.send_event("to_climbing")
+	climb_state.climbing_object = climbing
 
-func leave_climb_state():
+func exit_climb_state(climbing: Node3D):
 	state_chart.send_event("to_ground")
+	climb_state.climbing_object = null
 
-func _on_hit_floor(y_vel : float):
-	is_knocked_back = false
-	y_vel = clamp(abs(y_vel), 0.0, fall_gravity)
-	var floor_impact_percent : float = y_vel / fall_gravity
-	impact_audio.volume_db = linear_to_db(remap(floor_impact_percent, 0.0, 1.0, 0.5, 2.0))
-	impact_audio.play()
-	var land_particles = LAND_PARTICLES_SCENE.instantiate()
-	add_sibling(land_particles)
-	land_particles.global_transform = global_transform
-	do_squash_and_stretch(0.7, 0.08)
+func enter_water_state():
+	state_chart.send_event("to_water")
 
-func do_squash_and_stretch(value : float, timing : float = 0.1):
-	var t = create_tween()
-	t.set_ease(Tween.EASE_OUT)
-	t.tween_property(godot_plush_skin, "squash_and_stretch", value, timing)
-	t.tween_property(godot_plush_skin, "squash_and_stretch", 1.0, timing * 1.8)
+func exit_water_state():
+	state_chart.send_event("to_ground")

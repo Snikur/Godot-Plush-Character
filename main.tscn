@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cla33c2qqx78a"]
+[gd_scene load_steps=22 format=3 uid="uid://cla33c2qqx78a"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="2_p8i8x"]
 [ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="2_rmfpn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxlfmqa5r8ta2" path="res://MainMenu.tscn" id="4_bs742"]
 [ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="5_pudl8"]
 [ext_resource type="PackedScene" uid="uid://b1b0nka3xayeg" path="res://bounce.tscn" id="6_4gkq0"]
+[ext_resource type="Script" path="res://water_area.gd" id="7_ep8g6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g1m0j"]
 
@@ -29,7 +30,7 @@ height = 5.0
 size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7mcia"]
-size = Vector3(1, 6, 2)
+size = Vector3(2, 6, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nq38v"]
 transparency = 1
@@ -37,14 +38,26 @@ albedo_color = Color(0.392157, 0.588235, 0.392157, 0.392157)
 
 [sub_resource type="BoxMesh" id="BoxMesh_whph5"]
 material = SubResource("StandardMaterial3D_nq38v")
-size = Vector3(1, 6, 2)
+size = Vector3(2, 6, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_22c2b"]
-size = Vector3(1, 14, 2)
+size = Vector3(2, 14, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_aexy6"]
 material = SubResource("StandardMaterial3D_nq38v")
-size = Vector3(1, 14, 2)
+size = Vector3(2, 14, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2hmr"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3osiu"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.180392, 0, 0.858824, 0.537255)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2p506"]
+material = SubResource("StandardMaterial3D_3osiu")
+size = Vector3(10, 10, 10)
 
 [node name="Main" type="Node3D"]
 
@@ -149,7 +162,7 @@ transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 46, 3,
 mesh = SubResource("PrismMesh_3f63d")
 
 [node name="Ladder" type="Area3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5, 3, 25)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 44.5, 3, 25)
 monitorable = false
 script = ExtResource("3_gg6ev")
 
@@ -160,7 +173,7 @@ shape = SubResource("BoxShape3D_7mcia")
 mesh = SubResource("BoxMesh_whph5")
 
 [node name="Ladder2" type="Area3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 52.5, 7, 30)
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 52.5, 7, 30)
 monitorable = false
 script = ExtResource("3_gg6ev")
 
@@ -170,8 +183,51 @@ shape = SubResource("BoxShape3D_22c2b")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder2"]
 mesh = SubResource("BoxMesh_aexy6")
 
+[node name="Ladder5" type="Area3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 49.5, 7, 30)
+monitorable = false
+script = ExtResource("3_gg6ev")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder5"]
+shape = SubResource("BoxShape3D_22c2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder5"]
+mesh = SubResource("BoxMesh_aexy6")
+
+[node name="Ladder3" type="Area3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 51, 7, 28.5)
+monitorable = false
+script = ExtResource("3_gg6ev")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder3"]
+shape = SubResource("BoxShape3D_22c2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder3"]
+mesh = SubResource("BoxMesh_aexy6")
+
+[node name="Ladder4" type="Area3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.999999, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -0.999999, 51, 7, 31.5)
+monitorable = false
+script = ExtResource("3_gg6ev")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder4"]
+shape = SubResource("BoxShape3D_22c2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder4"]
+mesh = SubResource("BoxMesh_aexy6")
+
 [node name="TargetDummy" parent="." instance=ExtResource("5_pudl8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1, 58.6)
 
 [node name="Bounce" parent="." instance=ExtResource("6_4gkq0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1, 0.5, 50.5)
+
+[node name="WaterArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5, 30)
+script = ExtResource("7_ep8g6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea"]
+shape = SubResource("BoxShape3D_c2hmr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WaterArea"]
+mesh = SubResource("BoxMesh_2p506")
