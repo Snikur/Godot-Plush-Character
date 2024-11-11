@@ -1,9 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=28 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
+[ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_c1ftv"]
 [ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://components/godot_plush/godot_plush_skin.tscn" id="2_mtsks"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_tps4o"]
 [ext_resource type="PackedScene" uid="uid://c0b71d2b1hdp6" path="res://components/orbit_control/orbit_view.tscn" id="3_hcr6r"]
+[ext_resource type="Script" path="res://components/player/ground.gd" id="3_t572a"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_w7ieo"]
 [ext_resource type="Material" uid="uid://fkuklawrv3wp" path="res://components/player/vfx/dust_mat.tres" id="4_j7qt1"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_kvrxs"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_4c8au"]
 [ext_resource type="AudioStream" uid="uid://b7q12qmsksbc7" path="res://assets/sounds/footstep_concrete_000.ogg" id="5_8ixl8"]
 [ext_resource type="AudioStream" uid="uid://c6unhc5lontfn" path="res://assets/sounds/footstep_concrete_001.ogg" id="6_nlp36"]
 [ext_resource type="AudioStream" uid="uid://byg4lkp3ws8kt" path="res://assets/sounds/footstep_concrete_002.ogg" id="7_4283i"]
@@ -63,6 +70,107 @@ stream_0/stream = ExtResource("8_s241m")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ms4x1")
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("2_tps4o")]
+offset_left = 737.0
+initial_node_to_watch = NodePath("../StateChart")
+
+[node name="Ground" type="Node3D" parent="."]
+script = ExtResource("3_t572a")
+
+[node name="Climbing" type="Node3D" parent="."]
+script = ExtResource("2_bbc06")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_c1ftv")
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("3_w7ieo")
+initial_state = NodePath("Ground")
+
+[node name="Ground" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_kvrxs")
+
+[node name="ToWater" type="Node" parent="StateChart/CompoundState/Ground"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Water")
+event = &"to_water"
+delay_in_seconds = "0.0"
+
+[node name="ToClimbing" type="Node" parent="StateChart/CompoundState/Ground"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Climbing")
+event = &"to_climbing"
+delay_in_seconds = "0.0"
+
+[node name="ToCC" type="Node" parent="StateChart/CompoundState/Ground"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../CC")
+event = &"to_cc"
+delay_in_seconds = "0.0"
+
+[node name="Water" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_kvrxs")
+
+[node name="ToGround" type="Node" parent="StateChart/CompoundState/Water"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Ground")
+event = &"to_ground"
+delay_in_seconds = "0.0"
+
+[node name="ToClimbing" type="Node" parent="StateChart/CompoundState/Water"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Climbing")
+event = &"to_climbing"
+delay_in_seconds = "0.0"
+
+[node name="ToCC" type="Node" parent="StateChart/CompoundState/Water"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../CC")
+event = &"to_cc"
+delay_in_seconds = "0.0"
+
+[node name="Climbing" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_kvrxs")
+
+[node name="ToWater" type="Node" parent="StateChart/CompoundState/Climbing"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Water")
+event = &"to_water"
+delay_in_seconds = "0.0"
+
+[node name="ToGround" type="Node" parent="StateChart/CompoundState/Climbing"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Ground")
+event = &"to_ground"
+delay_in_seconds = "0.0"
+
+[node name="ToCC" type="Node" parent="StateChart/CompoundState/Climbing"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../CC")
+event = &"to_cc"
+delay_in_seconds = "0.0"
+
+[node name="CC" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_kvrxs")
+
+[node name="ToWater" type="Node" parent="StateChart/CompoundState/CC"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Water")
+event = &"to_water"
+delay_in_seconds = "0.0"
+
+[node name="ToGround" type="Node" parent="StateChart/CompoundState/CC"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Ground")
+event = &"to_ground"
+delay_in_seconds = "0.0"
+
+[node name="ToClimbing" type="Node" parent="StateChart/CompoundState/CC"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Climbing")
+event = &"to_climbing"
+delay_in_seconds = "0.0"
 
 [node name="VisualRoot" type="Node3D" parent="."]
 unique_name_in_owner = true

@@ -7,8 +7,8 @@ func _ready() -> void:
 
 func enter_ladder(body: Node3D):
 	if body is Player:
-		body.can_climb = true
+		body.enter_climb_state()
 
 func leave_ladder(body: Node3D):
 	if body is Player:
-		body.can_climb = false
+		body.leave_climb_state()

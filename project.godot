@@ -21,6 +21,10 @@ MM="*res://MultiplayerManager.tscn"
 Achievements="*res://achievement/achievements.tscn"
 Global="*res://global.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+
 [input]
 
 left={
