@@ -24,6 +24,7 @@ func state_physics_process(delta: float) -> void:
 		parent.velocity.x = vel_2d.x
 		parent.velocity.z = vel_2d.y
 		target_angle = -movement_input.orthogonal().angle()
+		print(target_angle)
 	else:
 		if parent.is_on_floor():
 			parent.velocity.x = 0.0

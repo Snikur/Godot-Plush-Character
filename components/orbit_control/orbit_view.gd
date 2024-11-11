@@ -39,7 +39,7 @@ func _input(event):
 
 func _process(delta):
 	var joy_dir = Input.get_vector("pan_left", "pan_right", "pan_up", "pan_down")
-	rotate_from_vector(joy_dir * Vector2(1.0, 1.0) * joystick_sensitivity * delta)
+	rotate_from_vector(joy_dir * joystick_sensitivity * delta)
 	var zoom_input = int(Input.is_action_just_released("zoom_camera_out")) - int(Input.is_action_just_released("zoom_camera_in"))
 	spring_length += zoom_input * delta * zoom_sensitivity
 	spring_length = clamp(spring_length, zoom_minimum, zoom_maximum)

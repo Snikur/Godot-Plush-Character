@@ -14,13 +14,15 @@ func _ready():
 func state_physics_process(delta: float) -> void:
 	movement_input = Input.get_vector("left", "right", "up", "down")
 	var swim_up = Input.is_action_pressed("jump")
-	if (movement_input or swim_up):
+	var swim_down = Input.is_action_pressed("crouch")
+	if (movement_input):
 		var vel: Vector3 = parent.camera.global_basis.x * movement_input.x \
-					+ parent.camera.global_basis.z * movement_input.y \
-					+ parent.camera.global_basis.y * int(swim_up)
+					+ parent.camera.global_basis.z * movement_input.y
 		parent.velocity = vel * speed
 	else:
 		parent.velocity = Vector3.ZERO
+	if (swim_up or swim_down):
+		parent.velocity.y = (int(swim_up) - int(swim_down)) * speed
 	target_angle = parent.camera.global_rotation.y + PI
 
 	
