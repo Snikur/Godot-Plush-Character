@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://cla33c2qqx78a"]
+[gd_scene load_steps=26 format=3 uid="uid://cla33c2qqx78a"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="2_p8i8x"]
 [ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="2_rmfpn"]
 [ext_resource type="Script" path="res://ladder.gd" id="3_gg6ev"]
 [ext_resource type="PackedScene" uid="uid://bxlfmqa5r8ta2" path="res://MainMenu.tscn" id="4_bs742"]
+[ext_resource type="PackedScene" uid="uid://bouvidg64dqet" path="res://assets/models/ladder/CartoonLader/CartoonLadder.fbx" id="5_akmqi"]
 [ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="5_pudl8"]
 [ext_resource type="PackedScene" uid="uid://b1b0nka3xayeg" path="res://bounce.tscn" id="6_4gkq0"]
 [ext_resource type="Script" path="res://water_area.gd" id="7_ep8g6"]
@@ -177,7 +178,11 @@ script = ExtResource("3_gg6ev")
 shape = SubResource("BoxShape3D_7mcia")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder"]
+visible = false
 mesh = SubResource("BoxMesh_whph5")
+
+[node name="CartoonLadder" parent="CSGCombiner3D/Ladder" instance=ExtResource("5_akmqi")]
+transform = Transform3D(2, 0, 0, 0, 2.95442, 0.347296, -7.10543e-15, -0.520944, 1.96962, 0, -2.4, 1.1)
 
 [node name="Ladder2" type="Area3D" parent="CSGCombiner3D"]
 transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 52.5, 7, 30)
