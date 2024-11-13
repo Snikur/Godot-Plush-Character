@@ -1,0 +1,253 @@
+[gd_scene load_steps=25 format=3 uid="uid://h017mwpcdc1e"]
+
+[ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
+[ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="2_py8eg"]
+[ext_resource type="Script" path="res://ladder.gd" id="3_kdg1s"]
+[ext_resource type="PackedScene" uid="uid://bouvidg64dqet" path="res://assets/models/ladder/CartoonLader/CartoonLadder.fbx" id="4_qdqii"]
+[ext_resource type="PackedScene" uid="uid://b1b0nka3xayeg" path="res://bounce.tscn" id="5_ca51l"]
+[ext_resource type="Script" path="res://water_area.gd" id="6_rmd8c"]
+[ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="7_vo52k"]
+[ext_resource type="Script" path="res://elevator.gd" id="8_0dlt5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g1m0j"]
+
+[sub_resource type="Sky" id="Sky_hn4vd"]
+sky_material = SubResource("ProceduralSkyMaterial_g1m0j")
+
+[sub_resource type="Environment" id="Environment_v8o6g"]
+background_mode = 2
+sky = SubResource("Sky_hn4vd")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 1
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xuepk"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nj12g"]
+top_radius = 40.0
+height = 5.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_3f63d"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mcia"]
+size = Vector3(2, 6, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nq38v"]
+transparency = 1
+albedo_color = Color(0.392157, 0.588235, 0.392157, 0.392157)
+
+[sub_resource type="BoxMesh" id="BoxMesh_whph5"]
+material = SubResource("StandardMaterial3D_nq38v")
+size = Vector3(2, 6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_22c2b"]
+size = Vector3(2, 14, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aexy6"]
+material = SubResource("StandardMaterial3D_nq38v")
+size = Vector3(2, 14, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2hmr"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3osiu"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.180392, 0, 0.858824, 0.537255)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2p506"]
+material = SubResource("StandardMaterial3D_3osiu")
+size = Vector3(10, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g6hs7"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t5rmj"]
+size = Vector3(3, 1, 3)
+
+[node name="Environment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v8o6g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.422618, 0.640856, -0.640857, 0, 0.707107, 0.707106, 0.906308, -0.298836, 0.298836, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_xuepk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+material_override = ExtResource("1_aup37")
+mesh = SubResource("CylinderMesh_nj12g")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+material_override = ExtResource("1_aup37")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, 41)
+size = Vector3(8, 2, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 1, 39)
+size = Vector3(4, 2, 6)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 1, 39)
+size = Vector3(6, 2, 6)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 2, 36)
+size = Vector3(6, 4, 12)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 3, 27)
+size = Vector3(6, 6, 6)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 3, 30)
+size = Vector3(14, 6, 12)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 44, 0, 42)
+polygon = PackedVector2Array(0, 0, 0, 2, 6, 0)
+depth = 4.0
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 36, 0, 42)
+polygon = PackedVector2Array(0, 0, 0, 2, 6, 0)
+depth = 4.0
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 24, 4, 30)
+polygon = PackedVector2Array(0, 0, 0, 2, 6, 0)
+depth = 6.0
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 2, 42)
+polygon = PackedVector2Array(0, 0, 0, 2, 6, 0)
+depth = 6.0
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 48, 5, 37)
+mesh = SubResource("PrismMesh_3f63d")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 52, 9, 39)
+mesh = SubResource("PrismMesh_3f63d")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 50, 7, 39)
+mesh = SubResource("PrismMesh_3f63d")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 54, 11, 39)
+mesh = SubResource("PrismMesh_3f63d")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 51, 13, 30)
+mesh = SubResource("PrismMesh_3f63d")
+
+[node name="SilverPirateCoin" parent="CSGCombiner3D/CSGMesh3D6" instance=ExtResource("2_py8eg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, -2, 0)
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 60, 11, 37)
+mesh = SubResource("PrismMesh_3f63d")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 46, 3, 35)
+mesh = SubResource("PrismMesh_3f63d")
+
+[node name="Ladder" type="Area3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 44.5, 3, 25)
+monitorable = false
+script = ExtResource("3_kdg1s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder"]
+shape = SubResource("BoxShape3D_7mcia")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder"]
+visible = false
+mesh = SubResource("BoxMesh_whph5")
+
+[node name="CartoonLadder" parent="CSGCombiner3D/Ladder" instance=ExtResource("4_qdqii")]
+transform = Transform3D(2, 0, 0, 0, 2.95442, 0.347296, -7.10543e-15, -0.520944, 1.96962, 0, -2.4, 1.1)
+
+[node name="Ladder2" type="Area3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, 52.5, 7, 30)
+monitorable = false
+script = ExtResource("3_kdg1s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder2"]
+shape = SubResource("BoxShape3D_22c2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder2"]
+mesh = SubResource("BoxMesh_aexy6")
+
+[node name="Ladder5" type="Area3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 49.5, 7, 30)
+monitorable = false
+script = ExtResource("3_kdg1s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder5"]
+shape = SubResource("BoxShape3D_22c2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder5"]
+mesh = SubResource("BoxMesh_aexy6")
+
+[node name="Ladder3" type="Area3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 51, 7, 28.5)
+monitorable = false
+script = ExtResource("3_kdg1s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder3"]
+shape = SubResource("BoxShape3D_22c2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder3"]
+mesh = SubResource("BoxMesh_aexy6")
+
+[node name="Ladder4" type="Area3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.999999, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -0.999999, 51, 7, 31.5)
+monitorable = false
+script = ExtResource("3_kdg1s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/Ladder4"]
+shape = SubResource("BoxShape3D_22c2b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder4"]
+mesh = SubResource("BoxMesh_aexy6")
+
+[node name="Bounce" parent="." instance=ExtResource("5_ca51l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1, 0.5, 50.5)
+
+[node name="WaterArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5, 30)
+script = ExtResource("6_rmd8c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea"]
+shape = SubResource("BoxShape3D_c2hmr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WaterArea"]
+mesh = SubResource("BoxMesh_2p506")
+
+[node name="TargetDummy" parent="." instance=ExtResource("7_vo52k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1, 58.6)
+
+[node name="Elevator" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0.5, 22.5)
+script = ExtResource("8_0dlt5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator"]
+shape = SubResource("BoxShape3D_g6hs7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Elevator"]
+material_override = ExtResource("1_aup37")
+mesh = SubResource("BoxMesh_t5rmj")

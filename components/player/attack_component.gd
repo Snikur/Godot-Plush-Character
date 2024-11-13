@@ -28,4 +28,4 @@ func _physics_process(_delta: float) -> void:
 func swing():
 	print("Swing")
 	if target:
-		target.change_health(-damage)
+		target.request_change.rpc_id(1, -damage)

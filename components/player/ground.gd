@@ -8,23 +8,28 @@ class_name GroundState
 @onready var coyote_timer: Timer = $CoyoteJump
 var target_angle : float = 0.0
 var movement_input : Vector2 = Vector2.ZERO
+var knockbacked: bool = false
 
 func _ready():
 	state.state_physics_processing.connect(state_physics_process)
+
+func knockback(dir: Vector3):
+	print("knock")
+	knockbacked = true
+	parent.velocity = dir
 
 func state_physics_process(delta: float) -> void:
 	movement_input = Input.get_vector("left", "right", "up", "down").rotated(-parent.camera.global_rotation.y)
 	var is_running : bool = Input.is_action_pressed("run")
 	var vel_2d = Vector2(parent.velocity.x, parent.velocity.z)
-	if movement_input != Vector2.ZERO:
+	if movement_input != Vector2.ZERO and not knockbacked:
 		if parent.is_on_floor():
 			parent.transition_to(parent.ANIMATION_STATE.RUN if is_running else parent.ANIMATION_STATE.WALK)
 		vel_2d += movement_input * parent.acceleration * delta
 		vel_2d = vel_2d.limit_length(parent.run_speed if is_running else parent.base_speed)
 		parent.velocity.x = vel_2d.x
 		parent.velocity.z = vel_2d.y
-		target_angle = -movement_input.orthogonal().angle()
-		print(target_angle)
+		target_angle = -movement_input.orthogonal().angle() #TODO: fix 0.15 radians off center
 	else:
 		if parent.is_on_floor():
 			parent.velocity.x = 0.0
@@ -61,6 +66,7 @@ func state_physics_process(delta: float) -> void:
 		coyote_timer.start()
 	
 	if parent.is_on_floor() && in_the_air: #just hit floor
+		knockbacked = false
 		_on_hit_floor(previous_y_vel)
 	
 	if parent.velocity.is_equal_approx(Vector3.ZERO) and parent.is_on_floor():

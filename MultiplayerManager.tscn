@@ -9,3 +9,7 @@ player_scene_path = "res://components/player/player.tscn"
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="SlowTickTimer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true

@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	fov_slider.drag_ended.connect(func(value_changed: bool):
 		if (value_changed):
-			Global.set_fov(fov_slider.value)
+			Global.set_fov(int(fov_slider.value))
 			fov_label.text = "Field of View: " + str(fov_slider.value)
 		)
 	mouse_slider.drag_ended.connect(func(value_changed: bool):

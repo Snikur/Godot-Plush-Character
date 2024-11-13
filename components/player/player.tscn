@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=27 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_4c8au"]
 [ext_resource type="AudioStream" uid="uid://b7q12qmsksbc7" path="res://assets/sounds/footstep_concrete_000.ogg" id="5_8ixl8"]
 [ext_resource type="Script" path="res://components/player/water.gd" id="5_8s7e8"]
+[ext_resource type="Script" path="res://components/player/knockback.gd" id="5_c3oes"]
 [ext_resource type="AudioStream" uid="uid://c6unhc5lontfn" path="res://assets/sounds/footstep_concrete_001.ogg" id="6_nlp36"]
 [ext_resource type="AudioStream" uid="uid://byg4lkp3ws8kt" path="res://assets/sounds/footstep_concrete_002.ogg" id="7_4283i"]
 [ext_resource type="Script" path="res://components/player/attack_component.gd" id="9_ghftm"]
@@ -81,6 +82,10 @@ state_path = NodePath("../StateChart/CompoundState/Climbing")
 script = ExtResource("5_8s7e8")
 state_path = NodePath("../StateChart/CompoundState/Water")
 
+[node name="Knockback" type="Node3D" parent="."]
+script = ExtResource("5_c3oes")
+state_path = NodePath("../StateChart/CompoundState/Knockback")
+
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("2_c1ftv")
 
@@ -103,10 +108,10 @@ to = NodePath("../../Climbing")
 event = &"to_climbing"
 delay_in_seconds = "0.0"
 
-[node name="ToCC" type="Node" parent="StateChart/CompoundState/Ground"]
+[node name="ToKnockback" type="Node" parent="StateChart/CompoundState/Ground"]
 script = ExtResource("5_4c8au")
-to = NodePath("../../CC")
-event = &"to_cc"
+to = NodePath("../../Knockback")
+event = &"to_knockback"
 delay_in_seconds = "0.0"
 
 [node name="Water" type="Node" parent="StateChart/CompoundState"]
@@ -124,10 +129,10 @@ to = NodePath("../../Climbing")
 event = &"to_climbing"
 delay_in_seconds = "0.0"
 
-[node name="ToCC" type="Node" parent="StateChart/CompoundState/Water"]
+[node name="ToKnockback" type="Node" parent="StateChart/CompoundState/Water"]
 script = ExtResource("5_4c8au")
-to = NodePath("../../CC")
-event = &"to_cc"
+to = NodePath("../../Knockback")
+event = &"to_knockback"
 delay_in_seconds = "0.0"
 
 [node name="Climbing" type="Node" parent="StateChart/CompoundState"]
@@ -145,28 +150,28 @@ to = NodePath("../../Ground")
 event = &"to_ground"
 delay_in_seconds = "0.0"
 
-[node name="ToCC" type="Node" parent="StateChart/CompoundState/Climbing"]
+[node name="ToKnockback" type="Node" parent="StateChart/CompoundState/Climbing"]
 script = ExtResource("5_4c8au")
-to = NodePath("../../CC")
-event = &"to_cc"
+to = NodePath("../../Knockback")
+event = &"to_knockback"
 delay_in_seconds = "0.0"
 
-[node name="CC" type="Node" parent="StateChart/CompoundState"]
+[node name="Knockback" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("4_kvrxs")
 
-[node name="ToWater" type="Node" parent="StateChart/CompoundState/CC"]
+[node name="ToWater" type="Node" parent="StateChart/CompoundState/Knockback"]
 script = ExtResource("5_4c8au")
 to = NodePath("../../Water")
 event = &"to_water"
 delay_in_seconds = "0.0"
 
-[node name="ToGround" type="Node" parent="StateChart/CompoundState/CC"]
+[node name="ToGround" type="Node" parent="StateChart/CompoundState/Knockback"]
 script = ExtResource("5_4c8au")
 to = NodePath("../../Ground")
 event = &"to_ground"
 delay_in_seconds = "0.0"
 
-[node name="ToClimbing" type="Node" parent="StateChart/CompoundState/CC"]
+[node name="ToClimbing" type="Node" parent="StateChart/CompoundState/Knockback"]
 script = ExtResource("5_4c8au")
 to = NodePath("../../Climbing")
 event = &"to_climbing"

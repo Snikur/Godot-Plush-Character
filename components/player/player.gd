@@ -9,6 +9,7 @@ var data: Dictionary
 @onready var ground_state: GroundState = $Ground
 @onready var climb_state: ClimbingState = $Climbing
 @onready var water_state: WaterState = $Water
+@onready var knockback_state: KnockbackState = $Knockback
 
 var jump_height : float = 2.5
 var jump_time_to_peak : float = 0.4
@@ -64,6 +65,7 @@ func _ready():
 		$StateChart.queue_free()
 		$Ground.queue_free()
 		$Climbing.queue_free()
+		$VisualRoot/GodotPlushSkin/AttackComponent.queue_free()
 
 func send_state():
 	if multiplayer:
@@ -121,10 +123,21 @@ func enter_climb_state(climbing: Node3D):
 
 func exit_climb_state(climbing: Node3D):
 	state_chart.send_event("to_ground")
-	climb_state.climbing_object = null
+	if climb_state.climbing_object == climbing:
+		print("stop climbing me")
+		climb_state.climbing_object = null
+	else:
+		print("climbing something else")
 
 func enter_water_state():
 	state_chart.send_event("to_water")
 
 func exit_water_state():
+	state_chart.send_event("to_ground")
+
+func enter_knockback_state(force: Vector3):
+	knockback_state.knockback_force = force
+	state_chart.send_event("to_knockback")
+
+func exit_knockback_state():
 	state_chart.send_event("to_ground")

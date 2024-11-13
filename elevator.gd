@@ -1,13 +1,17 @@
 extends AnimatableBody3D
 
-var tween = create_tween()
+var tween: Tween
 
 func _ready() -> void:
+	await MM.connected
 	if (multiplayer.is_server()):
 		MM.tick.connect(tick)
+		tween = create_tween()
 		tween.tween_property(self, "global_position:y", 5.5, 5.0).from(0.5).set_delay(2.0)
 		tween.tween_property(self, "global_position:y", 0.5, 5.0).from(5.5).set_delay(2.0)
 		tween.set_loops(0)
+	else:
+		print("client")
 
 func tick():
 	server_state.rpc(global_position)

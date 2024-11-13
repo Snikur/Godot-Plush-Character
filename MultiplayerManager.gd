@@ -15,10 +15,15 @@ var list_of_players: Array[Player] = []
 @onready var player_prefab := load(player_scene_path)
 
 signal tick
+signal slow_tick
 @onready var tick_timer: Timer = $TickTimer
+@onready var slow_tick_timer: Timer = $SlowTickTimer
+
+signal connected
 
 func _ready():
-	tick_timer.timeout.connect(func(): tick.emit())
+	tick_timer.timeout.connect(tick.emit)
+	slow_tick_timer.timeout.connect(slow_tick.emit)
 
 func _process(_delta):
 	if peer:
@@ -26,8 +31,8 @@ func _process(_delta):
 
 func host():
 	peer = WebSocketMultiplayerPeer.new()
-	var server_certs = load("res://generated.crt")
-	var server_key = load("res://generated.key")
+	#var server_certs = load("res://generated.crt")
+	#var server_key = load("res://generated.key")
 	#var server_tls_options = TLSOptions.server(server_key, server_certs)
 	
 	peer.create_server(PORT, "*", )#server_tls_options)
@@ -38,6 +43,7 @@ func host():
 	var random_position: Vector3 = Vector3(randf_range(30.0, 40.0), 10.0, randf_range(30.0, 40.0))
 	add_client(1, {"position": random_position})
 	DisplayServer.window_set_title(str("HOST"))
+	connected.emit()
 
 func add_client(id: int, data: Dictionary):
 	var player: Player = player_prefab.instantiate()
@@ -69,13 +75,14 @@ func client_disconnected(id: int):
 func join():
 	print("IP: ", IP_ADDRESS)
 	peer = WebSocketMultiplayerPeer.new()
-	var client_trusted_cas = load("res://generated.crt")
+	#var client_trusted_cas = load("res://generated.crt")
 	#var client_tls_options = TLSOptions.client(client_trusted_cas)
 	peer.create_client(IP_ADDRESS)#, client_tls_options)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(func(): print("Connection failed"))
 	multiplayer.server_disconnected.connect(func(): print("Server disconnected"))
+	connected.emit()
 
 func connected_to_server():
 	DisplayServer.window_set_title(str("JOIN: Player ", multiplayer.get_unique_id()))
