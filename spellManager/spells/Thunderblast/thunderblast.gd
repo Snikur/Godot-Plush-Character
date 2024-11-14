@@ -1,4 +1,4 @@
-extends Skill
+extends Spell
 class_name Thunderblast
 
 func _init(target):

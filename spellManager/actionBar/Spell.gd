@@ -1,5 +1,5 @@
 extends Resource
-class_name Skill
+class_name Spell
 
 var cooldown : float
 var texture : Texture2D

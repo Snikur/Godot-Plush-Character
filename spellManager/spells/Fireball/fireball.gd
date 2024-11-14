@@ -1,4 +1,4 @@
-extends Skill
+extends Spell
 class_name FireBall
 
 func _init(target):
