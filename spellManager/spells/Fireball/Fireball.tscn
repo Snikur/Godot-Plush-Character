@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://chaiafcda83f1"]
+
+[sub_resource type="GDScript" id="GDScript_4fnh7"]
+script/source = "extends Node3D
+
+func activate_spell():
+	print(\"pew pew\")
+"
+
+[node name="Fireball" type="Node3D"]
+script = SubResource("GDScript_4fnh7")

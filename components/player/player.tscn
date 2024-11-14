@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=28 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://c6unhc5lontfn" path="res://assets/sounds/footstep_concrete_001.ogg" id="6_nlp36"]
 [ext_resource type="AudioStream" uid="uid://byg4lkp3ws8kt" path="res://assets/sounds/footstep_concrete_002.ogg" id="7_4283i"]
 [ext_resource type="Script" path="res://components/player/attack_component.gd" id="9_ghftm"]
+[ext_resource type="PackedScene" uid="uid://cbaabmsqd66rd" path="res://spellManager/spell_manager.tscn" id="17_1hwc1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_slah2"]
 radius = 1.0
@@ -221,3 +222,5 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_3vpnr")
 volume_db = 5.0
 max_polyphony = 3
+
+[node name="SpellManager" parent="." instance=ExtResource("17_1hwc1")]
