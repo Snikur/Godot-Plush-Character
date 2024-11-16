@@ -1,11 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=33 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="2_py8eg"]
 [ext_resource type="Script" path="res://ladder.gd" id="3_kdg1s"]
 [ext_resource type="PackedScene" uid="uid://bouvidg64dqet" path="res://assets/models/ladder/CartoonLader/CartoonLadder.fbx" id="4_qdqii"]
 [ext_resource type="PackedScene" uid="uid://b1b0nka3xayeg" path="res://bounce.tscn" id="5_ca51l"]
-[ext_resource type="PackedScene" uid="uid://cy7y0irkl6w2r" path="res://spellManager/spell_pickup.tscn" id="5_gipfr"]
+[ext_resource type="PackedScene" path="res://spellManager/spell_pickup.tscn" id="5_gipfr"]
 [ext_resource type="Script" path="res://spellManager/spells/Frostbolt/frostbolt_spell.gd" id="6_ewwhn"]
 [ext_resource type="Script" path="res://water_area.gd" id="6_rmd8c"]
 [ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="7_vo52k"]
@@ -32,6 +32,10 @@ top_radius = 40.0
 height = 5.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_3f63d"]
+material = ExtResource("1_aup37")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tmpsi"]
 size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7mcia"]
@@ -174,9 +178,17 @@ mesh = SubResource("PrismMesh_3f63d")
 [node name="SilverPirateCoin" parent="CSGCombiner3D/CSGMesh3D6" instance=ExtResource("2_py8eg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, -2, 0)
 
-[node name="CSGMesh3D7" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 60, 11, 37)
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 5, 37)
+script = ExtResource("8_0dlt5")
+destination_height = 11.0
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="CSGCombiner3D/AnimatableBody3D"]
+transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("PrismMesh_3f63d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCombiner3D/AnimatableBody3D"]
+shape = SubResource("BoxShape3D_tmpsi")
 
 [node name="CSGMesh3D4" type="CSGMesh3D" parent="CSGCombiner3D"]
 transform = Transform3D(-1, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 46, 3, 35)

@@ -20,7 +20,7 @@ var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
-var acceleration = 64.0
+var acceleration = 128.0
 var base_speed = 2.0
 var run_speed = 8.0
 var speed_modifier: float = 1.0
