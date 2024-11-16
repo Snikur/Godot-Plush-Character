@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ljag3o1lxmcp"]
 
 [ext_resource type="Script" path="res://spellManager/spells/Frostbolt/frostbolt.gd" id="1_uenxf"]
-[ext_resource type="PackedScene" path="res://spellManager/spells/Frostbolt/vfx_frostbolt.tscn" id="2_cbm4n"]
+[ext_resource type="PackedScene" uid="uid://dtkvct3yvs0on" path="res://spellManager/spells/Frostbolt/vfx_frostbolt.tscn" id="2_cbm4n"]
 
 [node name="Frostbolt" type="Node3D"]
 script = ExtResource("1_uenxf")

@@ -1,6 +1,11 @@
 extends Resource
 class_name Spell
 
+enum SPELLTYPE {
+	Fireball, Frostbolt
+}
+var type = SPELLTYPE.Fireball
+
 @export var cooldown: float = 0.0
 @export var texture: Texture2D = null
 @export var spell_scene: PackedScene
