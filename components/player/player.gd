@@ -22,6 +22,7 @@ var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_
 var acceleration = 64.0
 var base_speed = 2.0
 var run_speed = 8.0
+var speed_modifier: float = 1.0
 
 @onready var visual_root = %VisualRoot
 @onready var godot_plush_skin = $VisualRoot/GodotPlushSkin

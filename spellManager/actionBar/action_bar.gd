@@ -12,5 +12,5 @@ func _ready():
 	slots[1].spell = FrostboltSpell.new(slots[1])
 	slots[2].spell = ChainHeal.new(slots[2])
 	slots[3].spell = BlinkSpell.new(slots[3])
-	slots[4].spell = Thunderblast.new(slots[4])
+	slots[4].spell = SprintSpell.new(slots[4])
 	
