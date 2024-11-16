@@ -8,7 +8,9 @@ var damage: int = 10
 func _ready() -> void:
 	swing_timer.timeout.connect(swing)
 	if (not parent_node.is_empty()):
-		add_exception(get_node(parent_node))
+		var player_node = get_node(parent_node)
+		add_exception(player_node)
+		spell_manager.source = player_node
 
 func _physics_process(_delta: float) -> void:
 	if is_colliding():

@@ -1,11 +1,13 @@
-extends Spell
-class_name Frostbolt
+extends Node3D
 
-func _init(target):
-	cooldown = 3.0
-	texture = preload("res://spellManager/spells/Frostbolt/Coldflake.png")
-	
-	super._init(target)
-	
-func cast_spell(target):
-	super.cast_spell(target)
+var target: Enemy
+
+func _physics_process(delta: float) -> void:
+	if (is_instance_valid(target)):
+		self.look_at(target.global_position)
+		global_position = global_position.move_toward(target.global_position, delta * 10.0)
+		if ((target.global_position - self.global_position).length() < 1.0):
+			target.request_change.rpc_id(1, -10)
+			queue_free()
+	else:
+		queue_free()

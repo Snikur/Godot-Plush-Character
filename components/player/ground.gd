@@ -6,9 +6,10 @@ class_name GroundState
 @onready var state: AtomicState = get_node(state_path)
 
 @onready var coyote_timer: Timer = $CoyoteJump
-var target_angle : float = 0.0
-var movement_input : Vector2 = Vector2.ZERO
+var target_angle: float = 0.0
+var movement_input: Vector2 = Vector2.ZERO
 var knockbacked: bool = false
+var is_running: bool = true
 
 func _ready():
 	state.state_physics_processing.connect(state_physics_process)
@@ -20,7 +21,9 @@ func knockback(dir: Vector3):
 
 func state_physics_process(delta: float) -> void:
 	movement_input = Input.get_vector("left", "right", "up", "down").rotated(-parent.camera.global_rotation.y)
-	var is_running : bool = Input.is_action_pressed("run")
+	#var is_running: bool = Input.is_action_pressed("run") #hold to run
+	if (Input.is_action_just_pressed("run")): #toggle run
+		is_running = !is_running
 	var vel_2d = Vector2(parent.velocity.x, parent.velocity.z)
 	if movement_input != Vector2.ZERO and not knockbacked:
 		if parent.is_on_floor():

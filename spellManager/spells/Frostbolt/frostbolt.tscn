@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ljag3o1lxmcp"]
+
+[ext_resource type="Script" path="res://spellManager/spells/Frostbolt/frostbolt.gd" id="1_uenxf"]
+[ext_resource type="PackedScene" path="res://spellManager/spells/Frostbolt/vfx_frostbolt.tscn" id="2_cbm4n"]
+
+[node name="Frostbolt" type="Node3D"]
+script = ExtResource("1_uenxf")
+
+[node name="vfx_frostbolt" parent="." instance=ExtResource("2_cbm4n")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
