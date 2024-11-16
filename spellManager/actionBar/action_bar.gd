@@ -8,9 +8,13 @@ func _ready():
 		if slots[i] is SpellTextureButton:
 			slots[i].change_key = str(i+1)
 		
-	slots[0].spell = FireballSpell.new(slots[0])
-	slots[1].spell = FrostboltSpell.new(slots[1])
-	slots[2].spell = ChainHeal.new(slots[2])
-	slots[3].spell = BlinkSpell.new(slots[3])
-	slots[4].spell = SprintSpell.new(slots[4])
+	slots[0].spell = FireballSpell.new()
+	slots[0].spell.init(slots[0])
 	
+func add_spell(newSpell: Spell):
+	for i in slots.size():
+		if slots[i] is SpellTextureButton:
+			if slots[i].spell == null:
+				slots[i].spell = newSpell
+				slots[i].spell.init(slots[i])
+				break

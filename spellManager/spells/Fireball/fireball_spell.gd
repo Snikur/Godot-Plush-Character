@@ -1,10 +1,10 @@
 extends Spell
 class_name FireballSpell
 
-func _init(spell_button: SpellTextureButton):
+func init(spell_button: SpellTextureButton):
 	cooldown = 1.0
 	texture = preload("res://spellManager/spells/Fireball/flobo.png")
-	super._init(spell_button)
+	super.init(spell_button)
 
 @rpc("authority", "call_local", "reliable")
 func cast_spell(owner: SpellManager):

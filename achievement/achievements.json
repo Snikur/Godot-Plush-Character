@@ -13,4 +13,11 @@
 		"name": "Pirate coin!",
 		"completed": false
 	},
+		"first_spell": {
+		"neededAmount": 1,
+		"description": "Collect your first spell.",
+		"currentAmount": 0,
+		"name": "Magican!",
+		"completed": false
+	},
 }

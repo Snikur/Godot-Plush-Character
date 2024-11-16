@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=26 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="2_py8eg"]
@@ -6,12 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bouvidg64dqet" path="res://assets/models/ladder/CartoonLader/CartoonLadder.fbx" id="4_qdqii"]
 [ext_resource type="PackedScene" uid="uid://b1b0nka3xayeg" path="res://bounce.tscn" id="5_ca51l"]
 [ext_resource type="PackedScene" uid="uid://cy7y0irkl6w2r" path="res://spellManager/spell_pickup.tscn" id="5_gipfr"]
-[ext_resource type="Script" path="res://spellManager/spells/Frostbolt/frostbolt_spell.gd" id="6_ewwhn"]
 [ext_resource type="Script" path="res://water_area.gd" id="6_rmd8c"]
 [ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="7_vo52k"]
 [ext_resource type="Script" path="res://elevator.gd" id="8_0dlt5"]
-[ext_resource type="Script" path="res://spellManager/spells/Blink/blink.gd" id="10_vn22s"]
-[ext_resource type="Script" path="res://spellManager/spells/Sprint/sprint.gd" id="11_w0gtx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g1m0j"]
 
@@ -63,18 +60,6 @@ albedo_color = Color(0.180392, 0, 0.858824, 0.537255)
 [sub_resource type="BoxMesh" id="BoxMesh_2p506"]
 material = SubResource("StandardMaterial3D_3osiu")
 size = Vector3(10, 10, 10)
-
-[sub_resource type="Resource" id="Resource_wt116"]
-script = ExtResource("6_ewwhn")
-cooldown = 0.0
-
-[sub_resource type="Resource" id="Resource_ea36u"]
-script = ExtResource("10_vn22s")
-cooldown = 0.0
-
-[sub_resource type="Resource" id="Resource_yv8lr"]
-script = ExtResource("11_w0gtx")
-cooldown = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g6hs7"]
 size = Vector3(3, 1, 3)
@@ -241,6 +226,9 @@ shape = SubResource("BoxShape3D_22c2b")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CSGCombiner3D/Ladder4"]
 mesh = SubResource("BoxMesh_aexy6")
 
+[node name="GoldCoin" parent="CSGCombiner3D" instance=ExtResource("5_gipfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3392, 6.59046, 35.1449)
+
 [node name="Bounce" parent="." instance=ExtResource("5_ca51l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1, 0.5, 50.5)
 
@@ -256,20 +244,6 @@ mesh = SubResource("BoxMesh_2p506")
 
 [node name="TargetDummy" parent="." instance=ExtResource("7_vo52k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1, 58.6)
-
-[node name="Spells" type="Node3D" parent="."]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 35.3392, 6.59046, 35.1449)
-
-[node name="Frostbolt" parent="Spells" instance=ExtResource("5_gipfr")]
-spell = SubResource("Resource_wt116")
-
-[node name="Blink" parent="Spells" instance=ExtResource("5_gipfr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11042, 0, 0)
-spell = SubResource("Resource_ea36u")
-
-[node name="Sprint" parent="Spells" instance=ExtResource("5_gipfr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68372, 0, 0)
-spell = SubResource("Resource_yv8lr")
 
 [node name="Elevator" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0.5, 22.5)

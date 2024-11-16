@@ -1,10 +1,10 @@
 extends Spell
 class_name FrostboltSpell
 
-func _init(spell_button: SpellTextureButton):
+func init(spell_button: SpellTextureButton):
 	cooldown = 3.0
 	texture = preload("res://spellManager/spells/Frostbolt/Coldflake.png")
-	super._init(spell_button)
+	super.init(spell_button)
 	
 @rpc("authority", "call_local", "reliable")
 func cast_spell(owner: SpellManager):

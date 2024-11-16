@@ -10,6 +10,7 @@ var data: Dictionary
 @onready var climb_state: ClimbingState = $Climbing
 @onready var water_state: WaterState = $Water
 @onready var knockback_state: KnockbackState = $Knockback
+@onready var spell_manager: SpellManager = %SpellManager
 
 var jump_height : float = 2.5
 var jump_time_to_peak : float = 0.4

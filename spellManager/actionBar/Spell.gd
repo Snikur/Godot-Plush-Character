@@ -5,7 +5,7 @@ class_name Spell
 @export var texture: Texture2D = null
 @export var spell_scene: PackedScene
 
-func _init(spell_button: SpellTextureButton):
+func init(spell_button: SpellTextureButton):
 	spell_button.cooldown.max_value = cooldown
 	spell_button.texture_normal = texture
 	spell_button.timer.wait_time = cooldown
