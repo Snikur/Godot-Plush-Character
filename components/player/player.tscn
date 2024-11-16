@@ -183,16 +183,19 @@ unique_name_in_owner = true
 
 [node name="GodotPlushSkin" parent="VisualRoot" instance=ExtResource("2_mtsks")]
 
-[node name="AttackComponent" type="ShapeCast3D" parent="VisualRoot/GodotPlushSkin"]
+[node name="AutoAttack" type="ShapeCast3D" parent="VisualRoot/GodotPlushSkin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_slah2")
-target_position = Vector3(0, 0, 2)
+target_position = Vector3(0, 0, 10)
 max_results = 1
 collide_with_areas = true
 script = ExtResource("9_ghftm")
 parent_node = NodePath("../../..")
 
-[node name="SwingTimer" type="Timer" parent="VisualRoot/GodotPlushSkin/AttackComponent"]
+[node name="SpellManager" parent="VisualRoot/GodotPlushSkin/AutoAttack" instance=ExtResource("17_1hwc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="SwingTimer" type="Timer" parent="VisualRoot/GodotPlushSkin/AutoAttack"]
 one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -222,5 +225,3 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_3vpnr")
 volume_db = 5.0
 max_polyphony = 3
-
-[node name="SpellManager" parent="." instance=ExtResource("17_1hwc1")]

@@ -9,4 +9,3 @@ func _init(target):
 	
 func cast_spell(target):
 	super.cast_spell(target)
-	print("frostbolt brrrrr")

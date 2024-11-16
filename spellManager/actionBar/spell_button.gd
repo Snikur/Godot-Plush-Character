@@ -1,11 +1,12 @@
 extends TextureButton
+class_name SpellTextureButton
 
 @onready var cooldown = $Cooldown
 @onready var key = $Key
 @onready var time = $Time
 @onready var timer = $Timer
 
-var skill = null
+var spell: Spell = null
 
 var change_key = "":
 	set(value):
@@ -21,6 +22,8 @@ var change_key = "":
 func _ready():
 	change_key = "1"
 	cooldown.max_value  = timer.wait_time
+	timer.timeout.connect(_on_timer_timeout)
+	self.pressed.connect(_on_pressed)
 	set_process(false)
 
 func _process(_delta):
@@ -29,8 +32,8 @@ func _process(_delta):
 
 
 func _on_pressed():
-	if skill != null:
-		skill.cast_spell(owner)
+	if spell != null:
+		spell.cast_spell(owner)
 		
 	timer.start()
 	disabled = true

@@ -1,14 +1,11 @@
 extends Node
 
-var peer: WebSocketMultiplayerPeer
 @onready var IP_ADDRESS = "ws://localhost:25565" if OS.has_feature("debug") else "ws://game.reitan.dev"
+var peer: WebSocketMultiplayerPeer
 const PORT: int = 25565
 const MAX_CLIENTS: int = 4095
 
-var npcs_spawned: int = -1
-var list_of_NPCs: Dictionary = {}
-const MAX_NPCS: int = 5
-@export var npcs: Array[PackedScene] = []
+var entities_spawned: int = 0
 
 var list_of_players: Array[Player] = []
 @export_file var player_scene_path
@@ -99,5 +96,5 @@ func send_setup(data: Dictionary):
 			remote_add_client.rpc_id(player.id, sender_id, player.data)
 
 func get_next_id() -> int:
-	npcs_spawned = npcs_spawned + 1
-	return npcs_spawned
+	entities_spawned = entities_spawned + 1
+	return entities_spawned

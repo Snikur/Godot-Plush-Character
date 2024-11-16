@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://4rg7r7vihcxy"]
+
+[ext_resource type="Script" path="res://spellManager/spells/Fireball/fireball.gd" id="1_7oxyo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sseei"]
+
+[node name="Fireball" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_sseei")
+script = ExtResource("1_7oxyo")
