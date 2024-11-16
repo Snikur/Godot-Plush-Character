@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://ladder.gd" id="3_kdg1s"]
 [ext_resource type="PackedScene" uid="uid://bouvidg64dqet" path="res://assets/models/ladder/CartoonLader/CartoonLadder.fbx" id="4_qdqii"]
 [ext_resource type="PackedScene" uid="uid://b1b0nka3xayeg" path="res://bounce.tscn" id="5_ca51l"]
-[ext_resource type="PackedScene" path="res://spellManager/spell_pickup.tscn" id="5_gipfr"]
+[ext_resource type="PackedScene" uid="uid://cy7y0irkl6w2r" path="res://spellManager/spell_pickup.tscn" id="5_gipfr"]
 [ext_resource type="Script" path="res://spellManager/spells/Frostbolt/frostbolt_spell.gd" id="6_ewwhn"]
 [ext_resource type="Script" path="res://water_area.gd" id="6_rmd8c"]
 [ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="7_vo52k"]

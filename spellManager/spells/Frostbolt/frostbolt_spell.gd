@@ -4,6 +4,7 @@ class_name FrostboltSpell
 func init(spell_button: SpellTextureButton):
 	cooldown = 3.0
 	texture = preload("res://spellManager/spells/Frostbolt/Coldflake.png")
+	type = SPELLTYPE.Frostbolt
 	super.init(spell_button)
 	
 @rpc("authority", "call_local", "reliable")

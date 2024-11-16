@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctpp6yk5ab1aq"]
+[gd_scene load_steps=18 format=3 uid="uid://dtkvct3yvs0on"]
 
 [ext_resource type="Shader" uid="uid://bmbp3qtmwg3i8" path="res://spellManager/spells/Fireball/fireball_shader.tres" id="1_vbqcd"]
 [ext_resource type="ArrayMesh" uid="uid://c2iyeou08k3kr" path="res://spellManager/spells/Fireball/fireball_mesh.obj" id="2_a58cp"]
