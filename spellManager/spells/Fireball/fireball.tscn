@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://4rg7r7vihcxy"]
+[gd_scene load_steps=3 format=3 uid="uid://ceqldfs60mk2r"]
 
 [ext_resource type="Script" path="res://spellManager/spells/Fireball/fireball.gd" id="1_7oxyo"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_sseei"]
+[ext_resource type="PackedScene" uid="uid://dfyysfky7t0rl" path="res://spellManager/spells/Fireball/vfs_fire_ball.tscn" id="2_udt16"]
 
 [node name="Fireball" type="MeshInstance3D"]
-mesh = SubResource("SphereMesh_sseei")
 script = ExtResource("1_7oxyo")
+
+[node name="VFS_FireBall" parent="." instance=ExtResource("2_udt16")]
