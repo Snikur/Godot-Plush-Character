@@ -65,7 +65,7 @@ func _ready():
 		$StateChart.queue_free()
 		$Ground.queue_free()
 		$Climbing.queue_free()
-		$VisualRoot/GodotPlushSkin/AttackComponent.queue_free()
+		$VisualRoot/GodotPlushSkin/AutoAttack.queue_free()
 
 func send_state():
 	if multiplayer:

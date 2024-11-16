@@ -19,10 +19,10 @@ func _physics_process(_delta: float) -> void:
 			if (swing_timer.is_stopped()):
 				swing_timer.start()
 		else:
-			spell_manager.target = null
+			#spell_manager.target = null
 			swing_timer.paused = true
 	else:
-		spell_manager.target = null
+		#spell_manager.target = null
 		swing_timer.paused = true
 
 func swing():

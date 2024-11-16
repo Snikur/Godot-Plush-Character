@@ -12,12 +12,7 @@ func _ready() -> void:
 
 @rpc("authority", "reliable", "call_local")
 func change_health(value: int):
-	if (multiplayer.is_server()):
-		if value == 0:
-			health = max_health
-			change_health.rpc(health)
-	else:
-		health = value
+	health = value
 	status_label.text = "HP: " + str(health) + "/" + str(max_health)
 
 @rpc("any_peer", "reliable", "call_local")
@@ -27,7 +22,10 @@ func request_change(value: int):
 func handle_changes():
 	if (changes_received.size() == 0):
 		return
+	var new_health: int = 0
 	for change in changes_received:
-		health = max(min(health+change, max_health), 0)
-	change_health.rpc(health)
+		new_health = max(min(health+change, max_health), 0)
+	if new_health == 0:
+		new_health = max_health	
+	change_health.rpc(new_health)
 	changes_received.clear()

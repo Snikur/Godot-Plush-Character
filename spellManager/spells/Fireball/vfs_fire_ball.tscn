@@ -1,9 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dfyysfky7t0rl"]
+[gd_scene load_steps=18 format=3 uid="uid://kyxrqnijedci"]
 
-[ext_resource type="Shader" uid="uid://cicu2r1180esu" path="res://spellManager/spells/Fireball/fireball_shader.tres" id="1_nk3yk"]
+[ext_resource type="Shader" uid="uid://bmbp3qtmwg3i8" path="res://spellManager/spells/Fireball/fireball_shader.tres" id="1_nk3yk"]
 [ext_resource type="ArrayMesh" uid="uid://c2iyeou08k3kr" path="res://spellManager/spells/Fireball/fireball_mesh.obj" id="2_77jn8"]
-[ext_resource type="Shader" uid="uid://c01tpm4be1gmx" path="res://spellManager/spells/Fireball/fireheader_shader.tres" id="3_wh5pc"]
-[ext_resource type="Shader" uid="uid://byu5qx26l2sym" path="res://spellManager/spells/Fireball/Fireball_tail_shader.tres" id="4_7r461"]
+[ext_resource type="Shader" uid="uid://b13v320iwsppd" path="res://spellManager/spells/Fireball/fireheader_shader.tres" id="3_wh5pc"]
+[ext_resource type="Shader" uid="uid://dtxkg6g2d4klu" path="res://spellManager/spells/Fireball/Fireball_tail_shader.tres" id="4_7r461"]
 [ext_resource type="Texture2D" uid="uid://b7og1g8ic640n" path="res://spellManager/spells/Fireball/spark_texture.PNG" id="5_0o8mx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5onn8"]

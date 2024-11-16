@@ -8,8 +8,7 @@ const MAX_CLIENTS: int = 4095
 var entities_spawned: int = 0
 
 var list_of_players: Array[Player] = []
-@export_file var player_scene_path
-@onready var player_prefab := load(player_scene_path)
+@onready var player_prefab := preload("res://components/player/player.tscn")
 
 signal tick
 signal slow_tick

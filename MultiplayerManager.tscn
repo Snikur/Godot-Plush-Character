@@ -4,7 +4,6 @@
 
 [node name="MultiplayerManager" type="Node"]
 script = ExtResource("1_lpxfq")
-player_scene_path = "res://components/player/player.tscn"
 
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.1
