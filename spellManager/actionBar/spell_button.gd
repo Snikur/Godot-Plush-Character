@@ -34,10 +34,9 @@ func _process(_delta):
 func _on_pressed():
 	if spell != null:
 		spell.cast_spell(owner)
-		
-	timer.start()
-	disabled = true
-	set_process(true)
+		timer.start()
+		disabled = true
+		set_process(true)
 
 
 func _on_timer_timeout():
