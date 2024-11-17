@@ -8,8 +8,10 @@ var changes_received: Array
 signal die
 
 func _ready():
-	print("combat ready for ", get_parent().name)
+	if (not get_parent() is Player):
+		await MM.connected
 	if (multiplayer.is_server()):
+		print("connect slow tick from ", get_parent().name)
 		MM.slow_tick.connect(handle_changes)
 
 @rpc("authority", "reliable", "call_local")
@@ -25,6 +27,7 @@ func request_change(value: int):
 
 func handle_changes():
 	if (not multiplayer.is_server()):
+		print("disconnect wrong slow tick")
 		MM.slow_tick.disconnect(handle_changes)
 		return
 	if (changes_received.size() == 0):

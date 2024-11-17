@@ -9,8 +9,6 @@ func _ready() -> void:
 		tween.tween_property(self, "progress_ratio", 0.8, 60.0).from(0.0)
 		tween.tween_property(self, "progress_ratio", 1.0, 60.0).from(0.8).set_delay(10.0)
 		tween.set_loops(0)
-	else:
-		print("client")
 
 func tick():
 	server_state.rpc(progress_ratio)
