@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=29 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_c1ftv"]
 [ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://components/godot_plush/godot_plush_skin.tscn" id="2_mtsks"]
+[ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="2_qqd5t"]
 [ext_resource type="PackedScene" uid="uid://c0b71d2b1hdp6" path="res://components/orbit_control/orbit_view.tscn" id="3_hcr6r"]
 [ext_resource type="Script" path="res://components/player/ground.gd" id="3_t572a"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_w7ieo"]
@@ -66,6 +67,14 @@ stream_2/stream = ExtResource("7_4283i")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ms4x1")
+
+[node name="CombatComponent" type="Node3D" parent="."]
+script = ExtResource("2_qqd5t")
+
+[node name="Status" type="Label3D" parent="CombatComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+billboard = 2
+text = "HP: 100/100"
 
 [node name="Ground" type="Node3D" parent="."]
 script = ExtResource("3_t572a")

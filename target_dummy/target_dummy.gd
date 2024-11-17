@@ -22,19 +22,23 @@ func _ready() -> void:
 				target = null
 				return_to_spawn = true
 		)
+		combat.die.connect(func():
+			return_to_spawn = true
+		)
 	else:
 		set_physics_process(false)
 		$AggroArea/CollisionShape3D.disabled = true
 
 func _physics_process(delta: float) -> void:
-	if (target):
+	if (target and not return_to_spawn):
 		velocity = (target.global_position - self.global_position).limit_length()
-		if (target.distance_to(global_position) < 2.0):
+		if (target.global_position.distance_to(global_position) < 2.0):
 			target.combat.request_change.rpc(-10)
 	elif (return_to_spawn):
 		velocity = (spawn_position - self.global_position).limit_length()
 		if (spawn_position.distance_to(global_position) < 1.0):
 			return_to_spawn = false
+			combat.change_health.rpc(combat.max_health)
 	else:
 		rotate_y(delta*0.5)
 		velocity = global_basis.z * 2.0

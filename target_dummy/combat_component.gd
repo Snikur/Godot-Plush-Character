@@ -5,6 +5,7 @@ class_name CombatComponent
 var max_health: int = 100
 var health: int = 100
 var changes_received: Array
+signal die
 
 func _ready():
 	await MM.connected
@@ -27,6 +28,6 @@ func handle_changes():
 	for change in changes_received:
 		new_health = max(min(health+change, max_health), 0)
 	if new_health == 0:
-		new_health = max_health	
+		die.emit()
 	change_health.rpc(new_health)
 	changes_received.clear()
