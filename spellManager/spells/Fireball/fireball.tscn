@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://4rg7r7vihcxy"]
+[gd_scene load_steps=4 format=3 uid="uid://4rg7r7vihcxy"]
 
 [ext_resource type="Script" path="res://spellManager/spells/Fireball/fireball.gd" id="1_7oxyo"]
 [ext_resource type="PackedScene" uid="uid://kyxrqnijedci" path="res://spellManager/spells/Fireball/vfx_fireball.tscn" id="2_udt16"]
 
-[node name="Fireball" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ikowy"]
+
+[node name="Fireball" type="Area3D"]
+collision_layer = 0
 script = ExtResource("1_7oxyo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ikowy")
 
 [node name="vfx_fireball" parent="." instance=ExtResource("2_udt16")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
