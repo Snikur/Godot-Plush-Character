@@ -9,7 +9,8 @@ func init(spell_button: SpellTextureButton):
 	super.init(spell_button)
 
 func cast_spell(owner: SpellManager, index: int):
-	super.cast_spell(owner, index)
+	if (owner.source.id == owner.multiplayer.get_unique_id()):
+		super.cast_spell(owner, index)
 	var frostbolt = spell_scene.instantiate()
 	frostbolt.top_level = true
 	owner.add_child(frostbolt)

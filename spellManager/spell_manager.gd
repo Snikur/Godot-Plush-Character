@@ -21,6 +21,9 @@ func cast_spell(type: int, index: int):
 			spell.cast_spell(self, index)
 			pass
 		Spell.SPELLTYPE.FROSTBOLT:
+			var spell = FrostboltSpell.new()
+			spell.init(null)
+			spell.cast_spell(self, index)
 			pass
 		_:
 			print("not spell vfx to spawn")
