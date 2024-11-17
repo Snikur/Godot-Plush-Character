@@ -7,6 +7,7 @@ var tween: Tween
 @onready var spawn_position: Vector3 = global_position
 @onready var combat: CombatComponent = $CombatComponent
 @onready var swing_timer: Timer = $SwingTimer
+var list_of_players: Array[Player]
 var target: Player
 var return_to_spawn: bool = false
 
@@ -16,12 +17,16 @@ func _ready() -> void:
 		MM.tick.connect(tick)
 		aggro_area.body_entered.connect(func(body: Node3D):
 			if (body is Player):
-				target = body
+				list_of_players.append(body)
+				if (target == null):
+					target = body
 		)
 		aggro_area.body_exited.connect(func(body: Node3D):
 			if (body is Player and target == body):
-				target = null
-				return_to_spawn = true
+				list_of_players.erase(body)
+				target = list_of_players[0] if list_of_players.size() > 0 else null
+				if (list_of_players.size() == 0):
+					return_to_spawn = true
 		)
 		combat.die.connect(func():
 			return_to_spawn = true
