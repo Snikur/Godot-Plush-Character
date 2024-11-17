@@ -31,7 +31,7 @@ func host():
 	#var server_key = load("res://generated.key")
 	#var server_tls_options = TLSOptions.server(server_key, server_certs)
 	
-	peer.create_server(PORT, "*", )#server_tls_options)
+	peer.create_server(PORT, "*")#server_tls_options)
 	#peer.max_queued_packets = 8192
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(client_connected)

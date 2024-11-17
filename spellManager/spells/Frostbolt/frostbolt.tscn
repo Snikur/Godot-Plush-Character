@@ -6,6 +6,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_ivtp3"]
 
 [node name="Frostbolt" type="Area3D"]
+collision_layer = 0
 script = ExtResource("1_uenxf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

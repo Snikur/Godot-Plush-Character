@@ -7,6 +7,7 @@ var health: int = 100
 
 var changes_received: Array
 func _ready() -> void:
+	await MM.connected
 	if (multiplayer.is_server()):
 		MM.slow_tick.connect(handle_changes)
 

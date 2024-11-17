@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=36 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="2_py8eg"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://elevator.gd" id="8_0dlt5"]
 [ext_resource type="Script" path="res://spellManager/spells/Blink/blink.gd" id="10_vn22s"]
 [ext_resource type="Script" path="res://spellManager/spells/Sprint/sprint.gd" id="11_w0gtx"]
+[ext_resource type="PackedScene" uid="uid://deukppkq0x40j" path="res://assets/scenes/ship_large_2.tscn" id="13_prpo3"]
+[ext_resource type="Script" path="res://ship_follow.gd" id="13_s4wdj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g1m0j"]
 
@@ -25,7 +27,8 @@ ambient_light_source = 3
 reflected_light_source = 2
 tonemap_mode = 1
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xuepk"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hl4yo"]
+radius = 40.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nj12g"]
 top_radius = 40.0
@@ -57,7 +60,7 @@ material = SubResource("StandardMaterial3D_nq38v")
 size = Vector3(2, 14, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c2hmr"]
-size = Vector3(10, 10, 10)
+size = Vector3(256, 10, 256)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3osiu"]
 transparency = 1
@@ -66,18 +69,21 @@ albedo_color = Color(0.180392, 0, 0.858824, 0.537255)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2p506"]
 material = SubResource("StandardMaterial3D_3osiu")
-size = Vector3(10, 10, 10)
+size = Vector3(256, 10, 256)
 
 [sub_resource type="Resource" id="Resource_wt116"]
 script = ExtResource("6_ewwhn")
+type = 2
 cooldown = null
 
 [sub_resource type="Resource" id="Resource_ea36u"]
 script = ExtResource("10_vn22s")
+type = 2
 cooldown = null
 
 [sub_resource type="Resource" id="Resource_yv8lr"]
 script = ExtResource("11_w0gtx")
+type = 2
 cooldown = null
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g6hs7"]
@@ -85,6 +91,13 @@ size = Vector3(3, 1, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t5rmj"]
 size = Vector3(3, 1, 3)
+
+[sub_resource type="Curve3D" id="Curve3D_j5op2"]
+_data = {
+"points": PackedVector3Array(11.929, 0, -25.9194, -11.929, 0, 25.9194, -35.5857, 0, 26.6184, -12.7966, 0, -3.05552, 12.7966, 0, 3.05552, -4.58566, 0, 58.6184, -13.6044, 0, 0.395721, 13.6044, 0, -0.395721, 43.5712, 0, 58.8808, -0.419403, 0, 23.4825, 0.419403, 0, -23.4825, 75.4143, 0, 18.6184, 18.7152, 0, -9.33589, -18.7152, 0, 9.33589, 43.6168, 0, -13.4313, 21.1845, 0, -11.9908, -21.1845, 0, 11.9908, -35.5857, 0, 26.6184),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
 
 [node name="Environment" type="Node3D"]
 
@@ -96,10 +109,11 @@ transform = Transform3D(0.422618, 0.640856, -0.640857, 0, 0.707107, 0.707106, 0.
 shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, 40)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("WorldBoundaryShape3D_xuepk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("CylinderShape3D_hl4yo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
@@ -107,7 +121,7 @@ material_override = ExtResource("1_aup37")
 mesh = SubResource("CylinderMesh_nj12g")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 1, 0)
 material_override = ExtResource("1_aup37")
 use_collision = true
 
@@ -137,6 +151,11 @@ size = Vector3(14, 6, 12)
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 44, 0, 42)
+polygon = PackedVector2Array(0, 0, 0, 2, 6, 0)
+depth = 4.0
+
+[node name="CSGPolygon3D5" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.440535, 0, -0.897736, 0, 1, 0, 0.897736, 0, -0.440535, 20.7028, -2, 74.9249)
 polygon = PackedVector2Array(0, 0, 0, 2, 6, 0)
 depth = 4.0
 
@@ -257,7 +276,7 @@ mesh = SubResource("BoxMesh_aexy6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1, 0.5, 50.5)
 
 [node name="WaterArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, -5, 128)
 script = ExtResource("6_rmd8c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea"]
@@ -267,10 +286,10 @@ shape = SubResource("BoxShape3D_c2hmr")
 mesh = SubResource("BoxMesh_2p506")
 
 [node name="TargetDummy" parent="." instance=ExtResource("7_vo52k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1, 58.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2, 58.6)
 
 [node name="Spells" type="Node3D" parent="."]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 35.3392, 6.59046, 35.1449)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 35.3392, 7.59046, 35.1449)
 
 [node name="Frostbolt" parent="Spells" instance=ExtResource("5_gipfr")]
 spell = SubResource("Resource_wt116")
@@ -293,3 +312,15 @@ shape = SubResource("BoxShape3D_g6hs7")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Elevator"]
 material_override = ExtResource("1_aup37")
 mesh = SubResource("BoxMesh_t5rmj")
+
+[node name="ShipPath" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.9271, 0, 83.0005)
+curve = SubResource("Curve3D_j5op2")
+
+[node name="ShipFollow" type="PathFollow3D" parent="ShipPath"]
+transform = Transform3D(0.440124, 0, -0.897932, 0, 1, 0, 0.897932, 0, 0.440124, 21.4901, 0, -2.55261)
+progress = 238.995
+use_model_front = true
+script = ExtResource("13_s4wdj")
+
+[node name="Ship" parent="ShipPath/ShipFollow" instance=ExtResource("13_prpo3")]

@@ -13,7 +13,6 @@ func add_spell(new_spell: Spell):
 
 @rpc("any_peer", "call_remote", "reliable")
 func cast_spell(type: int, index: int):
-	prints("spell manager want to cast", type, index)
 	match(type):
 		Spell.SPELLTYPE.FIREBALL:
 			var spell = FireballSpell.new()
