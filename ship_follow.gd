@@ -4,7 +4,7 @@ var tween: Tween
 func _ready() -> void:
 	await MM.connected
 	if (multiplayer.is_server()):
-		MM.tick.connect(tick)
+		MM.slow_tick.connect(tick)
 		tween = create_tween()
 		tween.tween_property(self, "progress_ratio", 0.8, 60.0).from(0.0)
 		tween.tween_property(self, "progress_ratio", 1.0, 60.0).from(0.8).set_delay(10.0)
@@ -20,4 +20,4 @@ func server_state(progress_ratio: float):
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(self, "progress_ratio", progress_ratio, 0.1).from_current()
+	tween.tween_property(self, "progress_ratio", progress_ratio, 0.6).from_current()

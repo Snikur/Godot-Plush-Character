@@ -5,6 +5,8 @@ class_name WaterState
 @export var state_path: NodePath
 @onready var state: AtomicState = get_node(state_path)
 
+@onready var water_ray: RayCast3D = $WaterRay
+
 var speed: float = 8.0
 var movement_input : Vector2 = Vector2.ZERO
 var target_angle
@@ -30,3 +32,13 @@ func state_physics_process(delta: float) -> void:
 	var angle_diff = angle_difference(parent.visual_root.rotation.y, target_angle)
 	parent.godot_plush_skin.tilt = move_toward(parent.godot_plush_skin.tilt, angle_diff, 2.0 * delta)
 	parent.move_and_slide()
+	var can_jump: bool = false
+	if (water_ray.is_colliding() and water_ray.get_collider() is WaterArea):
+		var distance = water_ray.get_collision_point().distance_to(water_ray.global_position)
+		if (distance > 1.0):
+			parent.global_position.y -= distance - 1.0
+			can_jump = true
+	
+	if (swim_up and can_jump):
+		parent.velocity.y = -parent.jump_velocity
+		parent.state_chart.send_event("to_ground")

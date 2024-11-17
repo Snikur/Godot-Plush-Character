@@ -1,4 +1,5 @@
 extends Area3D
+class_name WaterArea
 
 func _ready() -> void:
 	body_entered.connect(func(body: Node3D):

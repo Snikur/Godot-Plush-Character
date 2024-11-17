@@ -83,6 +83,11 @@ state_path = NodePath("../StateChart/CompoundState/Climbing")
 script = ExtResource("5_8s7e8")
 state_path = NodePath("../StateChart/CompoundState/Water")
 
+[node name="WaterRay" type="RayCast3D" parent="Water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+target_position = Vector3(0, -2, 0)
+collide_with_areas = true
+
 [node name="Knockback" type="Node3D" parent="."]
 script = ExtResource("5_c3oes")
 state_path = NodePath("../StateChart/CompoundState/Knockback")
