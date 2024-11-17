@@ -59,7 +59,7 @@ func _ready():
 		print("connect die for ", name)
 		combat.die.connect(func():
 			teleport_to.rpc_id(id, data["position"])
-			combat.change_health.rpc(combat.max_health)
+			combat.request_change.rpc(combat.max_health)
 		)
 	if multiplayer.get_unique_id() == id:
 		camera.current = true

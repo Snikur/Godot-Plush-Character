@@ -13,6 +13,9 @@ radius = 15.0
 [node name="TargetDummy" type="CharacterBody3D"]
 script = ExtResource("1_nhe4d")
 
+[node name="SwingTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="CombatComponent" type="Node3D" parent="."]
 script = ExtResource("2_mslhc")
 
