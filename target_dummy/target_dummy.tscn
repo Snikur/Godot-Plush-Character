@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckcqtdfka0v40"]
+[gd_scene load_steps=5 format=3 uid="uid://ckcqtdfka0v40"]
 
 [ext_resource type="Script" path="res://target_dummy/target_dummy.gd" id="1_nhe4d"]
 
@@ -6,7 +6,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8rcei"]
 
-[node name="TargetDummy" type="StaticBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_2j3br"]
+radius = 15.0
+
+[node name="TargetDummy" type="CharacterBody3D"]
 script = ExtResource("1_nhe4d")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -19,3 +22,10 @@ shape = SubResource("CapsuleShape3D_8rcei")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 billboard = 2
 text = "HP: 100/100"
+
+[node name="AggroArea" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroArea"]
+shape = SubResource("SphereShape3D_2j3br")

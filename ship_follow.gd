@@ -16,8 +16,8 @@ func tick():
 	server_state.rpc(progress_ratio)
 
 @rpc("authority", "call_remote", "unreliable_ordered")
-func server_state(progress_ratio: float):
+func server_state(new_progress_ratio: float):
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(self, "progress_ratio", progress_ratio, 0.6).from_current()
+	tween.tween_property(self, "progress_ratio", new_progress_ratio, 0.6).from_current()
