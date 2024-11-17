@@ -30,4 +30,4 @@ func _physics_process(_delta: float) -> void:
 func swing():
 	var distance = (spell_manager.target.global_position - self.global_position).length()
 	if spell_manager.target and distance < 3.0:
-		spell_manager.target.request_change.rpc_id(1, -damage)
+		spell_manager.target.combat.request_change.rpc_id(1, -damage)

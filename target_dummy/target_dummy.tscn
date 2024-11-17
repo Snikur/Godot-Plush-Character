@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckcqtdfka0v40"]
+[gd_scene load_steps=6 format=3 uid="uid://ckcqtdfka0v40"]
 
 [ext_resource type="Script" path="res://target_dummy/target_dummy.gd" id="1_nhe4d"]
+[ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="2_mslhc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_alqak"]
 
@@ -12,16 +13,19 @@ radius = 15.0
 [node name="TargetDummy" type="CharacterBody3D"]
 script = ExtResource("1_nhe4d")
 
+[node name="CombatComponent" type="Node3D" parent="."]
+script = ExtResource("2_mslhc")
+
+[node name="Status" type="Label3D" parent="CombatComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+billboard = 2
+text = "HP: 100/100"
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_alqak")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8rcei")
-
-[node name="Status" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-billboard = 2
-text = "HP: 100/100"
 
 [node name="AggroArea" type="Area3D" parent="."]
 collision_layer = 0

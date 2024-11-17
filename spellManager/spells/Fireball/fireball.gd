@@ -10,7 +10,7 @@ func _ready():
 		MM.tick.connect(tick)
 		body_entered.connect(func(body: Node3D):
 			if (body is Enemy):
-				body.request_change.rpc(-10)
+				body.combat.request_change.rpc(-10)
 				delete.rpc()
 		)
 	else:
