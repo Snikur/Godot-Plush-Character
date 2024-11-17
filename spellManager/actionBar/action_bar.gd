@@ -2,7 +2,7 @@ extends HBoxContainer
 
 var slots: Array
 
-func _ready():
+func init():
 	slots = get_children()
 	for i in slots.size():
 		if slots[i] is SpellTextureButton:

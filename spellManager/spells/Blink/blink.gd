@@ -5,10 +5,9 @@ func init(spell_button: SpellTextureButton):
 	cooldown = 3.0
 	texture = preload("res://spellManager/spells/Blink/snaik.png")
 	super.init(spell_button)
-	
-@rpc("authority", "call_local", "reliable")
-func cast_spell(owner: SpellManager):
-	super.cast_spell(owner)
+
+func cast_spell(owner: SpellManager, index: int):
+	super.cast_spell(owner, index)
 	if is_instance_valid(owner.source):
 		var target = owner.source.global_position + owner.source.godot_plush_skin.global_basis.z * 30.0
 		var shape_cast: ShapeCast3D = ShapeCast3D.new()
@@ -20,7 +19,6 @@ func cast_spell(owner: SpellManager):
 		shape_cast.target_position = Vector3(0.0, 0.0, 30.0)
 		shape_cast.force_shapecast_update()
 		if (shape_cast.is_colliding()):
-			var collider = shape_cast.get_collider(0)
 			owner.source.global_position = shape_cast.get_collision_point(0) - owner.source.godot_plush_skin.global_basis.z
 		else:
 			owner.source.global_position = target

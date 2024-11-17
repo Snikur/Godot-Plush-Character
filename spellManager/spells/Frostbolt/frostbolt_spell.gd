@@ -2,17 +2,17 @@ extends Spell
 class_name FrostboltSpell
 
 func init(spell_button: SpellTextureButton):
+	type = SPELLTYPE.FROSTBOLT
 	cooldown = 3.0
 	texture = preload("res://spellManager/spells/Frostbolt/Coldflake.png")
-	type = SPELLTYPE.Frostbolt
+	spell_scene = preload("res://spellManager/spells/Frostbolt/frostbolt.tscn")
 	super.init(spell_button)
-	
-@rpc("authority", "call_local", "reliable")
-func cast_spell(owner: SpellManager):
-	if (is_instance_valid(owner.target)):
-		super.cast_spell(owner)
-		var frostbolt = preload("res://spellManager/spells/Frostbolt/frostbolt.tscn").instantiate()
-		frostbolt.top_level = true
-		frostbolt.target = owner.target
-		owner.add_child(frostbolt)
-		frostbolt.global_position = owner.global_position + Vector3(0.0, 0.5, 0.0)
+
+func cast_spell(owner: SpellManager, index: int):
+	super.cast_spell(owner, index)
+	var frostbolt = spell_scene.instantiate()
+	frostbolt.top_level = true
+	owner.add_child(frostbolt)
+	frostbolt.global_rotation.y = owner.source.godot_plush_skin.global_rotation.y
+	frostbolt.global_position = owner.global_position + Vector3(0.0, 0.5, 0.0)
+	frostbolt.name = str(index)

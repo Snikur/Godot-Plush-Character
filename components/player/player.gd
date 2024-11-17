@@ -10,7 +10,6 @@ var data: Dictionary
 @onready var climb_state: ClimbingState = $Climbing
 @onready var water_state: WaterState = $Water
 @onready var knockback_state: KnockbackState = $Knockback
-@onready var spell_manager: SpellManager = %SpellManager
 
 var jump_height : float = 2.5
 var jump_time_to_peak : float = 0.4
@@ -30,6 +29,7 @@ var speed_modifier: float = 1.0
 @onready var movement_dust = %MovementDust
 @onready var foot_step_audio = %FootStepAudio
 @onready var impact_audio = %ImpactAudio
+@onready var spell_manager: SpellManager = %SpellManager
 
 const JUMP_PARTICLES_SCENE = preload("./vfx/jump_particles.tscn")
 const LAND_PARTICLES_SCENE = preload("./vfx/land_particles.tscn")
@@ -62,12 +62,14 @@ func _ready():
 		Global.fov_changed.connect(func(new_fov):
 			camera.fov = new_fov
 		)
+		spell_manager.setup_action_bar()
 	else:
 		$OrbitView.queue_free()
 		$StateChart.queue_free()
 		$Ground.queue_free()
 		$Climbing.queue_free()
-		$VisualRoot/GodotPlushSkin/AutoAttack.queue_free()
+		$VisualRoot/GodotPlushSkin/AutoAttack.enabled = false
+		$VisualRoot/GodotPlushSkin/AutoAttack/SpellManager/UI.queue_free()
 
 func send_state():
 	if multiplayer:

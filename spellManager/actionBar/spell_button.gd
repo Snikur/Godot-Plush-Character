@@ -30,19 +30,12 @@ func _process(_delta):
 	time.text = str(int(ceil(timer.time_left)))
 	cooldown.value = timer.time_left
 
-@rpc("authority", "call_remote", "reliable")
-func spawn_spell(type: int):
-	print("spawn spell")
-
 func _on_pressed():
 	if spell != null:
-		spell.cast_spell(owner)
+		spell.cast_spell(owner, owner.get_next_spell_index())
 		timer.start()
 		disabled = true
 		set_process(true)
-		spawn_spell.rpc(spell.type)
-
-
 
 func _on_timer_timeout():
 	disabled = false
