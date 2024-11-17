@@ -26,10 +26,6 @@ func request_change(value: int):
 	changes_received.append(value)
 
 func handle_changes():
-	if (not multiplayer.is_server()):
-		print("disconnect wrong slow tick")
-		MM.slow_tick.disconnect(handle_changes)
-		return
 	if (changes_received.size() == 0):
 		return
 	var new_health: int = health
