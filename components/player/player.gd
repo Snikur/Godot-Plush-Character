@@ -55,7 +55,12 @@ func _ready():
 		
 	if data.has("position"):
 		global_position = data["position"]
-	set_process_unhandled_input(multiplayer.get_unique_id() == id)
+	if (multiplayer.is_server()):
+		combat.die.connect(func():
+			print("die ", name)
+			global_position = data["position"]
+			combat.change_health.rpc(combat.max_health)
+		)
 	if multiplayer.get_unique_id() == id:
 		camera.current = true
 		MM.tick.connect(send_state)
@@ -64,11 +69,14 @@ func _ready():
 			camera.fov = new_fov
 		)
 		spell_manager.setup_action_bar()
-	else:
+	else: #if other clients and server
+		set_process_unhandled_input(false)
 		$OrbitView.queue_free()
 		$StateChart.queue_free()
 		$Ground.queue_free()
 		$Climbing.queue_free()
+		$Water.queue_free()
+		$Knockback.queue_free()
 		$VisualRoot/GodotPlushSkin/AutoAttack.enabled = false
 		$VisualRoot/GodotPlushSkin/AutoAttack/SpellManager/UI.queue_free()
 

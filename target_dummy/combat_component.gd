@@ -22,12 +22,15 @@ func request_change(value: int):
 	changes_received.append(value)
 
 func handle_changes():
+	print("handle changes for ", get_parent().name)
 	if (changes_received.size() == 0):
 		return
-	var new_health: int = 0
+	var new_health: int = health
 	for change in changes_received:
-		new_health = max(min(health+change, max_health), 0)
+		new_health = max(min(new_health+change, max_health), 0)
 	if new_health == 0:
 		die.emit()
-	change_health.rpc(new_health)
-	changes_received.clear()
+		changes_received.clear()
+	else:
+		change_health.rpc(new_health)
+		changes_received.clear()

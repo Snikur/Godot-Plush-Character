@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	if (target and not return_to_spawn):
 		velocity = (target.global_position - self.global_position).limit_length()
 		if (target.global_position.distance_to(global_position) < 2.0):
-			target.combat.request_change.rpc(-10)
+			target.combat.request_change.rpc(-45)
 	elif (return_to_spawn):
 		combat.status_label.text = "Evading"
 		velocity = (spawn_position - self.global_position).limit_length()

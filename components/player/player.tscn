@@ -72,7 +72,7 @@ script = ExtResource("1_ms4x1")
 script = ExtResource("2_qqd5t")
 
 [node name="Status" type="Label3D" parent="CombatComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
 billboard = 2
 text = "HP: 100/100"
 
