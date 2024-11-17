@@ -8,12 +8,13 @@ var changes_received: Array
 signal die
 
 func _ready():
-	await MM.connected
+	print("combat ready for ", get_parent().name)
 	if (multiplayer.is_server()):
 		MM.slow_tick.connect(handle_changes)
 
 @rpc("authority", "reliable", "call_local")
 func change_health(value: int):
+	print("change health")
 	health = value
 	status_label.text = "HP: " + str(health) + "/" + str(max_health)
 
@@ -22,7 +23,6 @@ func request_change(value: int):
 	changes_received.append(value)
 
 func handle_changes():
-	print("handle changes for ", get_parent().name)
 	if (changes_received.size() == 0):
 		return
 	var new_health: int = health

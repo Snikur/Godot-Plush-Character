@@ -56,9 +56,9 @@ func _ready():
 	if data.has("position"):
 		global_position = data["position"]
 	if (multiplayer.is_server()):
+		print("connect die for ", name)
 		combat.die.connect(func():
-			print("die ", name)
-			global_position = data["position"]
+			teleport_to.rpc_id(id, data["position"])
 			combat.change_health.rpc(combat.max_health)
 		)
 	if multiplayer.get_unique_id() == id:
@@ -91,6 +91,10 @@ func transition_to(state: ANIMATION_STATE):
 	if current_state == state:
 		return
 	send_transition_to.rpc(state)
+
+@rpc("authority", "reliable", "call_local")
+func teleport_to(destination: Vector3):
+	global_position = destination
 
 @rpc("any_peer", "reliable", "call_local")
 func send_transition_to(state: ANIMATION_STATE):
