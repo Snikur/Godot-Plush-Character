@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=43 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="Script" path="res://ladder.gd" id="3_kdg1s"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://questManager/search_quest.gd" id="16_4amj3"]
 [ext_resource type="Script" path="res://collect_coin_achievement.gd" id="16_c87p0"]
 [ext_resource type="Script" path="res://questManager/target_dummy_quest.gd" id="17_apl3q"]
+[ext_resource type="Resource" uid="uid://j22w3y71oya0" path="res://questManager/PirateCoinQuest.tres" id="18_pmxdd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g1m0j"]
 
@@ -350,9 +351,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 16, 30)
 [node name="Manbroom Fourpwood" parent="." instance=ExtResource("15_0n2kh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 8, 26)
 
-[node name="Quest" type="Node" parent="Manbroom Fourpwood" node_paths=PackedStringArray("coin")]
+[node name="Quest" type="Node" parent="Manbroom Fourpwood" node_paths=PackedStringArray("item_to_find")]
 script = ExtResource("16_4amj3")
-coin = NodePath("../../GoldCoin")
+quest_information = ExtResource("18_pmxdd")
+item_to_find = NodePath("../../GoldCoin")
 
 [node name="Manbrush Twowood" parent="." instance=ExtResource("15_0n2kh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 8, 26)
