@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://b77bbpa63d1qr"]
+
+[ext_resource type="Script" path="res://questManager/quest_manager.gd" id="1_bl1kx"]
+
+[node name="QuestManager" type="Node3D"]
+script = ExtResource("1_bl1kx")
+
+[node name="UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -255.0
+offset_bottom = 106.0
+grow_horizontal = 0
+
+[node name="QuestTitle" type="RichTextLabel" parent="UI/Panel"]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 250.0
+offset_bottom = 28.0
+text = "Quest Title"
+
+[node name="QuestDescription" type="RichTextLabel" parent="UI/Panel"]
+offset_left = 6.0
+offset_top = 24.0
+offset_right = 251.0
+offset_bottom = 101.0
+theme_override_colors/default_color = Color(0.385493, 0.385492, 0.385492, 1)
+text = "Quest Description"

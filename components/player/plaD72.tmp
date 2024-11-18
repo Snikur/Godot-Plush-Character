@@ -1,0 +1,242 @@
+[gd_scene load_steps=29 format=3 uid="uid://bgkmxyw21pc1m"]
+
+[ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
+[ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_c1ftv"]
+[ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://components/godot_plush/godot_plush_skin.tscn" id="2_mtsks"]
+[ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="2_qqd5t"]
+[ext_resource type="PackedScene" uid="uid://c0b71d2b1hdp6" path="res://components/orbit_control/orbit_view.tscn" id="3_hcr6r"]
+[ext_resource type="Script" path="res://components/player/ground.gd" id="3_t572a"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_w7ieo"]
+[ext_resource type="Material" uid="uid://fkuklawrv3wp" path="res://components/player/vfx/dust_mat.tres" id="4_j7qt1"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_kvrxs"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_4c8au"]
+[ext_resource type="AudioStream" uid="uid://b7q12qmsksbc7" path="res://assets/sounds/footstep_concrete_000.ogg" id="5_8ixl8"]
+[ext_resource type="Script" path="res://components/player/water.gd" id="5_8s7e8"]
+[ext_resource type="Script" path="res://components/player/knockback.gd" id="5_c3oes"]
+[ext_resource type="AudioStream" uid="uid://c6unhc5lontfn" path="res://assets/sounds/footstep_concrete_001.ogg" id="6_nlp36"]
+[ext_resource type="AudioStream" uid="uid://byg4lkp3ws8kt" path="res://assets/sounds/footstep_concrete_002.ogg" id="7_4283i"]
+[ext_resource type="Script" path="res://components/player/attack_component.gd" id="9_ghftm"]
+[ext_resource type="PackedScene" uid="uid://cbaabmsqd66rd" path="res://spellManager/spell_manager.tscn" id="17_1hwc1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_slah2"]
+radius = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhngq"]
+
+[sub_resource type="Curve" id="Curve_wrw8f"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_yttci"]
+curve = SubResource("Curve_wrw8f")
+
+[sub_resource type="Curve" id="Curve_gyl8p"]
+_data = [Vector2(0, 0.2), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p3jn6"]
+curve = SubResource("Curve_gyl8p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dhnoe"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0.2, 0)
+scale_curve = SubResource("CurveTexture_p3jn6")
+alpha_curve = SubResource("CurveTexture_yttci")
+anim_speed_min = 0.01
+anim_speed_max = 0.03
+anim_offset_max = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_bw4i7"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sxclc"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("5_8ixl8")
+stream_1/stream = ExtResource("6_nlp36")
+stream_2/stream = ExtResource("7_4283i")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3vpnr"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("5_8ixl8")
+stream_1/stream = ExtResource("6_nlp36")
+stream_2/stream = ExtResource("7_4283i")
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_ms4x1")
+
+[node name="CombatComponent" type="Node3D" parent="."]
+script = ExtResource("2_qqd5t")
+
+[node name="Status" type="Label3D" parent="CombatComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+billboard = 2
+text = "HP: 100/100"
+
+[node name="Ground" type="Node3D" parent="."]
+script = ExtResource("3_t572a")
+state_path = NodePath("../StateChart/CompoundState/Ground")
+
+[node name="CoyoteJump" type="Timer" parent="Ground"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Climbing" type="Node3D" parent="."]
+script = ExtResource("2_bbc06")
+state_path = NodePath("../StateChart/CompoundState/Climbing")
+
+[node name="Water" type="Node3D" parent="."]
+script = ExtResource("5_8s7e8")
+state_path = NodePath("../StateChart/CompoundState/Water")
+
+[node name="WaterRay" type="RayCast3D" parent="Water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+target_position = Vector3(0, -2, 0)
+collide_with_areas = true
+
+[node name="Knockback" type="Node3D" parent="."]
+script = ExtResource("5_c3oes")
+state_path = NodePath("../StateChart/CompoundState/Knockback")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_c1ftv")
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("3_w7ieo")
+initial_state = NodePath("Ground")
+
+[node name="Ground" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_kvrxs")
+
+[node name="ToWater" type="Node" parent="StateChart/CompoundState/Ground"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Water")
+event = &"to_water"
+delay_in_seconds = "0.0"
+
+[node name="ToClimbing" type="Node" parent="StateChart/CompoundState/Ground"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Climbing")
+event = &"to_climbing"
+delay_in_seconds = "0.0"
+
+[node name="ToKnockback" type="Node" parent="StateChart/CompoundState/Ground"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Knockback")
+event = &"to_knockback"
+delay_in_seconds = "0.0"
+
+[node name="Water" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_kvrxs")
+
+[node name="ToGround" type="Node" parent="StateChart/CompoundState/Water"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Ground")
+event = &"to_ground"
+delay_in_seconds = "0.0"
+
+[node name="ToClimbing" type="Node" parent="StateChart/CompoundState/Water"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Climbing")
+event = &"to_climbing"
+delay_in_seconds = "0.0"
+
+[node name="ToKnockback" type="Node" parent="StateChart/CompoundState/Water"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Knockback")
+event = &"to_knockback"
+delay_in_seconds = "0.0"
+
+[node name="Climbing" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_kvrxs")
+
+[node name="ToWater" type="Node" parent="StateChart/CompoundState/Climbing"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Water")
+event = &"to_water"
+delay_in_seconds = "0.0"
+
+[node name="ToGround" type="Node" parent="StateChart/CompoundState/Climbing"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Ground")
+event = &"to_ground"
+delay_in_seconds = "0.0"
+
+[node name="ToKnockback" type="Node" parent="StateChart/CompoundState/Climbing"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Knockback")
+event = &"to_knockback"
+delay_in_seconds = "0.0"
+
+[node name="Knockback" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_kvrxs")
+
+[node name="ToWater" type="Node" parent="StateChart/CompoundState/Knockback"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Water")
+event = &"to_water"
+delay_in_seconds = "0.0"
+
+[node name="ToGround" type="Node" parent="StateChart/CompoundState/Knockback"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Ground")
+event = &"to_ground"
+delay_in_seconds = "0.0"
+
+[node name="ToClimbing" type="Node" parent="StateChart/CompoundState/Knockback"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Climbing")
+event = &"to_climbing"
+delay_in_seconds = "0.0"
+
+[node name="VisualRoot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="GodotPlushSkin" parent="VisualRoot" instance=ExtResource("2_mtsks")]
+
+[node name="AutoAttack" type="ShapeCast3D" parent="VisualRoot/GodotPlushSkin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_slah2")
+target_position = Vector3(0, 0, 10)
+max_results = 1
+collide_with_areas = true
+script = ExtResource("9_ghftm")
+parent_node = NodePath("../../..")
+
+[node name="SpellManager" parent="VisualRoot/GodotPlushSkin/AutoAttack" instance=ExtResource("17_1hwc1")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="SwingTimer" type="Timer" parent="VisualRoot/GodotPlushSkin/AutoAttack"]
+one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xhngq")
+
+[node name="OrbitView" parent="." instance=ExtResource("3_hcr6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MovementDust" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+material_override = ExtResource("4_j7qt1")
+cast_shadow = 0
+emitting = false
+lifetime = 0.8
+process_material = SubResource("ParticleProcessMaterial_dhnoe")
+draw_pass_1 = SubResource("QuadMesh_bw4i7")
+
+[node name="FootStepAudio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_sxclc")
+max_polyphony = 3
+
+[node name="ImpactAudio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_3vpnr")
+volume_db = 5.0
+max_polyphony = 3

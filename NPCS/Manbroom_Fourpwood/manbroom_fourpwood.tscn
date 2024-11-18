@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck4vyygcpqi3b"]
+
+[ext_resource type="Script" path="res://NPCS/Manbroom_Fourpwood/manbroom_fourpwood.gd" id="1_0qvfc"]
+[ext_resource type="Script" path="res://questManager/search_quest.gd" id="1_wh1jm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_btm3k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0aqtv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6igjr"]
+
+[node name="Manbroom Fourpwood" type="CharacterBody3D"]
+transform = Transform3D(0.967, 0, 0, 0, 2, 0, 0, 0, 0.967, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_btm3k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_0aqtv")
+
+[node name="PirateQuest" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_wh1jm")
+quest_name = "Find the pirate coin"
+quest_description = "Search the island to find the pirate coin yarr!"
+reached_goal_text = "Return the pirate coin to Manbroom Fourpwood"
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("quest")]
+script = ExtResource("1_0qvfc")
+quest = NodePath("../PirateQuest")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(2.416, 0, 0, 0, 1, 0, 0, 0, 2.4, 0, 0, 0)
+shape = SubResource("BoxShape3D_6igjr")
+
+[node name="CoinSpawnPoint" type="Marker3D" parent="."]
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
