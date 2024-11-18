@@ -1,24 +1,15 @@
-class_name SearchQuest
 extends Quest
+class_name SearchQuest
 
-func start_quest() -> void:
-	if quest_status == QuestStatus.available:
-		quest_status = QuestStatus.started
-		super.start_quest()
+@export var coin: GoldCoin
 
-func reached_goal() -> void:
-	if quest_status == QuestStatus.started:
-		quest_status = QuestStatus.reached_goal
-		super.update_quest()
-		
-func finish_quest() -> void:
-	if quest_status == QuestStatus.reached_goal:
-		quest_status = QuestStatus.finished
-		
-		super.finish_quest()
+func _ready():
+	quest_name = "Find the pirate coin"
+	quest_description = "Search the island to find the pirate coin yarr!"
+	reached_goal_text = "Return the pirate coin to Manbroom Fourpwood"
+	quest_status = QuestStatus.available
+	if (coin):
+		coin.picked_up.connect(_on_gold_coin_picked_up)
 
-		
-		#rewards here
-		#rewards here
-		#rewards here
-		
+func _on_gold_coin_picked_up() -> void:
+	update_quest()

@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 MM="*res://MultiplayerManager.tscn"
 Achievements="*res://achievement/achievements.tscn"
 Global="*res://global.gd"
-quest_manager="*res://questManager/quest_manager.tscn"
+QuestManager="*res://questManager/quest_manager.tscn"
 
 [editor_plugins]
 

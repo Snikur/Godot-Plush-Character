@@ -17,6 +17,7 @@ offset_bottom = 106.0
 grow_horizontal = 0
 
 [node name="QuestTitle" type="RichTextLabel" parent="UI/Panel"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 2.0
 offset_right = 250.0
@@ -24,6 +25,7 @@ offset_bottom = 28.0
 text = "Quest Title"
 
 [node name="QuestDescription" type="RichTextLabel" parent="UI/Panel"]
+layout_mode = 0
 offset_left = 6.0
 offset_top = 24.0
 offset_right = 251.0
