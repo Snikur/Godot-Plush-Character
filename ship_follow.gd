@@ -6,8 +6,8 @@ func _ready() -> void:
 	if (multiplayer.is_server()):
 		MM.slow_tick.connect(tick)
 		tween = create_tween()
-		tween.tween_property(self, "progress_ratio", 0.8, 60.0).from(0.0)
-		tween.tween_property(self, "progress_ratio", 1.0, 60.0).from(0.8).set_delay(10.0)
+		tween.tween_property(self, "progress_ratio", 0.8, 80.0).from(0.0)
+		tween.tween_property(self, "progress_ratio", 1.0, 20.0).from(0.8).set_delay(10.0)
 		tween.set_loops(0)
 
 func tick():

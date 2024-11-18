@@ -1,6 +1,7 @@
 extends SpringArm3D
 
 var active : bool = true : set = set_active
+@onready var parent: Player = get_parent()
 
 var min_limit_x : float = -PI/2.0
 var max_limit_x : float = PI/2.0
@@ -11,6 +12,7 @@ var mouse_sensitivity: float
 var joystick_sensitivity: float
 
 func _ready():
+	top_level = true
 	mouse_sensitivity = Global.get_mouse_sensitivity()
 	Global.mouse_sensitivity_changed.connect(func(new_sens):
 		mouse_sensitivity = new_sens
@@ -43,6 +45,10 @@ func _process(delta):
 	var zoom_input = int(Input.is_action_just_released("zoom_camera_out")) - int(Input.is_action_just_released("zoom_camera_in"))
 	spring_length += zoom_input * delta * zoom_sensitivity
 	spring_length = clamp(spring_length, zoom_minimum, zoom_maximum)
+	set_late_position.call_deferred()
+
+func set_late_position():
+	global_position = parent.global_position + Vector3.UP
 
 func rotate_from_vector(v : Vector2):
 	if v.length() == 0: return

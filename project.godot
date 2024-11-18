@@ -111,6 +111,10 @@ aim={
 ]
 }
 
+[physics]
+
+common/physics_interpolation=true
+
 [rendering]
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
