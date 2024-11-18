@@ -3,6 +3,7 @@ class_name BlinkSpell
 
 func init(spell_button: SpellTextureButton):
 	cooldown = 3.0
+	maxCharges = 2
 	texture = preload("res://spellManager/spells/Blink/snaik.png")
 	super.init(spell_button)
 

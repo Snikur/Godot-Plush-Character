@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ljag3o1lxmcp"]
+[gd_scene load_steps=4 format=3 uid="uid://d3k82wu7ot4it"]
 
 [ext_resource type="Script" path="res://spellManager/spells/Frostbolt/frostbolt.gd" id="1_uenxf"]
 [ext_resource type="PackedScene" uid="uid://ctpp6yk5ab1aq" path="res://spellManager/spells/Frostbolt/vfx_frostbolt.tscn" id="2_cbm4n"]

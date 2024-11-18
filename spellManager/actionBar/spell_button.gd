@@ -5,6 +5,8 @@ class_name SpellTextureButton
 @onready var key = $Key
 @onready var time = $Time
 @onready var timer = $Timer
+@onready var charges = $Charges
+
 
 var spell: Spell = null
 
@@ -12,7 +14,7 @@ var change_key = "":
 	set(value):
 		change_key=value
 		key.text = value
-		
+
 		shortcut = Shortcut.new()
 		var input_key = InputEventKey.new()
 		input_key.keycode = value.unicode_at(0)
@@ -21,7 +23,7 @@ var change_key = "":
 		
 func _ready():
 	change_key = "1"
-	cooldown.max_value  = timer.wait_time
+	cooldown.max_value = timer.wait_time
 	timer.timeout.connect(_on_timer_timeout)
 	self.pressed.connect(_on_pressed)
 	set_process(false)
@@ -33,8 +35,16 @@ func _process(_delta):
 func _on_pressed():
 	if spell != null:
 		spell.cast_spell(owner, owner.get_next_spell_index())
+		cooldown.value = cooldown.max_value
 		timer.start()
-		disabled = true
+		
+		if (spell.charges <= 1 || spell.maxCharges <= 1):
+			disabled = true
+			
+		if spell.maxCharges > 1:
+			spell.charges -= 1
+			charges.text = str(spell.charges)
+		
 		set_process(true)
 
 func _on_timer_timeout():
@@ -42,3 +52,15 @@ func _on_timer_timeout():
 	time.text = ""
 	cooldown.value = 0
 	set_process(false)
+	
+	if spell.maxCharges > 1:
+		if spell.charges < spell.maxCharges:
+			spell.charges += 1
+			charges.text = str(spell.charges)
+			if spell.charges != spell.maxCharges:
+				timer.start()
+				set_process(true)
+			
+
+func showCharges(value: bool):
+	charges.visible = value
