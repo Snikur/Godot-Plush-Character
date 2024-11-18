@@ -7,9 +7,8 @@ var tween: Tween
 @onready var spawn_position: Vector3 = global_position
 @onready var combat: CombatComponent = $CombatComponent
 @onready var swing_timer: Timer = $SwingTimer
-var list_of_players: Array[Player]
+@onready var last_hit_timer: Timer = $LastHitTimer
 var target: Player
-var return_to_spawn: bool = false
 
 func _ready() -> void:
 	await MM.connected
@@ -17,26 +16,26 @@ func _ready() -> void:
 		MM.tick.connect(tick)
 		aggro_area.body_entered.connect(func(body: Node3D):
 			if (body is Player):
-				list_of_players.append(body)
 				if (target == null):
 					target = body
 		)
-		aggro_area.body_exited.connect(func(body: Node3D):
-			if (body is Player and target == body):
-				list_of_players.erase(body)
-				target = list_of_players[0] if list_of_players.size() > 0 else null
-				if (list_of_players.size() == 0):
-					return_to_spawn = true
+		combat.died.connect(func():
+			combat.evading = true
+			combat.reset()
 		)
-		combat.die.connect(func():
-			return_to_spawn = true
+		last_hit_timer.timeout.connect(func():
+			combat.evading = true
+			combat.reset()
+		)
+		combat.health_changed.connect(func(_change: int):
+			last_hit_timer.start()
 		)
 	else:
 		set_physics_process(false)
 		$AggroArea/CollisionShape3D.disabled = true
 
 func _physics_process(delta: float) -> void:
-	if (target and not return_to_spawn):
+	if (target and not combat.evading):
 		velocity = (target.global_position - self.global_position).limit_length()
 		if (target.global_position.distance_to(global_position) < 2.0):
 			if (swing_timer.is_paused()):
@@ -46,11 +45,10 @@ func _physics_process(delta: float) -> void:
 				swing_timer.start()
 		else:
 			swing_timer.set_paused(true)
-	elif (return_to_spawn):
-		combat.status_label.text = "Evading" #show only for server
+	elif (combat.evading):
 		velocity = (spawn_position - self.global_position).limit_length()
 		if (spawn_position.distance_to(global_position) < 1.0):
-			return_to_spawn = false
+			combat.evading = false
 			combat.request_change.rpc(combat.max_health)
 	else:
 		rotate_y(delta*0.5)

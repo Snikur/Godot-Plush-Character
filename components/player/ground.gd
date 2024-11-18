@@ -26,7 +26,10 @@ func state_physics_process(delta: float) -> void:
 		vel_2d = vel_2d.limit_length((parent.run_speed if is_running else parent.base_speed) * parent.speed_modifier)
 		parent.velocity.x = vel_2d.x
 		parent.velocity.z = vel_2d.y
-		target_angle = -movement_input.orthogonal().angle() #TODO: fix 0.15 radians off center
+		if (Input.is_action_pressed("aim")):
+			target_angle = parent.camera.global_rotation.y + PI
+		else:
+			target_angle = -movement_input.orthogonal().angle() #TODO: fix 0.15 radians off center
 	else:
 		if parent.is_on_floor():
 			parent.velocity.x = 0.0

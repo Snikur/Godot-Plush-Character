@@ -29,7 +29,7 @@ func entered_pickup_zone(body: Node3D) -> void:
 
 func kill_target_entered() -> void:
 	print("kill target dummy")
-	kill_target.combat.die.connect(func():
+	kill_target.combat.died.connect(func():
 		QuestManager.update_description("You killed the Target Dummy! Now find his coin.")
 		print("killed target dummy")
 		state_chart.set_expression_property("target_killed", true)

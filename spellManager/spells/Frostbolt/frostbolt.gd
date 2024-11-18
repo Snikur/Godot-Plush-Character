@@ -33,6 +33,8 @@ func delete():
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func server_state(new_position: Vector3):
+	var dir: Vector3 = global_position + (global_position - new_position).rotated(Vector3.UP, -1.57)
+	vfx.look_at(dir)
 	if tween:
 		tween.kill()
 	tween = create_tween()

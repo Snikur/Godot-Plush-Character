@@ -57,7 +57,7 @@ func _ready():
 		global_position = data["position"]
 	if (multiplayer.is_server()):
 		print("connect die for ", name)
-		combat.die.connect(func():
+		combat.died.connect(func():
 			teleport_to.rpc_id(id, data["position"])
 			combat.request_change.rpc(combat.max_health)
 		)

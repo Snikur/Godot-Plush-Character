@@ -9,7 +9,7 @@ func _ready():
 	reached_goal_text = "Return to Manbrush Twowood to collect your reward"
 	quest_status = QuestStatus.available
 	if (wanted_target):
-		wanted_target.combat.die.connect(_on_killed_target)
+		wanted_target.combat.died.connect(_on_killed_target)
 
 func _on_killed_target() -> void:
 	update_quest()
