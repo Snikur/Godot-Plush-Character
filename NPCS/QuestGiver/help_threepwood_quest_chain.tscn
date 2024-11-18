@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://c7v0482cqqwj2"]
+
+[ext_resource type="Script" path="res://help_threepwood_quest_chain.gd" id="1_srf8x"]
+[ext_resource type="Script" path="res://name.gd" id="2_0ysib"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_scam5"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_333tu"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_3fn5r"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_ea4ka"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_ca3rw"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="7_dyn4e"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2i4y5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_12mev"]
+radius = 2.0
+
+[sub_resource type="Resource" id="Resource_lcu3u"]
+script = ExtResource("7_dyn4e")
+expression = "target_killed and item_picked_up"
+
+[node name="Threepy Woody the Second" type="Node3D"]
+script = ExtResource("1_srf8x")
+
+[node name="Name" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+pixel_size = 0.01
+billboard = 2
+alpha_cut = 1
+modulate = Color(1, 1, 0, 1)
+text = "Guyname the First"
+script = ExtResource("2_0ysib")
+
+[node name="QuestMarker" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+pixel_size = 0.025
+billboard = 2
+alpha_cut = 1
+text = "!"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_2i4y5")
+
+[node name="PickupZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupZone"]
+shape = SubResource("SphereShape3D_12mev")
+
+[node name="QuestAvailable" type="Node3D" parent="."]
+
+[node name="SC" type="Node" parent="."]
+script = ExtResource("2_scam5")
+
+[node name="CS" type="Node" parent="SC"]
+script = ExtResource("3_333tu")
+initial_state = NodePath("Available")
+
+[node name="Available" type="Node" parent="SC/CS"]
+script = ExtResource("4_3fn5r")
+
+[node name="ToPickup" type="Node" parent="SC/CS/Available"]
+script = ExtResource("5_ea4ka")
+to = NodePath("../../P")
+event = &"pickup_quest"
+delay_in_seconds = "0.0"
+
+[node name="P" type="Node" parent="SC/CS"]
+script = ExtResource("6_ca3rw")
+
+[node name="KillTargetDummy" type="Node" parent="SC/CS/P"]
+script = ExtResource("4_3fn5r")
+
+[node name="ToReward" type="Node" parent="SC/CS/P/KillTargetDummy"]
+script = ExtResource("5_ea4ka")
+to = NodePath("../../../CollectReward")
+event = &"to_reward"
+guard = SubResource("Resource_lcu3u")
+delay_in_seconds = "0.0"
+
+[node name="PickUpPirateCoin" type="Node" parent="SC/CS/P"]
+script = ExtResource("4_3fn5r")
+
+[node name="ToReward" type="Node" parent="SC/CS/P/PickUpPirateCoin"]
+script = ExtResource("5_ea4ka")
+to = NodePath("../../../CollectReward")
+event = &"to_reward"
+guard = SubResource("Resource_lcu3u")
+delay_in_seconds = "0.0"
+
+[node name="CollectReward" type="Node" parent="SC/CS"]
+script = ExtResource("4_3fn5r")
+
+[node name="Transition" type="Node" parent="SC/CS/CollectReward"]
+script = ExtResource("5_ea4ka")
+to = NodePath("../../Completed")
+event = &"reward_collected"
+delay_in_seconds = "0.0"
+
+[node name="Completed" type="Node" parent="SC/CS"]
+script = ExtResource("4_3fn5r")

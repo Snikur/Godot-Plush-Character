@@ -10,11 +10,13 @@ extends PanelContainer
 @onready var hide_button: Button = $MarginContainer/VBox/Hide
 @onready var menu: VBoxContainer = $MarginContainer/VBox/Menu
 
+func toggle_visible():
+	menu.visible = !menu.visible
+	hide_button.text = "Hide" if menu.visible else "Show"
+
 func _ready() -> void:
-	hide_button.pressed.connect(func():
-		menu.visible = !menu.visible
-		hide_button.text = "Hide" if menu.visible else "Show"
-	)
+	hide_button.pressed.connect(toggle_visible)
+	toggle_visible()
 	
 	fov_label.text = "Field of View: " + str(Global.get_fov())
 	mouse_label.text = "Mouse sensitivity: " + str(Global.get_mouse_sensitivity())
