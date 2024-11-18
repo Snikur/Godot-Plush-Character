@@ -1,12 +1,12 @@
 extends Spell
 class_name FrostboltSpell
 
-func init(spell_button: SpellTextureButton):
+func init(button: SpellTextureButton):
 	type = SPELLTYPE.FROSTBOLT
 	cooldown = 3.0
 	texture = preload("res://spellManager/spells/Frostbolt/Coldflake.png")
 	spell_scene = preload("res://spellManager/spells/Frostbolt/frostbolt.tscn")
-	super.init(spell_button)
+	super.init(button)
 
 func cast_spell(owner: SpellManager, index: int):
 	if (owner.source.id == owner.multiplayer.get_unique_id()):

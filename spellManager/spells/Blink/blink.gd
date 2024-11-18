@@ -1,11 +1,11 @@
 extends Spell
 class_name BlinkSpell
 
-func init(spell_button: SpellTextureButton):
+func init(button: SpellTextureButton):
 	cooldown = 3.0
 	maxCharges = 2
 	texture = preload("res://spellManager/spells/Blink/snaik.png")
-	super.init(spell_button)
+	super.init(button)
 
 func cast_spell(owner: SpellManager, index: int):
 	super.cast_spell(owner, index)

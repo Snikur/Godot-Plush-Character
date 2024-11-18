@@ -1,12 +1,12 @@
 extends Spell
 class_name FireballSpell
 
-func init(spell_button: SpellTextureButton):
+func init(button: SpellTextureButton):
 	type = SPELLTYPE.FIREBALL
 	cooldown = 1.0
 	texture = preload("res://spellManager/spells/Fireball/flobo.png")
 	spell_scene = preload("res://spellManager/spells/Fireball/fireball.tscn")
-	super.init(spell_button)
+	super.init(button)
 
 func cast_spell(owner: SpellManager, index: int):
 	if (owner.source.id == owner.multiplayer.get_unique_id()):

@@ -3,12 +3,12 @@ class_name TimeTravelSpell
 
 var originalPosition: Vector3
 
-func init(spell_button: SpellTextureButton):
+func init(button: SpellTextureButton):
 	cooldown = 60.0
 	isActivateSpell = true
 	texture = preload("res://spellManager/spells/TimeTravel/craftingmarissa.png")
 	activatedTexture = preload("res://spellManager/spells/TimeTravel/craftingmarissa_inverted.png")
-	super.init(spell_button)
+	super.init(button)
 
 func cast_spell(owner: SpellManager, index: int):
 	super.cast_spell(owner, index)

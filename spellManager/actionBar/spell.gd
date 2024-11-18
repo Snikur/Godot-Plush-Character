@@ -34,7 +34,7 @@ func cast_spell(owner: SpellManager, index: int):
 	
 	owner.cast_spell.rpc(type, index)
 
-func activate_spell(owner: SpellManager):
+func activate_spell(_owner: SpellManager):
 	if isActivateSpell:
 		isActivated = true
 		spell_button.texture_normal = activatedTexture

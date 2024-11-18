@@ -1,10 +1,10 @@
 extends Spell
 class_name SprintSpell
 
-func init(spell_button: SpellTextureButton):
+func init(button: SpellTextureButton):
 	cooldown = 0.5
 	texture = preload("res://spellManager/spells/Sprint/trallgard.png")
-	super.init(spell_button)
+	super.init(button)
 
 func cast_spell(owner: SpellManager, index: int):
 	super.cast_spell(owner, index)
