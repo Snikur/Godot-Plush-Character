@@ -34,18 +34,21 @@ func _process(_delta):
 
 func _on_pressed():
 	if spell != null:
-		spell.cast_spell(owner, owner.get_next_spell_index())
-		cooldown.value = cooldown.max_value
-		timer.start()
-		
-		if (spell.charges <= 1 || spell.maxCharges <= 1):
-			disabled = true
+		if spell.isActivateSpell && !spell.isActivated:
+			spell.activate_spell(owner)
+		else:
+			spell.cast_spell(owner, owner.get_next_spell_index())
+			cooldown.value = cooldown.max_value
+			timer.start()
 			
-		if spell.maxCharges > 1:
-			spell.charges -= 1
-			charges.text = str(spell.charges)
-		
-		set_process(true)
+			if (spell.charges <= 1 || spell.maxCharges <= 1):
+				disabled = true
+				
+			if spell.maxCharges > 1:
+				spell.charges -= 1
+				charges.text = str(spell.charges)
+			
+			set_process(true)
 
 func _on_timer_timeout():
 	disabled = false
