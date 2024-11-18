@@ -6,7 +6,6 @@ func start_quest() -> void:
 		quest_status = QuestStatus.started
 		super.start_quest()
 
-		
 func reached_goal() -> void:
 	if quest_status == QuestStatus.started:
 		quest_status = QuestStatus.reached_goal

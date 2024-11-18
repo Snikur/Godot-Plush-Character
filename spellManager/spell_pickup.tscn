@@ -1,23 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy7y0irkl6w2r"]
+[gd_scene load_steps=4 format=3 uid="uid://cy7y0irkl6w2r"]
 
-[ext_resource type="PackedScene" uid="uid://b5nfgk7jbwhdd" path="res://assets/models/SilverPirateCoin.fbx" id="1_64sp6"]
+[ext_resource type="PackedScene" uid="uid://bfsv4oc7y3de2" path="res://assets/scenes/gold_coin_vfx.tscn" id="2_tp2am"]
 [ext_resource type="Script" path="res://spellManager/spell_pickup.gd" id="2_wtxyg"]
-[ext_resource type="Material" uid="uid://dkp14nedwcf8a" path="res://assets/materials/gold_material.tres" id="3_ueaba"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_cnhph"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_l0lko"]
 
-[node name="SpellPickup" instance=ExtResource("1_64sp6")]
+[node name="SpellPickup" type="Node3D"]
 script = ExtResource("2_wtxyg")
 
-[node name="SilverPirateCoint" parent="." index="0"]
-surface_material_override/0 = ExtResource("3_ueaba")
-surface_material_override/1 = ExtResource("3_ueaba")
-surface_material_override/2 = ExtResource("3_ueaba")
+[node name="SilverPirateCoin" parent="." instance=ExtResource("2_tp2am")]
 
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "SilverPirateCoint|PirateCoinAction"
+[node name="Area3D" type="Area3D" parent="."]
 
-[node name="Area3D" type="Area3D" parent="." index="2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
-shape = SubResource("SphereShape3D_cnhph")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_l0lko")

@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://elevator.gd" id="8_0dlt5"]
 [ext_resource type="Script" path="res://spellManager/spells/Blink/blink.gd" id="10_vn22s"]
 [ext_resource type="Script" path="res://spellManager/spells/Sprint/sprint.gd" id="11_w0gtx"]
-[ext_resource type="PackedScene" path="res://assets/scenes/ship_large_2.tscn" id="13_prpo3"]
+[ext_resource type="PackedScene" uid="uid://deukppkq0x40j" path="res://assets/scenes/ship_large_2.tscn" id="13_prpo3"]
 [ext_resource type="Script" path="res://ship_follow.gd" id="13_s4wdj"]
 [ext_resource type="PackedScene" uid="uid://ck4vyygcpqi3b" path="res://NPCS/Manbroom_Fourpwood/manbroom_fourpwood.tscn" id="15_0n2kh"]
 
@@ -323,9 +323,9 @@ script = ExtResource("13_s4wdj")
 [node name="Ship" parent="ShipPath/ShipFollow" instance=ExtResource("13_prpo3")]
 
 [node name="Manbroom Fourpwood" parent="." instance=ExtResource("15_0n2kh")]
-transform = Transform3D(0.967, 0, 0, 0, 2, 0, 0, 0, 0.967, 41.2996, 8.07722, 25.7673)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 8, 26)
 
 [node name="CoinSpawnPoint" parent="Manbroom Fourpwood" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.9938, 3.93974, 4.38038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 8, 4)
 
 [editable path="Manbroom Fourpwood"]
