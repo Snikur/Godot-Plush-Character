@@ -55,7 +55,12 @@ func _ready():
 		
 	if data.has("position"):
 		global_position = data["position"]
-	set_process_unhandled_input(multiplayer.get_unique_id() == id)
+	if (multiplayer.is_server()):
+		print("connect die for ", name)
+		combat.die.connect(func():
+			teleport_to.rpc_id(id, data["position"])
+			combat.request_change.rpc(combat.max_health)
+		)
 	if multiplayer.get_unique_id() == id:
 		camera.current = true
 		MM.tick.connect(send_state)
@@ -64,11 +69,14 @@ func _ready():
 			camera.fov = new_fov
 		)
 		spell_manager.setup_action_bar()
-	else:
+	else: #if other clients and server
+		set_process_unhandled_input(false)
 		$OrbitView.queue_free()
 		$StateChart.queue_free()
 		$Ground.queue_free()
 		$Climbing.queue_free()
+		$Water.queue_free()
+		$Knockback.queue_free()
 		$VisualRoot/GodotPlushSkin/AutoAttack.enabled = false
 		$VisualRoot/GodotPlushSkin/AutoAttack/SpellManager/UI.queue_free()
 
@@ -83,6 +91,10 @@ func transition_to(state: ANIMATION_STATE):
 	if current_state == state:
 		return
 	send_transition_to.rpc(state)
+
+@rpc("authority", "reliable", "call_local")
+func teleport_to(destination: Vector3):
+	global_position = destination
 
 @rpc("any_peer", "reliable", "call_local")
 func send_transition_to(state: ANIMATION_STATE):

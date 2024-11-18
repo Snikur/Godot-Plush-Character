@@ -69,7 +69,6 @@ func client_disconnected(id: int):
 		DisplayServer.window_set_title(str("HOST Connections: ", list_of_players.size()))
 
 func join():
-	print("IP: ", IP_ADDRESS)
 	peer = WebSocketMultiplayerPeer.new()
 	#var client_trusted_cas = load("res://generated.crt")
 	#var client_tls_options = TLSOptions.client(client_trusted_cas)

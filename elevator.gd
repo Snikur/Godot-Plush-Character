@@ -12,8 +12,6 @@ func _ready() -> void:
 		tween.tween_property(self, "global_position:y", destination_height, 5.0).from(original_height).set_delay(2.0)
 		tween.tween_property(self, "global_position:y", original_height, 5.0).from(destination_height).set_delay(2.0)
 		tween.set_loops(0)
-	else:
-		print("client")
 
 func tick():
 	server_state.rpc(global_position)
