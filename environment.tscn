@@ -71,10 +71,10 @@ albedo_color = Color(0.180392, 0, 0.858824, 0.537255)
 material = SubResource("StandardMaterial3D_3osiu")
 size = Vector3(256, 10, 256)
 
-[sub_resource type="Resource" id="Resource_wt116"]
+[sub_resource type="Resource" id="Resource_131oi"]
 script = ExtResource("6_ewwhn")
 type = 2
-cooldown = null
+cooldown = 0.0
 
 [sub_resource type="Resource" id="Resource_ea36u"]
 script = ExtResource("10_vn22s")
@@ -289,7 +289,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2, 58.6)
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 35.3392, 7.59046, 35.1449)
 
 [node name="Frostbolt" parent="Spells" instance=ExtResource("5_gipfr")]
-spell = SubResource("Resource_wt116")
+spell = SubResource("Resource_131oi")
 
 [node name="Blink" parent="Spells" instance=ExtResource("5_gipfr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11042, 0, 0)
@@ -324,8 +324,3 @@ script = ExtResource("13_s4wdj")
 
 [node name="Manbroom Fourpwood" parent="." instance=ExtResource("15_0n2kh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 8, 26)
-
-[node name="CoinSpawnPoint" parent="Manbroom Fourpwood" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 8, 4)
-
-[editable path="Manbroom Fourpwood"]

@@ -141,10 +141,7 @@ func enter_climb_state(climbing: Node3D):
 func exit_climb_state(climbing: Node3D):
 	state_chart.send_event("to_ground")
 	if climb_state.climbing_object == climbing:
-		print("stop climbing me")
 		climb_state.climbing_object = null
-	else:
-		print("climbing something else")
 
 func enter_water_state():
 	state_chart.send_event("to_water")

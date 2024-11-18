@@ -34,3 +34,4 @@ quest = NodePath("../PirateQuest")
 shape = SubResource("SphereShape3D_yfmkg")
 
 [node name="CoinSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 8, 4)
