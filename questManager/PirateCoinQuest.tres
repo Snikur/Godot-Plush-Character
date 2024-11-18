@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3 uid="uid://j22w3y71oya0"]
+
+[ext_resource type="Script" path="res://questManager/quest_resource.gd" id="1_vgilf"]
+
+[resource]
+script = ExtResource("1_vgilf")
+quest_name = "Find the pirate coin"
+quest_description = "Search the island to find the pirate coin yarr!"
+reached_goal_text = "Return the pirate coin to Manbroom Fourpwood"
