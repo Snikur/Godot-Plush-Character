@@ -29,5 +29,5 @@ func state_physics_process(delta: float) -> void:
 		parent.state_chart.send_event("to_ground")
 	
 	parent.visual_root.rotation.y = rotate_toward(parent.visual_root.rotation.y, target_angle, 6.0 * delta)
-	var angle_diff = angle_difference(parent.visual_root.rotation.y, target_angle)
-	parent.godot_plush_skin.tilt = move_toward(parent.godot_plush_skin.tilt, angle_diff, 2.0 * delta)
+	#var angle_diff = angle_difference(parent.visual_root.rotation.y, target_angle)
+	#parent.godot_plush_skin.tilt = move_toward(parent.godot_plush_skin.tilt, angle_diff, 2.0 * delta)

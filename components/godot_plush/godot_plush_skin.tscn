@@ -1581,16 +1581,16 @@ states/walk/position = Vector2(607, 136)
 transitions = ["fall", "idle", SubResource("AnimationNodeStateMachineTransition_hxh4c"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_1jknp"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_l0bes"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_7yacm"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_qqn8d"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_i60so"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_3y3fe"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_susjx"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_4o6qm"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_rvlp3"), "fall", "run", SubResource("AnimationNodeStateMachineTransition_yapkt"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_bish2"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_laivt"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_8g0vb"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3ypai")]
 graph_offset = Vector2(-80, 14)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g3res"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8not7"]
 animation = &"tilt_l"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f7tq2"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v8dwn"]
 animation = &"tilt_r"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qbjvl"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_g3res")
+blend_point_0/node = SubResource("AnimationNodeAnimation_8not7")
 blend_point_0/pos = 1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_f7tq2")
+blend_point_1/node = SubResource("AnimationNodeAnimation_v8dwn")
 blend_point_1/pos = -1.0
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_7c017"]

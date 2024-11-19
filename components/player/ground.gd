@@ -70,8 +70,8 @@ func state_physics_process(delta: float) -> void:
 		parent.transition_to(parent.ANIMATION_STATE.IDLE)
 	
 	parent.visual_root.rotation.y = rotate_toward(parent.visual_root.rotation.y, target_angle, 6.0 * delta)
-	var angle_diff = angle_difference(parent.visual_root.rotation.y, target_angle)
-	parent.godot_plush_skin.tilt = move_toward(parent.godot_plush_skin.tilt, angle_diff, 2.0 * delta)
+	#var angle_diff = angle_difference(parent.visual_root.rotation.y, target_angle)
+	#parent.godot_plush_skin.tilt = move_toward(parent.godot_plush_skin.tilt, angle_diff, 2.0 * delta)
 
 func _on_hit_floor(y_vel : float):
 	y_vel = clamp(abs(y_vel), 0.0, parent.fall_gravity)

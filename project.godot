@@ -24,7 +24,7 @@ QuestManager="*res://questManager/quest_manager.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg")
 
 [input]
 

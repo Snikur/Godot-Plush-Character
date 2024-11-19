@@ -38,4 +38,5 @@ func server_state(new_position: Vector3):
 	if tween:
 		tween.kill()
 	tween = create_tween()
+	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.tween_property(self, "global_position", new_position, 0.1).from_current()

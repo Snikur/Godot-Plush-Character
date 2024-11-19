@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cv7khosotwvnd"
-path="res://.godot/imported/Running.fbx-fe06431b9792f29b7fc432365ad48977.scn"
+uid="uid://c3pqp7xc4n6f0"
+path="res://.godot/imported/Sneak Walk.fbx-4aea2b3cc11d6d5b2e603110c34f7833.scn"
 
 [deps]
 
-source_file="res://dude/Running.fbx"
-dest_files=["res://.godot/imported/Running.fbx-fe06431b9792f29b7fc432365ad48977.scn"]
+source_file="res://dude/Sneak Walk.fbx"
+dest_files=["res://.godot/imported/Sneak Walk.fbx-4aea2b3cc11d6d5b2e603110c34f7833.scn"]
 
 [params]
 
@@ -36,7 +36,7 @@ _subresources={
 "mixamo_com": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://dude/anim/running.res",
+"save_to_file/path": "res://dude/anim/sneak_walk.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

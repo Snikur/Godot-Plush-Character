@@ -25,7 +25,7 @@ var run_speed = 8.0
 var speed_modifier: float = 1.0
 
 @onready var visual_root = %VisualRoot
-@onready var godot_plush_skin = $VisualRoot/GodotPlushSkin
+@onready var godot_plush_skin = $VisualRoot/Dude
 @onready var movement_dust = %MovementDust
 @onready var foot_step_audio = %FootStepAudio
 @onready var impact_audio = %ImpactAudio
@@ -49,10 +49,7 @@ var current_state: ANIMATION_STATE = ANIMATION_STATE.IDLE
 
 func _ready():
 	move_and_slide()
-	godot_plush_skin.footstep.connect(func(intensity : float = 1.0):
-		foot_step_audio.volume_db = linear_to_db(intensity)
-		foot_step_audio.play())
-		
+
 	if data.has("position"):
 		global_position = data["position"]
 	if (multiplayer.is_server()):
@@ -77,8 +74,8 @@ func _ready():
 		$Climbing.queue_free()
 		$Water.queue_free()
 		$Knockback.queue_free()
-		$VisualRoot/GodotPlushSkin/AutoAttack.enabled = false
-		$VisualRoot/GodotPlushSkin/AutoAttack/SpellManager/UI.queue_free()
+		$VisualRoot/Dude/AutoAttack.enabled = false
+		$VisualRoot/Dude/AutoAttack/SpellManager/UI.queue_free()
 
 func send_state():
 	if multiplayer:
@@ -131,6 +128,7 @@ func server_state(new_position: Vector3, new_rotation: Vector3):
 	if tween:
 		tween.kill()
 	tween = create_tween()
+	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.tween_property(self, "global_position", new_position, 0.1).from_current()
 	tween.parallel().tween_property(visual_root, "rotation", new_rotation, 0.1).from_current()
 

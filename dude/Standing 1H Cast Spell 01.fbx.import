@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cv7khosotwvnd"
-path="res://.godot/imported/Running.fbx-fe06431b9792f29b7fc432365ad48977.scn"
+uid="uid://cur42v7mfwy5f"
+path="res://.godot/imported/Standing 1H Cast Spell 01.fbx-42c3dce655539fcaa7406430188d357e.scn"
 
 [deps]
 
-source_file="res://dude/Running.fbx"
-dest_files=["res://.godot/imported/Running.fbx-fe06431b9792f29b7fc432365ad48977.scn"]
+source_file="res://dude/Standing 1H Cast Spell 01.fbx"
+dest_files=["res://.godot/imported/Standing 1H Cast Spell 01.fbx-42c3dce655539fcaa7406430188d357e.scn"]
 
 [params]
 
@@ -36,7 +36,7 @@ _subresources={
 "mixamo_com": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://dude/anim/running.res",
+"save_to_file/path": "res://dude/anim/standing_1_h_cast_spell_01.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

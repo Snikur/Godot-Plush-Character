@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=30 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://c6unhc5lontfn" path="res://assets/sounds/footstep_concrete_001.ogg" id="6_nlp36"]
 [ext_resource type="AudioStream" uid="uid://byg4lkp3ws8kt" path="res://assets/sounds/footstep_concrete_002.ogg" id="7_4283i"]
 [ext_resource type="Script" path="res://components/player/attack_component.gd" id="9_ghftm"]
+[ext_resource type="PackedScene" uid="uid://cj0qhdy1mlbrh" path="res://dude_visual.tscn" id="11_y57ib"]
 [ext_resource type="PackedScene" uid="uid://cbaabmsqd66rd" path="res://spellManager/spell_manager.tscn" id="17_1hwc1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_slah2"]
@@ -195,9 +196,9 @@ delay_in_seconds = "0.0"
 [node name="VisualRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="GodotPlushSkin" parent="VisualRoot" instance=ExtResource("2_mtsks")]
+[node name="Dude" parent="VisualRoot" instance=ExtResource("11_y57ib")]
 
-[node name="AutoAttack" type="ShapeCast3D" parent="VisualRoot/GodotPlushSkin"]
+[node name="AutoAttack" type="ShapeCast3D" parent="VisualRoot/Dude"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_slah2")
 target_position = Vector3(0, 0, 10)
@@ -206,12 +207,15 @@ collide_with_areas = true
 script = ExtResource("9_ghftm")
 parent_node = NodePath("../../..")
 
-[node name="SpellManager" parent="VisualRoot/GodotPlushSkin/AutoAttack" instance=ExtResource("17_1hwc1")]
+[node name="SpellManager" parent="VisualRoot/Dude/AutoAttack" instance=ExtResource("17_1hwc1")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="SwingTimer" type="Timer" parent="VisualRoot/GodotPlushSkin/AutoAttack"]
+[node name="SwingTimer" type="Timer" parent="VisualRoot/Dude/AutoAttack"]
 one_shot = true
+
+[node name="GodotPlushSkin" parent="VisualRoot" instance=ExtResource("2_mtsks")]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

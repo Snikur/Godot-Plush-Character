@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cv7khosotwvnd"
-path="res://.godot/imported/Running.fbx-fe06431b9792f29b7fc432365ad48977.scn"
+uid="uid://da8ojmke6w7dh"
+path="res://.godot/imported/Waving Gesture.fbx-25d1d296fb4166affee0c503315345a4.scn"
 
 [deps]
 
-source_file="res://dude/Running.fbx"
-dest_files=["res://.godot/imported/Running.fbx-fe06431b9792f29b7fc432365ad48977.scn"]
+source_file="res://dude/Waving Gesture.fbx"
+dest_files=["res://.godot/imported/Waving Gesture.fbx-25d1d296fb4166affee0c503315345a4.scn"]
 
 [params]
 
@@ -36,7 +36,7 @@ _subresources={
 "mixamo_com": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://dude/anim/running.res",
+"save_to_file/path": "res://dude/anim/waving_gesture.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

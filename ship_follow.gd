@@ -18,4 +18,5 @@ func server_state(new_progress_ratio: float):
 	if tween:
 		tween.kill()
 	tween = create_tween()
+	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.tween_property(self, "progress_ratio", new_progress_ratio, 0.6).from_current()
