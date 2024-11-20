@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b77bbpa63d1qr"]
+[gd_scene load_steps=3 format=3 uid="uid://b77bbpa63d1qr"]
 
 [ext_resource type="Script" path="res://questManager/quest_manager.gd" id="1_bl1kx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3krm3"]
+font_color = Color(0.627451, 0.627451, 0.627451, 1)
 
 [node name="QuestManager" type="Node3D"]
 script = ExtResource("1_bl1kx")
@@ -8,27 +11,37 @@ script = ExtResource("1_bl1kx")
 [node name="UI" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Panel" type="Panel" parent="UI"]
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -255.0
-offset_bottom = 106.0
+offset_left = -32.0
+offset_bottom = 32.0
 grow_horizontal = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
 
-[node name="QuestTitle" type="RichTextLabel" parent="UI/Panel"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 250.0
-offset_bottom = 28.0
-text = "Quest Title"
+[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="QuestDescription" type="RichTextLabel" parent="UI/Panel"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 24.0
-offset_right = 251.0
-offset_bottom = 101.0
-theme_override_colors/default_color = Color(0.385493, 0.385492, 0.385492, 1)
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="QuestTitle" type="Label" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
+text = "Quest with a really really long Title!"
+autowrap_mode = 2
+
+[node name="QuestDescription" type="Label" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 26)
+layout_mode = 2
 text = "Quest Description"
+label_settings = SubResource("LabelSettings_3krm3")
+autowrap_mode = 2
