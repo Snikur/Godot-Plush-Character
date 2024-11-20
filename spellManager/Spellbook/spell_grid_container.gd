@@ -1,9 +1,9 @@
 extends GridContainer
 
-@onready var spellIcon = $"../../SpellInformation/SpellIcon"
-@onready var spellName = $"../../SpellInformation/SpellName"
-@onready var spellCooldown = $"../../SpellInformation/SpellCooldown"
-@onready var spellDescription = $"../../SpellInformation/SpellDescription"
+@onready var spellIcon = %SpellIcon
+@onready var spellName = %SpellName
+@onready var spellCooldown = %SpellCooldown
+@onready var spellDescription = %SpellDescription
 
 const GridButton = preload("res://spellManager/Spellbook/spell_grid_button.tscn")
 

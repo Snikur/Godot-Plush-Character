@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var spellGridContainer = $ScrollContainer/SpellGridContainer
+@onready var spellGridContainer = %SpellGridContainer
 func _ready():
 	self.visible = false
 

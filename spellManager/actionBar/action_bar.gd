@@ -2,7 +2,7 @@ extends HBoxContainer
 
 @export var default_spells: Array[SpellResource]
 
-@onready var spellbookgrid = $"../Spellbook/ScrollContainer/SpellGridContainer"
+@onready var spellbookgrid = %SpellGridContainer
 
 var slots: Array
 
