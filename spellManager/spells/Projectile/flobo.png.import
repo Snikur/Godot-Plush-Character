@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu48ogybqw2ta"
-path="res://.godot/imported/Coldflake.png-7808b720e6f44f4bc3a211e5d925cc79.ctex"
+uid="uid://oon8vyjvp887"
+path="res://.godot/imported/flobo.png-6b506fa8460e2f1567dfe559a1c33225.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spellManager/spells/Frostbolt/Coldflake.png"
-dest_files=["res://.godot/imported/Coldflake.png-7808b720e6f44f4bc3a211e5d925cc79.ctex"]
+source_file="res://spellManager/spells/Projectile/flobo.png"
+dest_files=["res://.godot/imported/flobo.png-6b506fa8460e2f1567dfe559a1c33225.ctex"]
 
 [params]
 

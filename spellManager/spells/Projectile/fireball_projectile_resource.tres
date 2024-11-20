@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ProjectileSpell" load_steps=5 format=3 uid="uid://om6g0kawh4l0"]
+
+[ext_resource type="Script" path="res://spellManager/spells/Projectile/projectile_spell.gd" id="1_f4yej"]
+[ext_resource type="PackedScene" uid="uid://4rg7r7vihcxy" path="res://spellManager/spells/Projectile/Projectile.tscn" id="2_i3881"]
+[ext_resource type="Texture2D" uid="uid://oon8vyjvp887" path="res://spellManager/spells/Projectile/flobo.png" id="3_78vdx"]
+[ext_resource type="PackedScene" uid="uid://kyxrqnijedci" path="res://spellManager/spells/Projectile/vfx_fireball.tscn" id="4_qc4yh"]
+
+[resource]
+script = ExtResource("1_f4yej")
+type = 0
+projectile_type = 0
+cooldown = 1.0
+maxCharges = 1
+isActivateSpell = false
+texture = ExtResource("3_78vdx")
+spell_scene = ExtResource("2_i3881")
+vfx_scene = ExtResource("4_qc4yh")

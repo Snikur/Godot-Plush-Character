@@ -5,8 +5,6 @@ var peer: WebSocketMultiplayerPeer
 const PORT: int = 25565
 const MAX_CLIENTS: int = 4095
 
-var entities_spawned: int = 0
-
 var list_of_players: Array[Player] = []
 @onready var player_prefab := preload("res://components/player/player.tscn")
 
@@ -87,12 +85,11 @@ func connected_to_server():
 @rpc("any_peer", "reliable", "call_local")
 func send_setup(data: Dictionary):
 	var sender_id = multiplayer.get_remote_sender_id()
+	for player in list_of_players:
+		if (player.id == sender_id):
+			return
 	add_client(sender_id, data)
 	for player in list_of_players:
 		remote_add_client.rpc_id(sender_id, player.id, player.data)
 		if not player.id == 1 and not player.id == sender_id:
 			remote_add_client.rpc_id(player.id, sender_id, player.data)
-
-func get_next_id() -> int:
-	entities_spawned = entities_spawned + 1
-	return entities_spawned

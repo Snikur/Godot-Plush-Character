@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://dtxkg6g2d4klu"]
 
-[ext_resource type="Texture2D" uid="uid://blqnd2wr34eka" path="res://spellManager/spells/Fireball/Fire_tail_texture.png" id="1_shchc"]
+[ext_resource type="Texture2D" uid="uid://blqnd2wr34eka" path="res://spellManager/spells/Projectile/Fire_tail_texture.png" id="1_shchc"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ib1xl"]
 expanded_output_ports = [0]

@@ -1,4 +1,4 @@
-extends Spell
+extends SpellResource
 class_name TimeTravelSpell
 
 var originalPosition: Vector3

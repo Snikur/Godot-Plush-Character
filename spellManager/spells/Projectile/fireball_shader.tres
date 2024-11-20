@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://bmbp3qtmwg3i8"]
 
-[ext_resource type="Texture2D" uid="uid://bhpx5hmng835p" path="res://spellManager/spells/Fireball/fire_noise.png" id="1_m47td"]
+[ext_resource type="Texture2D" uid="uid://bhpx5hmng835p" path="res://spellManager/spells/Projectile/fire_noise.png" id="1_m47td"]
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_8wmqi"]
 parameter_name = "Speed"

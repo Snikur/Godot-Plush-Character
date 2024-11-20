@@ -8,7 +8,7 @@ class_name SpellTextureButton
 @onready var charges = $Charges
 
 
-var spell: Spell = null
+var spell: SpellResource = null
 
 var change_key = "":
 	set(value):

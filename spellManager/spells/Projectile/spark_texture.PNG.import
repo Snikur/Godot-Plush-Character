@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhpx5hmng835p"
-path.s3tc="res://.godot/imported/fire_noise.png-01a61dfeafccc2f1880b0154b81e43d7.s3tc.ctex"
+uid="uid://b7og1g8ic640n"
+path.s3tc="res://.godot/imported/spark_texture.PNG-4d3df8986849a744f62450edce4f07f4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://spellManager/spells/Fireball/fire_noise.png"
-dest_files=["res://.godot/imported/fire_noise.png-01a61dfeafccc2f1880b0154b81e43d7.s3tc.ctex"]
+source_file="res://spellManager/spells/Projectile/spark_texture.PNG"
+dest_files=["res://.godot/imported/spark_texture.PNG-4d3df8986849a744f62450edce4f07f4.s3tc.ctex"]
 
 [params]
 

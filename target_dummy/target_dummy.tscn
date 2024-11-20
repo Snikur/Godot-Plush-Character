@@ -1,9 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckcqtdfka0v40"]
+[gd_scene load_steps=9 format=3 uid="uid://ckcqtdfka0v40"]
 
 [ext_resource type="Script" path="res://target_dummy/target_dummy.gd" id="1_nhe4d"]
+[ext_resource type="Script" path="res://SyncTransform.gd" id="2_m5sep"]
 [ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="2_mslhc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_alqak"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6p7b"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vwkcl"]
+material = SubResource("StandardMaterial3D_p6p7b")
+size = Vector3(0.66, 0.1, 0.1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8rcei"]
 
@@ -12,6 +20,9 @@ radius = 15.0
 
 [node name="TargetDummy" type="CharacterBody3D"]
 script = ExtResource("1_nhe4d")
+
+[node name="SyncTransform" type="Node3D" parent="."]
+script = ExtResource("2_m5sep")
 
 [node name="SwingTimer" type="Timer" parent="."]
 one_shot = true
@@ -29,6 +40,10 @@ text = "HP: 100/100"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_alqak")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.466926, 0.418833)
+mesh = SubResource("BoxMesh_vwkcl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8rcei")

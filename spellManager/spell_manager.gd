@@ -8,24 +8,28 @@ var spell_index: int = -1
 
 @onready var action_bar : HBoxContainer = $UI/ActionBar
 
-func add_spell(new_spell: Spell):
+func add_spell(new_spell: SpellResource):
 	action_bar.add_spell(new_spell)
 
 @rpc("any_peer", "call_remote", "reliable")
-func cast_spell(type: int, index: int):
+func send_spell(type: int, projectile_type: int , index: int):
+	print("want to cast type ", type, " projectile ", projectile_type)
+	var casted_spell: SpellResource = null
 	match(type):
-		Spell.SPELLTYPE.FIREBALL:
-			var spell = FireballSpell.new()
-			spell.init(null)
-			spell.cast_spell(self, index)
-			pass
-		Spell.SPELLTYPE.FROSTBOLT:
-			var spell = FrostboltSpell.new()
-			spell.init(null)
-			spell.cast_spell(self, index)
-			pass
+		SpellResource.SPELLTYPE.PROJECTILE:
+			match(projectile_type):
+				SpellResource.PROJECTILE_TYPE.FIREBALL:
+					casted_spell = preload("res://spellManager/spells/Projectile/fireball_projectile_resource.tres")
+				SpellResource.PROJECTILE_TYPE.FROSTBOLT:
+					casted_spell = preload("res://spellManager/spells/Projectile/frostbolt_projectile_resource.tres")
+				_:
+					pass
 		_:
-			print("not spell vfx to spawn")
+			pass
+	print("Casting: ", casted_spell.get_class())
+	if (casted_spell):
+		casted_spell.init(null)
+		casted_spell.cast_spell(self, index)
 
 func setup_action_bar():
 	action_bar.init()

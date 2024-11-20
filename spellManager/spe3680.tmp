@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbaabmsqd66rd"]
+[gd_scene load_steps=4 format=3 uid="uid://cbaabmsqd66rd"]
 
 [ext_resource type="Script" path="res://spellManager/spell_manager.gd" id="1_mdmv7"]
 [ext_resource type="Script" path="res://spellManager/actionBar/action_bar.gd" id="3_8r1a2"]
-[ext_resource type="Script" path="res://spellManager/actionBar/spell.gd" id="3_txu1t"]
-[ext_resource type="Resource" uid="uid://om6g0kawh4l0" path="res://spellManager/spells/Projectile/fireball_projectile_resource.tres" id="4_aevgh"]
 [ext_resource type="PackedScene" uid="uid://jgqm1l0hvxut" path="res://spellManager/actionBar/spell_button.tscn" id="4_ny401"]
-[ext_resource type="Resource" uid="uid://dpk57uqwfjqyg" path="res://spellManager/spells/Projectile/frostbolt_projectile_resource.tres" id="5_s78px"]
 
 [node name="SpellManager" type="Node3D"]
 script = ExtResource("1_mdmv7")
@@ -24,7 +21,6 @@ offset_right = 108.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("3_8r1a2")
-default_spells = Array[ExtResource("3_txu1t")]([ExtResource("4_aevgh"), ExtResource("5_s78px")])
 
 [node name="SpellButton" parent="UI/ActionBar" instance=ExtResource("4_ny401")]
 layout_mode = 2

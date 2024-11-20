@@ -1,8 +1,6 @@
 extends CharacterBody3D
 class_name Enemy
 
-var tween: Tween
-
 @onready var aggro_area: Area3D = $AggroArea
 @onready var spawn_position: Vector3 = global_position
 @onready var combat: CombatComponent = $CombatComponent
@@ -13,7 +11,6 @@ var target: Player
 func _ready() -> void:
 	await MM.connected
 	if (multiplayer.is_server()):
-		MM.tick.connect(tick)
 		aggro_area.body_entered.connect(func(body: Node3D):
 			if (body is Player):
 				if (target == null):
@@ -53,15 +50,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		rotate_y(delta*0.5)
 		velocity = global_basis.z * 2.0
+	velocity.y = -9.1
+	rotation.y = atan2(velocity.x, velocity.z)
 	move_and_slide()
-
-func tick():
-	server_state.rpc(global_position)
-
-@rpc("authority", "call_remote", "unreliable_ordered")
-func server_state(new_position: Vector3):
-	if tween:
-		tween.kill()
-	tween = create_tween()
-	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.tween_property(self, "global_position", new_position, 0.1).from_current()

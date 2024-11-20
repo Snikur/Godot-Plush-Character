@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://cbaabmsqd66rd"]
+
+[ext_resource type="Script" path="res://spellManager/spell_manager.gd" id="1_mdmv7"]
+[ext_resource type="Script" path="res://spellManager/actionBar/action_bar.gd" id="3_8r1a2"]
+[ext_resource type="Script" path="res://spellManager/actionBar/spell.gd" id="3_txu1t"]
+[ext_resource type="PackedScene" uid="uid://jgqm1l0hvxut" path="res://spellManager/actionBar/spell_button.tscn" id="4_ny401"]
+[ext_resource type="PackedScene" uid="uid://4rg7r7vihcxy" path="res://spellManager/spells/Projectile/Projectile.tscn" id="5_sdg8l"]
+[ext_resource type="Texture2D" uid="uid://oon8vyjvp887" path="res://spellManager/spells/Projectile/flobo.png" id="6_gc51o"]
+[ext_resource type="PackedScene" uid="uid://kyxrqnijedci" path="res://spellManager/spells/Projectile/vfx_fireball.tscn" id="7_v2r3s"]
+[ext_resource type="Texture2D" uid="uid://cu48ogybqw2ta" path="res://spellManager/spells/Projectile/Coldflake.png" id="8_pcso7"]
+[ext_resource type="PackedScene" uid="uid://ctpp6yk5ab1aq" path="res://spellManager/spells/Projectile/vfx_frostbolt.tscn" id="9_cqttw"]
+
+[sub_resource type="GDScript" id="GDScript_aloch"]
+script/source = "extends Spell
+class_name ProjectileSpell
+
+func init(button: SpellTextureButton):
+	super.init(button)
+
+func cast_spell(owner: SpellManager, index: int) -> void:
+	var projectile: Projectile = spell_scene.instantiate()
+	owner.add_child(projectile)
+	projectile.top_level = true
+	projectile.vfx.add_child(vfx_scene.instantiate())
+	projectile.name = str(index)
+	if (owner.source.id == owner.multiplayer.get_unique_id()):
+		super.cast_spell(owner, index)
+"
+
+[sub_resource type="Resource" id="Resource_vlulr"]
+script = SubResource("GDScript_aloch")
+type = 0
+cooldown = 1.0
+maxCharges = 1
+isActivateSpell = false
+texture = ExtResource("6_gc51o")
+spell_scene = ExtResource("5_sdg8l")
+vfx_scene = ExtResource("7_v2r3s")
+
+[sub_resource type="Resource" id="Resource_4yfgm"]
+script = SubResource("GDScript_aloch")
+type = 1
+cooldown = 2.0
+maxCharges = 2
+isActivateSpell = false
+texture = ExtResource("8_pcso7")
+spell_scene = ExtResource("5_sdg8l")
+vfx_scene = ExtResource("9_cqttw")
+
+[node name="SpellManager" type="Node3D"]
+script = ExtResource("1_mdmv7")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ActionBar" type="HBoxContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -40.0
+offset_right = 108.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("3_8r1a2")
+default_spells = Array[ExtResource("3_txu1t")]([SubResource("Resource_vlulr"), SubResource("Resource_4yfgm")])
+
+[node name="SpellButton" parent="UI/ActionBar" instance=ExtResource("4_ny401")]
+layout_mode = 2
+
+[node name="SpellButton2" parent="UI/ActionBar" instance=ExtResource("4_ny401")]
+layout_mode = 2
+
+[node name="SpellButton3" parent="UI/ActionBar" instance=ExtResource("4_ny401")]
+layout_mode = 2
+
+[node name="SpellButton4" parent="UI/ActionBar" instance=ExtResource("4_ny401")]
+layout_mode = 2
+
+[node name="SpellButton5" parent="UI/ActionBar" instance=ExtResource("4_ny401")]
+layout_mode = 2

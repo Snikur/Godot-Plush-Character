@@ -1,28 +1,30 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctpp6yk5ab1aq"]
+[gd_scene load_steps=18 format=3 uid="uid://kyxrqnijedci"]
 
-[ext_resource type="Shader" uid="uid://bmbp3qtmwg3i8" path="res://spellManager/spells/Fireball/fireball_shader.tres" id="1_vbqcd"]
-[ext_resource type="ArrayMesh" uid="uid://c2iyeou08k3kr" path="res://spellManager/spells/Fireball/fireball_mesh.obj" id="2_a58cp"]
-[ext_resource type="Shader" uid="uid://b13v320iwsppd" path="res://spellManager/spells/Fireball/fireheader_shader.tres" id="3_q42dv"]
-[ext_resource type="Shader" uid="uid://dtxkg6g2d4klu" path="res://spellManager/spells/Fireball/Fireball_tail_shader.tres" id="4_7hjas"]
-[ext_resource type="Texture2D" uid="uid://b7og1g8ic640n" path="res://spellManager/spells/Fireball/spark_texture.PNG" id="5_lnk41"]
+[ext_resource type="Shader" uid="uid://bmbp3qtmwg3i8" path="res://spellManager/spells/Projectile/fireball_shader.tres" id="1_nk3yk"]
+[ext_resource type="ArrayMesh" uid="uid://c2iyeou08k3kr" path="res://spellManager/spells/Projectile/fireball_mesh.obj" id="2_77jn8"]
+[ext_resource type="Shader" uid="uid://b13v320iwsppd" path="res://spellManager/spells/Projectile/fireheader_shader.tres" id="3_wh5pc"]
+[ext_resource type="Shader" uid="uid://dtxkg6g2d4klu" path="res://spellManager/spells/Projectile/Fireball_tail_shader.tres" id="4_7r461"]
+[ext_resource type="Texture2D" uid="uid://b7og1g8ic640n" path="res://spellManager/spells/Projectile/spark_texture.PNG" id="5_0o8mx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5onn8"]
 render_priority = 1
-shader = ExtResource("1_vbqcd")
-shader_parameter/Fire_Color = Color(0.706212, 0.808324, 0.996909, 1)
+shader = ExtResource("1_nk3yk")
+shader_parameter/Fire_Color = Color(2, 1.3, 0.6, 1)
 shader_parameter/Speed = Vector2(0.1, 3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0v4lm"]
 render_priority = 0
-shader = ExtResource("3_q42dv")
-shader_parameter/Ball_Color = Color(0.227763, 0.388401, 0.947534, 1)
+shader = ExtResource("3_wh5pc")
+shader_parameter/Ball_Color = Color(0.495548, 0.220171, 0, 1)
 shader_parameter/Frenel_Power = 4.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_eqiet"]
+radius = 2.0
+height = 4.0
 
 [sub_resource type="Gradient" id="Gradient_20xyr"]
 offsets = PackedFloat32Array(0, 0.139269, 0.865297, 0.997717)
-colors = PackedColorArray(0, 0, 0, 0, 0.00015989, 0.298431, 0.888742, 1, 0.27794, 0.524603, 0.953554, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0, 0, 0, 0, 0.590744, 0.267518, 0.0358626, 1, 0.659148, 0.523873, 0, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ucd6e"]
 gradient = SubResource("Gradient_20xyr")
@@ -30,11 +32,12 @@ use_hdr = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qcpua"]
 render_priority = 0
-shader = ExtResource("4_7hjas")
+shader = ExtResource("4_7r461")
 shader_parameter/Tail_Speed = Vector2(2, 0)
 shader_parameter/Color_Texture = SubResource("GradientTexture1D_ucd6e")
 
 [sub_resource type="QuadMesh" id="QuadMesh_luj60"]
+size = Vector2(2, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukhl0"]
 blend_mode = 1
@@ -44,7 +47,7 @@ disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_texture = ExtResource("5_lnk41")
+albedo_texture = ExtResource("5_0o8mx")
 
 [sub_resource type="Curve" id="Curve_gi86y"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -66,33 +69,29 @@ radial_velocity_max = 1.99998
 gravity = Vector3(0, 0, 0)
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_0esh6")
-color = Color(0.75631, 0.823384, 1, 1)
+color = Color(2, 1.3, 0.5, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_n5tvj"]
 size = Vector2(0.1, 0.5)
 
-[node name="vfx_frostbolt" type="Node3D"]
-
-[node name="FrostboltMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.18557e-08, 0, 0.396733, 0, 0.392396, 0, -0.5, 0, -1.73417e-08, 0, 0, 0)
+[node name="FireballMesh" type="MeshInstance3D"]
+transform = Transform3D(0.5, 0, -4.9738e-14, 0, 0.392396, 0, -3.55271e-15, 0, 0.396733, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_5onn8")
 cast_shadow = 0
-mesh = ExtResource("2_a58cp")
+mesh = ExtResource("2_77jn8")
 
-[node name="FireboltHeader" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0.23, 0, 0)
+[node name="FireballHeader" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 5.32907e-15, 0, 0.5, 0, -3.55271e-15, 0, 0.5, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_0v4lm")
 mesh = SubResource("SphereMesh_eqiet")
-skeleton = NodePath("../FrostboltMesh")
 
-[node name="FrostboltTail" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.34181, -1.1905e-07, -4.37114e-08, -2.04727e-07, -1.36177, 0, -2.04727e-07, 1.04077e-14, -0.5, -1.017, 0, 0)
+[node name="FireballTail" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.02363e-07, -5.20386e-15, 0.5, -2.04727e-07, -1.36177, 0, 2.34181, -1.1905e-07, -2.18557e-08, 0, 0, -2)
 material_override = SubResource("ShaderMaterial_qcpua")
 mesh = SubResource("QuadMesh_luj60")
-skeleton = NodePath("../FrostboltMesh")
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.525, 0, -0.002)
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -0.436275, 0, -0.111152)
 material_override = SubResource("StandardMaterial3D_ukhl0")
 amount = 10
 lifetime = 0.3

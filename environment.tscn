@@ -1,11 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=42 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="Script" path="res://ladder.gd" id="3_kdg1s"]
 [ext_resource type="PackedScene" uid="uid://bouvidg64dqet" path="res://assets/models/ladder/CartoonLader/CartoonLadder.fbx" id="4_qdqii"]
 [ext_resource type="PackedScene" uid="uid://b1b0nka3xayeg" path="res://bounce.tscn" id="5_ca51l"]
 [ext_resource type="PackedScene" uid="uid://cy7y0irkl6w2r" path="res://spellManager/spell_pickup.tscn" id="5_gipfr"]
-[ext_resource type="Script" path="res://spellManager/spells/Frostbolt/frostbolt_spell.gd" id="6_ewwhn"]
 [ext_resource type="Script" path="res://water_area.gd" id="6_rmd8c"]
 [ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="7_vo52k"]
 [ext_resource type="Script" path="res://elevator.gd" id="8_0dlt5"]
@@ -78,30 +77,26 @@ albedo_color = Color(0.180392, 0, 0.858824, 0.537255)
 material = SubResource("StandardMaterial3D_3osiu")
 size = Vector3(256, 10, 256)
 
-[sub_resource type="Resource" id="Resource_131oi"]
-script = ExtResource("6_ewwhn")
-type = 2
-cooldown = 0.0
-maxCharges = 1
-isActivateSpell = false
-
 [sub_resource type="Resource" id="Resource_ea36u"]
 script = ExtResource("10_vn22s")
-type = 2
+type = 1
+projectile_type = 2
 cooldown = 0.0
 maxCharges = 1
 isActivateSpell = false
 
 [sub_resource type="Resource" id="Resource_yv8lr"]
 script = ExtResource("11_w0gtx")
-type = 2
+type = 1
+projectile_type = 2
 cooldown = 0.0
 maxCharges = 1
 isActivateSpell = false
 
 [sub_resource type="Resource" id="Resource_lrbf8"]
 script = ExtResource("12_kkanx")
-type = 2
+type = 1
+projectile_type = 2
 cooldown = 60.0
 maxCharges = 1
 isActivateSpell = true
@@ -307,9 +302,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2, 58.6)
 
 [node name="Spells" type="Node3D" parent="."]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 35.3392, 7.59046, 35.1449)
-
-[node name="Frostbolt" parent="Spells" instance=ExtResource("5_gipfr")]
-spell = SubResource("Resource_131oi")
 
 [node name="Blink" parent="Spells" instance=ExtResource("5_gipfr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)

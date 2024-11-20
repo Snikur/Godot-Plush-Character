@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var spell: Spell 
+@export var spell: SpellResource
 
 func _ready() -> void:
 	$Area3D.body_entered.connect(func(body: Node3D):
