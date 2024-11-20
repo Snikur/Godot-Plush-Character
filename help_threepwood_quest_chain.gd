@@ -33,6 +33,7 @@ func kill_target_entered() -> void:
 		QuestManager.update_description("You killed the Target Dummy! Now find his coin.")
 		print("killed target dummy")
 		state_chart.set_expression_property("target_killed", true)
+		state_chart.send_event("to_reward")
 	)
 
 func pickup_coin_entered() -> void:
