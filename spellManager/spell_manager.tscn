@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://spellManager/spell_manager.gd" id="1_mdmv7"]
 [ext_resource type="Texture2D" uid="uid://dh3key88dgijt" path="res://icon.svg" id="2_s1noq"]
-[ext_resource type="Script" path="res://spellManager/spellbook.gd" id="2_snhcv"]
+[ext_resource type="Script" path="res://spellManager/Spellbook/spellbook.gd" id="2_snhcv"]
 [ext_resource type="Script" path="res://spellManager/actionBar/action_bar.gd" id="3_8r1a2"]
-[ext_resource type="Script" path="res://spellManager/spell_grid_container.gd" id="3_lo8px"]
+[ext_resource type="Script" path="res://spellManager/Spellbook/spell_grid_container.gd" id="3_lo8px"]
 [ext_resource type="Script" path="res://spellManager/actionBar/spell.gd" id="3_txu1t"]
 [ext_resource type="Resource" uid="uid://om6g0kawh4l0" path="res://spellManager/spells/Projectile/fireball_projectile_resource.tres" id="4_aevgh"]
 [ext_resource type="PackedScene" uid="uid://jgqm1l0hvxut" path="res://spellManager/actionBar/spell_button.tscn" id="4_ny401"]
