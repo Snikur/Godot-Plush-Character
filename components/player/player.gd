@@ -40,7 +40,8 @@ enum ANIMATION_STATE {
 	WALK,
 	RUN,
 	FALL,
-	JUMP
+	JUMP,
+	FISH
 }
 
 var current_state: ANIMATION_STATE = ANIMATION_STATE.IDLE
@@ -77,6 +78,11 @@ func _ready():
 		$VisualRoot/Dude/AutoAttack.enabled = false
 		$VisualRoot/Dude/AutoAttack/SpellManager/UI.queue_free()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if (event.is_action_released("fish")):
+		transition_to(ANIMATION_STATE.FISH)
+		state_chart.send_event("to_fishing")
+
 func send_state():
 	if multiplayer:
 		if multiplayer.is_server():
@@ -96,6 +102,7 @@ func teleport_to(destination: Vector3):
 @rpc("any_peer", "reliable", "call_local")
 func send_transition_to(state: ANIMATION_STATE):
 	movement_dust.emitting = false
+	godot_plush_skin.left_hand.visible = false
 	current_state = state
 	match(current_state):
 		ANIMATION_STATE.IDLE:
@@ -110,6 +117,9 @@ func send_transition_to(state: ANIMATION_STATE):
 			godot_plush_skin.set_state("fall")
 		ANIMATION_STATE.JUMP:
 			godot_plush_skin.set_state("jump")
+		ANIMATION_STATE.FISH:
+			godot_plush_skin.left_hand.visible = true
+			godot_plush_skin.fish()
 		_:
 			godot_plush_skin.set_state("idle")
 

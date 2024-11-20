@@ -32,6 +32,8 @@ func _ready() -> void:
 		$AggroArea/CollisionShape3D.disabled = true
 
 func _physics_process(delta: float) -> void:
+	if is_queued_for_deletion():
+		return
 	if (target and not combat.evading):
 		velocity = (target.global_position - self.global_position).limit_length()
 		if (target.global_position.distance_to(global_position) < 2.0):

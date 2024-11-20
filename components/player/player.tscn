@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=31 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_c1ftv"]
 [ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://components/godot_plush/godot_plush_skin.tscn" id="2_mtsks"]
 [ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="2_qqd5t"]
+[ext_resource type="Script" path="res://components/player/fishing.gd" id="2_r84ta"]
 [ext_resource type="PackedScene" uid="uid://c0b71d2b1hdp6" path="res://components/orbit_control/orbit_view.tscn" id="3_hcr6r"]
 [ext_resource type="Script" path="res://components/player/ground.gd" id="3_t572a"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_w7ieo"]
@@ -69,6 +70,10 @@ stream_2/stream = ExtResource("7_4283i")
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ms4x1")
 
+[node name="Fishing" type="Node3D" parent="."]
+script = ExtResource("2_r84ta")
+state_path = NodePath("../StateChart/CompoundState/Fishing")
+
 [node name="CombatComponent" type="Node3D" parent="."]
 script = ExtResource("2_qqd5t")
 
@@ -128,6 +133,12 @@ delay_in_seconds = "0.0"
 script = ExtResource("5_4c8au")
 to = NodePath("../../Knockback")
 event = &"to_knockback"
+delay_in_seconds = "0.0"
+
+[node name="ToFishing" type="Node" parent="StateChart/CompoundState/Ground"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Fishing")
+event = &"to_fishing"
 delay_in_seconds = "0.0"
 
 [node name="Water" type="Node" parent="StateChart/CompoundState"]
@@ -191,6 +202,15 @@ delay_in_seconds = "0.0"
 script = ExtResource("5_4c8au")
 to = NodePath("../../Climbing")
 event = &"to_climbing"
+delay_in_seconds = "0.0"
+
+[node name="Fishing" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_kvrxs")
+
+[node name="ToGround" type="Node" parent="StateChart/CompoundState/Fishing"]
+script = ExtResource("5_4c8au")
+to = NodePath("../../Ground")
+event = &"to_ground"
 delay_in_seconds = "0.0"
 
 [node name="VisualRoot" type="Node3D" parent="."]

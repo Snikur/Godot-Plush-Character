@@ -26,7 +26,6 @@ func send_spell(type: int, projectile_type: int , index: int):
 					pass
 		_:
 			pass
-	print("Casting: ", casted_spell.get_class())
 	if (casted_spell):
 		casted_spell.init(null)
 		casted_spell.cast_spell(self, index)
