@@ -15,6 +15,8 @@ enum PROJECTILE_TYPE {
 @export var cooldown: float = 0.0
 @export var maxCharges: int = 1
 @export var isActivateSpell: bool = false
+@export var name: String
+@export var description: String
 @export var texture: Texture2D = null
 @export var activatedTexture: Texture2D = null
 @export var spell_scene: PackedScene

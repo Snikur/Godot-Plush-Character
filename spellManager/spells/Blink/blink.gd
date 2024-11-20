@@ -4,6 +4,8 @@ class_name BlinkSpell
 func init(button: SpellTextureButton):
 	cooldown = 3.0
 	maxCharges = 2
+	name = "Blink"
+	description = "Instantly teleport 30 chimichangas."
 	texture = preload("res://spellManager/spells/Blink/snaik.png")
 	super.init(button)
 

@@ -6,6 +6,8 @@ var originalPosition: Vector3
 func init(button: SpellTextureButton):
 	cooldown = 60.0
 	isActivateSpell = true
+	name = "Time Travel"
+	description = "You manipulate time by first marking a location and when casta again teleport back to the marked location."
 	texture = preload("res://spellManager/spells/TimeTravel/craftingmarissa.png")
 	activatedTexture = preload("res://spellManager/spells/TimeTravel/craftingmarissa_inverted.png")
 	super.init(button)

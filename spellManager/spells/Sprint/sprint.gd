@@ -3,6 +3,8 @@ class_name SprintSpell
 
 func init(button: SpellTextureButton):
 	cooldown = 0.5
+	name = "Sprint"
+	description = "Double your run speed for 2 seconds."
 	texture = preload("res://spellManager/spells/Sprint/trallgard.png")
 	super.init(button)
 
