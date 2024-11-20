@@ -3,11 +3,12 @@
 [ext_resource type="Script" path="res://spellManager/Spellbook/spell_grid_button.gd" id="1_ul77p"]
 
 [node name="SpellGridButton" type="TextureButton"]
+custom_minimum_size = Vector2(96, 96)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ignore_texture_size = true
+stretch_mode = 5
 script = ExtResource("1_ul77p")
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]
