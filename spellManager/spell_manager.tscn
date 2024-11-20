@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbaabmsqd66rd"]
+[gd_scene load_steps=10 format=3 uid="uid://cbaabmsqd66rd"]
 
 [ext_resource type="Script" path="res://spellManager/spell_manager.gd" id="1_mdmv7"]
+[ext_resource type="Texture2D" uid="uid://dh3key88dgijt" path="res://icon.svg" id="2_s1noq"]
+[ext_resource type="Script" path="res://spellManager/spellbook.gd" id="2_snhcv"]
 [ext_resource type="Script" path="res://spellManager/actionBar/action_bar.gd" id="3_8r1a2"]
+[ext_resource type="Script" path="res://spellManager/spell_grid_container.gd" id="3_lo8px"]
 [ext_resource type="Script" path="res://spellManager/actionBar/spell.gd" id="3_txu1t"]
 [ext_resource type="Resource" uid="uid://om6g0kawh4l0" path="res://spellManager/spells/Projectile/fireball_projectile_resource.tres" id="4_aevgh"]
 [ext_resource type="PackedScene" uid="uid://jgqm1l0hvxut" path="res://spellManager/actionBar/spell_button.tscn" id="4_ny401"]
@@ -11,6 +14,87 @@
 script = ExtResource("1_mdmv7")
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Spellbook" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 225.0
+offset_top = 25.0
+offset_right = -177.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_snhcv")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Spellbook"]
+clip_contents = false
+custom_minimum_size = Vector2(375, 475)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 390.0
+offset_bottom = 485.0
+horizontal_scroll_mode = 3
+
+[node name="SpellGridContainer" type="GridContainer" parent="UI/Spellbook/ScrollContainer"]
+layout_mode = 2
+columns = 3
+script = ExtResource("3_lo8px")
+
+[node name="SpellInformation" type="Panel" parent="UI/Spellbook"]
+custom_minimum_size = Vector2(350, 475)
+layout_mode = 0
+offset_left = 390.0
+offset_top = 10.0
+offset_right = 740.0
+offset_bottom = 485.0
+
+[node name="SpellIcon" type="TextureRect" parent="UI/Spellbook/SpellInformation"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 115.0
+offset_top = 55.0
+offset_right = 235.0
+offset_bottom = 175.0
+texture = ExtResource("2_s1noq")
+expand_mode = 1
+
+[node name="SpellName" type="Label" parent="UI/Spellbook/SpellInformation"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.0
+offset_top = 10.0
+offset_right = 54.0
+offset_bottom = 33.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Example Spell"
+
+[node name="SpellCooldown" type="Label" parent="UI/Spellbook/SpellInformation"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -57.5
+offset_right = 343.0
+offset_bottom = -15.5
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Cooldown: 20s
+"
+
+[node name="SpellDescription" type="RichTextLabel" parent="UI/Spellbook/SpellInformation"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 216.0
+offset_right = 350.0
+offset_bottom = 464.0
+text = "example description of very dangerous spell you can write many texts wow. Do 1337 damages in your face yo."
 
 [node name="ActionBar" type="HBoxContainer" parent="UI"]
 anchors_preset = 7
