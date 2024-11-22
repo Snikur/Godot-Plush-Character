@@ -14,8 +14,11 @@ func _ready() -> void:
 				toggle_door()
 		)
 	$SecretEntered.body_entered.connect(func(body: Node3D):
-		if (body is Player and body.id == multiplayer.get_unique_id()):
-			$SecretAudio.play()
+		if (body is Player):
+			if (body.id == multiplayer.get_unique_id()):
+				$SecretAudio.play()
+			if (multiplayer.is_server()):
+				body.teleport_to.rpc_id(body.id, body.global_position + Vector3.UP * 42.0)
 	)
 
 func toggle_door():

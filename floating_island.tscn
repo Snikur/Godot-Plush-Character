@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddnfcwas38yb4"]
+
+[ext_resource type="Texture2D" uid="uid://dmc7y5uantv50" path="res://assets/textures/grass_packed.png" id="1_nm8o4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvaia"]
+albedo_texture = ExtResource("1_nm8o4")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fxssg"]
+material = SubResource("StandardMaterial3D_vvaia")
+top_radius = 10.0
+bottom_radius = 0.0
+height = 4.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jlf86"]
+height = 1.0
+radius = 10.0
+
+[node name="Island" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+mesh = SubResource("CylinderMesh_fxssg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("CylinderShape3D_jlf86")
