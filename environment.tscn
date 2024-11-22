@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=54 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="Script" path="res://ladder.gd" id="3_kdg1s"]
@@ -19,10 +19,19 @@
 [ext_resource type="Script" path="res://collect_coin_achievement.gd" id="16_c87p0"]
 [ext_resource type="Script" path="res://questManager/target_dummy_quest.gd" id="17_apl3q"]
 [ext_resource type="Resource" uid="uid://j22w3y71oya0" path="res://questManager/PirateCoinQuest.tres" id="18_pmxdd"]
-[ext_resource type="PackedScene" uid="uid://bfrux4dt65r13" path="res://assets/models/rock2.fbx" id="21_7ic2p"]
-[ext_resource type="PackedScene" uid="uid://da7sfaw8wlv0e" path="res://assets/models/Well.fbx" id="21_enjj1"]
+[ext_resource type="PackedScene" path="res://assets/models/rock2.fbx" id="21_7ic2p"]
+[ext_resource type="PackedScene" uid="uid://5mio7j2k5bci" path="res://assets/models/stone bricks/stone_brick.fbx" id="21_bjn37"]
+[ext_resource type="PackedScene" path="res://assets/models/Well.fbx" id="21_enjj1"]
 [ext_resource type="PackedScene" uid="uid://c7v0482cqqwj2" path="res://NPCS/QuestGiver/help_threepwood_quest_chain.tscn" id="21_hg3nl"]
-[ext_resource type="PackedScene" uid="uid://8lgbyrm1ew05" path="res://assets/models/rock1.fbx" id="22_v75mx"]
+[ext_resource type="PackedScene" uid="uid://bhla6p5ksim1b" path="res://assets/models/stone bricks/stone_brick_2.fbx" id="22_mra1j"]
+[ext_resource type="PackedScene" path="res://assets/models/rock1.fbx" id="22_v75mx"]
+[ext_resource type="PackedScene" uid="uid://byw56cxh01o3w" path="res://assets/models/stone bricks/stone_brick_3.fbx" id="23_nmwji"]
+[ext_resource type="PackedScene" uid="uid://da7sfaw8wlv0e" path="res://assets/models/well/Well.fbx" id="24_6i7n3"]
+[ext_resource type="PackedScene" uid="uid://dpk4tv1skm6kn" path="res://assets/models/wood/wooden_frame.fbx" id="28_2sm0v"]
+[ext_resource type="PackedScene" uid="uid://dtjtgl0n8o0vr" path="res://assets/models/wood/wooden_handle.fbx" id="29_p1nvo"]
+[ext_resource type="PackedScene" uid="uid://dw21kvioyg70v" path="res://assets/models/wood/wooden_plank.fbx" id="30_y8xy0"]
+[ext_resource type="PackedScene" uid="uid://bpt4nynf57ye3" path="res://assets/models/wood/wooden_plank_2.fbx" id="31_nsg06"]
+[ext_resource type="PackedScene" uid="uid://cap7ti4b8sxh7" path="res://assets/models/wood/wooden_stick.fbx" id="32_gteod"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g1m0j"]
 
@@ -372,6 +381,36 @@ script = ExtResource("16_c87p0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 8, 24)
 kill_target = NodePath("../TargetDummy")
 pickup_coin = NodePath("../GoldCoin")
+
+[node name="test_stuff" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10.2302, 0.950022, 48.9665)
+
+[node name="stone_brick" parent="test_stuff" instance=ExtResource("21_bjn37")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.6086, 0.0241303, -18.122)
+
+[node name="stone_brick_2" parent="test_stuff" instance=ExtResource("22_mra1j")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.9339, 0.0245433, -18.3074)
+
+[node name="stone_brick_3" parent="test_stuff" instance=ExtResource("23_nmwji")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.9727, 0.0274935, -18.1252)
+
+[node name="Well" parent="test_stuff" instance=ExtResource("24_6i7n3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.4751, 0.0270852, -18.8449)
+
+[node name="wooden_frame" parent="test_stuff" instance=ExtResource("28_2sm0v")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 20.3916, 0.024989, -18.8978)
+
+[node name="wooden_handle" parent="test_stuff" instance=ExtResource("29_p1nvo")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.8791, 0.024989, -17.854)
+
+[node name="wooden_plank" parent="test_stuff" instance=ExtResource("30_y8xy0")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.8309, 0.024989, -17.3804)
+
+[node name="wooden_plank_2" parent="test_stuff" instance=ExtResource("31_nsg06")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.3777, 0.024989, -17.5498)
+
+[node name="wooden_stick" parent="test_stuff" instance=ExtResource("32_gteod")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 22.0182, 0.024989, -17.7688)
 
 [node name="Well_area" type="Node3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10.2302, 0.950022, 48.9665)

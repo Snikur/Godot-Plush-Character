@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://da7sfaw8wlv0e"
-path="res://.godot/imported/Well.fbx-988e9ae2222d61e0c135c7939bbf7884.scn"
+uid="uid://dtjtgl0n8o0vr"
+path="res://.godot/imported/wooden_handle.fbx-237abcb1d5b41a05173301c4ad9a7f32.scn"
 
 [deps]
 
-source_file="res://assets/models/Well.fbx"
-dest_files=["res://.godot/imported/Well.fbx-988e9ae2222d61e0c135c7939bbf7884.scn"]
+source_file="res://assets/models/wood/wooden_handle.fbx"
+dest_files=["res://.godot/imported/wooden_handle.fbx-237abcb1d5b41a05173301c4ad9a7f32.scn"]
 
 [params]
 
