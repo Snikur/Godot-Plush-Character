@@ -7,6 +7,6 @@ func _ready() -> void:
 		if (body is Player and body.id == multiplayer.get_unique_id()):
 			if (anim.is_playing()):
 				return
-			is_open != is_open
+			is_open = not is_open
 			anim.play("open" if is_open else "close")
 	)
