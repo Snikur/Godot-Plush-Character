@@ -23,9 +23,9 @@ albedo_color = Color(1, 0.713726, 0.168627, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ubum7"]
 material = SubResource("StandardMaterial3D_3kewr")
-top_radius = 0.25
-bottom_radius = 0.25
-height = 0.1
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.01
 radial_segments = 8
 rings = 1
 
@@ -39,7 +39,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_767fq")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-emitting = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, 0)
 process_material = SubResource("ParticleProcessMaterial_kravk")
 draw_pass_1 = SubResource("CylinderMesh_ubum7")
