@@ -1,9 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=30 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_c1ftv"]
-[ext_resource type="PackedScene" uid="uid://dmyrflud401tg" path="res://components/godot_plush/godot_plush_skin.tscn" id="2_mtsks"]
 [ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="2_qqd5t"]
 [ext_resource type="Script" path="res://components/player/fishing.gd" id="2_r84ta"]
 [ext_resource type="PackedScene" uid="uid://c0b71d2b1hdp6" path="res://components/orbit_control/orbit_view.tscn" id="3_hcr6r"]
@@ -233,9 +232,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="SwingTimer" type="Timer" parent="VisualRoot/Dude/AutoAttack"]
 one_shot = true
-
-[node name="GodotPlushSkin" parent="VisualRoot" instance=ExtResource("2_mtsks")]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

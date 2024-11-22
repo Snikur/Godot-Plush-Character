@@ -50,7 +50,7 @@ var current_state: ANIMATION_STATE = ANIMATION_STATE.IDLE
 
 func _ready():
 	move_and_slide()
-
+	
 	if data.has("position"):
 		global_position = data["position"]
 	if (multiplayer.is_server()):

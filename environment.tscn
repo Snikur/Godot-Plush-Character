@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=72 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="Texture2D" uid="uid://dmc7y5uantv50" path="res://assets/textures/grass_packed.png" id="1_yqylo"]
@@ -41,6 +41,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="39_3j0xg"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="40_xcbpm"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="41_nkvsb"]
+[ext_resource type="PackedScene" uid="uid://dh8yyt6ppkk6n" path="res://puzzle_cave.tscn" id="42_4t0sm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g1m0j"]
 
@@ -146,16 +147,16 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="Resource" id="Resource_k7ynw"]
+[sub_resource type="Resource" id="Resource_7l24s"]
 script = ExtResource("35_7ms7s")
-amount = 150
+amount = 50
 enabled = true
 override_global_seed = true
 custom_seed = 1
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_uwceu"]
+[sub_resource type="Resource" id="Resource_3l3xy"]
 script = ExtResource("36_tvw27")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 360, 0)
@@ -166,7 +167,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_65pig"]
+[sub_resource type="Resource" id="Resource_6wd2n"]
 script = ExtResource("37_kj128")
 iterations = 3
 offset_step = 0.2
@@ -178,7 +179,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_840gu"]
+[sub_resource type="Resource" id="Resource_wxss2"]
 script = ExtResource("38_p57g3")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 40.0
@@ -194,13 +195,17 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_uunjp"]
+[sub_resource type="Resource" id="Resource_qy7xd"]
 script = ExtResource("33_ub0t1")
-stack = Array[ExtResource("34_veukp")]([SubResource("Resource_k7ynw"), SubResource("Resource_uwceu"), SubResource("Resource_65pig"), SubResource("Resource_840gu")])
+stack = Array[ExtResource("34_veukp")]([SubResource("Resource_7l24s"), SubResource("Resource_3l3xy"), SubResource("Resource_6wd2n"), SubResource("Resource_wxss2")])
 
 [sub_resource type="Resource" id="Resource_45i8o"]
 script = ExtResource("41_nkvsb")
 radius = 40.0
+
+[sub_resource type="Resource" id="Resource_3yafv"]
+script = ExtResource("41_nkvsb")
+radius = 25.0
 
 [node name="Environment" type="Node3D"]
 
@@ -488,7 +493,7 @@ transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
 script = ExtResource("32_8dgxn")
 keep_static_colliders = true
-modifier_stack = SubResource("Resource_uunjp")
+modifier_stack = SubResource("Resource_qy7xd")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -503,8 +508,19 @@ path = "res://addons/proton_scatter/demos/assets/large_rock.tscn"
 
 [node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+visible = false
 script = ExtResource("40_xcbpm")
 shape = SubResource("Resource_45i8o")
+
+[node name="ScatterShape2" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+visible = false
+script = ExtResource("40_xcbpm")
+negative = true
+shape = SubResource("Resource_3yafv")
+
+[node name="PuzzleCave" parent="." instance=ExtResource("42_4t0sm")]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 74.9345, 1.08229, 51.4466)
 
 [connection signal="picked_up" from="GoldCoin" to="Manbroom Fourpwood" method="_on_gold_coin_picked_up"]
 [connection signal="picked_up" from="GoldCoin" to="CollectCoinAchievement" method="_on_gold_coin_picked_up"]
