@@ -146,7 +146,7 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="Resource" id="Resource_r610q"]
+[sub_resource type="Resource" id="Resource_2s1py"]
 script = ExtResource("35_7ms7s")
 amount = 150
 enabled = true
@@ -155,18 +155,18 @@ custom_seed = 1
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_7r6yx"]
+[sub_resource type="Resource" id="Resource_rm0pq"]
 script = ExtResource("36_tvw27")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 360, 0)
-scale = Vector3(2, 2, 2)
+scale = Vector3(4, 4, 4)
 enabled = true
 override_global_seed = false
 custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_lbd02"]
+[sub_resource type="Resource" id="Resource_wt4cw"]
 script = ExtResource("37_kj128")
 iterations = 3
 offset_step = 0.2
@@ -178,7 +178,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_7nj8s"]
+[sub_resource type="Resource" id="Resource_lcw4c"]
 script = ExtResource("38_p57g3")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 40.0
@@ -194,9 +194,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_d4t5p"]
+[sub_resource type="Resource" id="Resource_ihfok"]
 script = ExtResource("33_ub0t1")
-stack = Array[ExtResource("34_veukp")]([SubResource("Resource_r610q"), SubResource("Resource_7r6yx"), SubResource("Resource_lbd02"), SubResource("Resource_7nj8s")])
+stack = Array[ExtResource("34_veukp")]([SubResource("Resource_2s1py"), SubResource("Resource_rm0pq"), SubResource("Resource_wt4cw"), SubResource("Resource_lcw4c")])
 
 [sub_resource type="Resource" id="Resource_45i8o"]
 script = ExtResource("41_nkvsb")
@@ -487,7 +487,8 @@ transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 
 [node name="ProtonScatter" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
 script = ExtResource("32_8dgxn")
-modifier_stack = SubResource("Resource_d4t5p")
+keep_static_colliders = true
+modifier_stack = SubResource("Resource_ihfok")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -497,7 +498,7 @@ path = "res://addons/proton_scatter/demos/assets/pine_tree.tscn"
 
 [node name="ScatterItem2" type="Node3D" parent="ProtonScatter"]
 script = ExtResource("39_3j0xg")
-proportion = 10
+proportion = 2
 path = "res://addons/proton_scatter/demos/assets/large_rock.tscn"
 
 [node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
