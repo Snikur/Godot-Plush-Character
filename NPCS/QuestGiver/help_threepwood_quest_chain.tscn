@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7v0482cqqwj2"]
+[gd_scene load_steps=16 format=3 uid="uid://c7v0482cqqwj2"]
 
 [ext_resource type="Script" path="res://help_threepwood_quest_chain.gd" id="1_srf8x"]
 [ext_resource type="Script" path="res://name.gd" id="2_0ysib"]
@@ -9,13 +9,23 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_ea4ka"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="6_ca3rw"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="7_dyn4e"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/guard.gd" id="9_thgcu"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="11_smeak"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_12mev"]
 radius = 2.0
 
-[sub_resource type="Resource" id="Resource_lcu3u"]
+[sub_resource type="Resource" id="Resource_si50i"]
 script = ExtResource("7_dyn4e")
-expression = "target_killed and item_picked_up"
+expression = "target_killed == true"
+
+[sub_resource type="Resource" id="Resource_a8iwd"]
+script = ExtResource("7_dyn4e")
+expression = "item_picked_up == true"
+
+[sub_resource type="Resource" id="Resource_nv0le"]
+script = ExtResource("11_smeak")
+guards = Array[ExtResource("9_thgcu")]([SubResource("Resource_si50i"), SubResource("Resource_a8iwd")])
 
 [node name="Threepy Woody the Second" type="Node3D"]
 script = ExtResource("1_srf8x")
@@ -74,7 +84,7 @@ script = ExtResource("4_3fn5r")
 script = ExtResource("5_ea4ka")
 to = NodePath("../../../CollectReward")
 event = &"to_reward"
-guard = SubResource("Resource_lcu3u")
+guard = SubResource("Resource_nv0le")
 delay_in_seconds = "0.0"
 
 [node name="PickUpPirateCoin" type="Node" parent="SC/CS/P"]
@@ -84,7 +94,7 @@ script = ExtResource("4_3fn5r")
 script = ExtResource("5_ea4ka")
 to = NodePath("../../../CollectReward")
 event = &"to_reward"
-guard = SubResource("Resource_lcu3u")
+guard = SubResource("Resource_nv0le")
 delay_in_seconds = "0.0"
 
 [node name="CollectReward" type="Node" parent="SC/CS"]

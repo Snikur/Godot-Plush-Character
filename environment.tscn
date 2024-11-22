@@ -146,7 +146,7 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="Resource" id="Resource_2s1py"]
+[sub_resource type="Resource" id="Resource_k7ynw"]
 script = ExtResource("35_7ms7s")
 amount = 150
 enabled = true
@@ -155,7 +155,7 @@ custom_seed = 1
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_rm0pq"]
+[sub_resource type="Resource" id="Resource_uwceu"]
 script = ExtResource("36_tvw27")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 360, 0)
@@ -166,7 +166,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_wt4cw"]
+[sub_resource type="Resource" id="Resource_65pig"]
 script = ExtResource("37_kj128")
 iterations = 3
 offset_step = 0.2
@@ -178,7 +178,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_lcw4c"]
+[sub_resource type="Resource" id="Resource_840gu"]
 script = ExtResource("38_p57g3")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 40.0
@@ -194,9 +194,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ihfok"]
+[sub_resource type="Resource" id="Resource_uunjp"]
 script = ExtResource("33_ub0t1")
-stack = Array[ExtResource("34_veukp")]([SubResource("Resource_2s1py"), SubResource("Resource_rm0pq"), SubResource("Resource_wt4cw"), SubResource("Resource_lcw4c")])
+stack = Array[ExtResource("34_veukp")]([SubResource("Resource_k7ynw"), SubResource("Resource_uwceu"), SubResource("Resource_65pig"), SubResource("Resource_840gu")])
 
 [sub_resource type="Resource" id="Resource_45i8o"]
 script = ExtResource("41_nkvsb")
@@ -488,7 +488,7 @@ transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
 script = ExtResource("32_8dgxn")
 keep_static_colliders = true
-modifier_stack = SubResource("Resource_ihfok")
+modifier_stack = SubResource("Resource_uunjp")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

@@ -17,5 +17,5 @@ func start_quest():
 		quest_status = QuestStatus.started
 		QuestManager.show_quest(quest_name, quest_description)
 
-func on_quest_item_pickup() -> void:
+func on_quest_item_pickup(_body: Node3D) -> void:
 	update_quest()

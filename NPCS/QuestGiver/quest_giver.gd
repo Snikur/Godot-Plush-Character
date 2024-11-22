@@ -7,7 +7,7 @@ class_name QuestGiver
 func _ready():
 	trigger_area.body_entered.connect(_on_body_entered)
 
-func _on_body_entered(body):
+func _on_body_entered(body: Node3D):
 	if (body is Player and body.id == multiplayer.get_unique_id()):
 		if quest.quest_status == quest.QuestStatus.available:
 			quest.start_quest()
