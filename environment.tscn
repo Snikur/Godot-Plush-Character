@@ -148,7 +148,7 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="Resource" id="Resource_j5sck"]
+[sub_resource type="Resource" id="Resource_dyabb"]
 script = ExtResource("35_7ms7s")
 amount = 50
 enabled = true
@@ -157,7 +157,7 @@ custom_seed = 1
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_j0y1h"]
+[sub_resource type="Resource" id="Resource_qqurt"]
 script = ExtResource("36_tvw27")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 360, 0)
@@ -168,7 +168,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_fmoki"]
+[sub_resource type="Resource" id="Resource_nmpvl"]
 script = ExtResource("37_kj128")
 iterations = 3
 offset_step = 0.2
@@ -180,7 +180,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_xr7h5"]
+[sub_resource type="Resource" id="Resource_v684v"]
 script = ExtResource("38_p57g3")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 40.0
@@ -196,9 +196,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_yjng6"]
+[sub_resource type="Resource" id="Resource_tnjpt"]
 script = ExtResource("33_ub0t1")
-stack = Array[ExtResource("34_veukp")]([SubResource("Resource_j5sck"), SubResource("Resource_j0y1h"), SubResource("Resource_fmoki"), SubResource("Resource_xr7h5")])
+stack = Array[ExtResource("34_veukp")]([SubResource("Resource_dyabb"), SubResource("Resource_qqurt"), SubResource("Resource_nmpvl"), SubResource("Resource_v684v")])
 
 [sub_resource type="Resource" id="Resource_45i8o"]
 script = ExtResource("41_nkvsb")
@@ -495,7 +495,7 @@ transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
 script = ExtResource("32_8dgxn")
 keep_static_colliders = true
-modifier_stack = SubResource("Resource_yjng6")
+modifier_stack = SubResource("Resource_tnjpt")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -525,7 +525,7 @@ shape = SubResource("Resource_3yafv")
 transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 75, 1, 52)
 
 [node name="Island" parent="." instance=ExtResource("43_insow")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, 40, 53)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, 40, 53)
 
 [connection signal="picked_up" from="GoldCoin" to="Manbroom Fourpwood" method="_on_gold_coin_picked_up"]
 [connection signal="picked_up" from="GoldCoin" to="CollectCoinAchievement" method="_on_gold_coin_picked_up"]
