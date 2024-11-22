@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://8lgbyrm1ew05"
-path="res://.godot/imported/rock1.fbx-cc28bdfaa675c53325bdfbe1b6afe336.scn"
+uid="uid://5mio7j2k5bci"
+path="res://.godot/imported/stone_brick.fbx-8a01fdf3d6485854af095edfe21588c1.scn"
 
 [deps]
 
-source_file="res://assets/models/rock1.fbx"
-dest_files=["res://.godot/imported/rock1.fbx-cc28bdfaa675c53325bdfbe1b6afe336.scn"]
+source_file="res://assets/models/stone bricks/stone_brick.fbx"
+dest_files=["res://.godot/imported/stone_brick.fbx-8a01fdf3d6485854af095edfe21588c1.scn"]
 
 [params]
 

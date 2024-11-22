@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bfrux4dt65r13"
-path="res://.godot/imported/rock2.fbx-a619184a43159fe055466b109d977e8e.scn"
+uid="uid://cap7ti4b8sxh7"
+path="res://.godot/imported/wooden_stick.fbx-884fbf12b6d932003f09d94c7cf461a3.scn"
 
 [deps]
 
-source_file="res://assets/models/rock2.fbx"
-dest_files=["res://.godot/imported/rock2.fbx-a619184a43159fe055466b109d977e8e.scn"]
+source_file="res://assets/models/wood/wooden_stick.fbx"
+dest_files=["res://.godot/imported/wooden_stick.fbx-884fbf12b6d932003f09d94c7cf461a3.scn"]
 
 [params]
 
