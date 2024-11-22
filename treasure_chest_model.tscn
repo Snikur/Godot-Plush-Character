@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://1jyp011gow8y"]
+
+[ext_resource type="PackedScene" uid="uid://cd8uagu8j7yck" path="res://assets/kenney/GLB format/chest.glb" id="1_0oy00"]
+
+[node name="treasure_chest" instance=ExtResource("1_0oy00")]
+
+[node name="chest" parent="." index="0"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="lid" parent="chest" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 2.88765e-15, 0.132804, -0.124388)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "close"

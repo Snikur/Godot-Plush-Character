@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddnfcwas38yb4"]
+[gd_scene load_steps=6 format=3 uid="uid://ddnfcwas38yb4"]
 
 [ext_resource type="Texture2D" uid="uid://dmc7y5uantv50" path="res://assets/textures/grass_packed.png" id="1_nm8o4"]
+[ext_resource type="PackedScene" uid="uid://bd5ou12phj0df" path="res://treasure_chest.tscn" id="2_pyie7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvaia"]
 albedo_texture = ExtResource("1_nm8o4")
@@ -25,3 +26,5 @@ mesh = SubResource("CylinderMesh_fxssg")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("CylinderShape3D_jlf86")
+
+[node name="TreasureChest" parent="." instance=ExtResource("2_pyie7")]
