@@ -7,10 +7,12 @@ var tween: Tween
 @onready var secret = $SecretEntered
 
 func _ready() -> void:
-	$Area3D.area_entered.connect(func(body: Node3D):
-		if (body is Projectile):
-			toggle_door()
-	)
+	await MM.connected
+	if (multiplayer.is_server()):
+		$Area3D.area_entered.connect(func(body: Node3D):
+			if (body is Projectile):
+				toggle_door()
+		)
 	$SecretEntered.body_entered.connect(func(body: Node3D):
 		if (body is Player and body.id == multiplayer.get_unique_id()):
 			$SecretAudio.play()
