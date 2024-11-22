@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=45 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="Script" path="res://ladder.gd" id="3_kdg1s"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://spellManager/spells/Blink/blink.gd" id="10_vn22s"]
 [ext_resource type="Script" path="res://spellManager/spells/Sprint/sprint.gd" id="11_w0gtx"]
 [ext_resource type="Script" path="res://spellManager/spells/TimeTravel/time_travel.gd" id="12_kkanx"]
-[ext_resource type="PackedScene" uid="uid://deukppkq0x40j" path="res://assets/scenes/ship_large_2.tscn" id="13_prpo3"]
+[ext_resource type="PackedScene" path="res://assets/scenes/ship_large_2.tscn" id="13_prpo3"]
 [ext_resource type="Script" path="res://ship_follow.gd" id="13_s4wdj"]
 [ext_resource type="PackedScene" uid="uid://ck4vyygcpqi3b" path="res://NPCS/QuestGiver/quest_giver.tscn" id="15_0n2kh"]
 [ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="15_xgh2i"]
@@ -19,7 +19,10 @@
 [ext_resource type="Script" path="res://collect_coin_achievement.gd" id="16_c87p0"]
 [ext_resource type="Script" path="res://questManager/target_dummy_quest.gd" id="17_apl3q"]
 [ext_resource type="Resource" uid="uid://j22w3y71oya0" path="res://questManager/PirateCoinQuest.tres" id="18_pmxdd"]
+[ext_resource type="PackedScene" uid="uid://bfrux4dt65r13" path="res://assets/models/rock2.fbx" id="21_7ic2p"]
+[ext_resource type="PackedScene" uid="uid://da7sfaw8wlv0e" path="res://assets/models/Well.fbx" id="21_enjj1"]
 [ext_resource type="PackedScene" uid="uid://c7v0482cqqwj2" path="res://NPCS/QuestGiver/help_threepwood_quest_chain.tscn" id="21_hg3nl"]
+[ext_resource type="PackedScene" uid="uid://8lgbyrm1ew05" path="res://assets/models/rock1.fbx" id="22_v75mx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g1m0j"]
 
@@ -369,6 +372,38 @@ script = ExtResource("16_c87p0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 8, 24)
 kill_target = NodePath("../TargetDummy")
 pickup_coin = NodePath("../GoldCoin")
+
+[node name="Well_area" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10.2302, 0.950022, 48.9665)
+
+[node name="rock2" parent="Well_area" instance=ExtResource("21_7ic2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39552, 0.024989, 0.407124)
+
+[node name="rock4" parent="Well_area" instance=ExtResource("21_7ic2p")]
+transform = Transform3D(0.818651, 0, 0.574291, 0, 1, 0, -0.574291, 0, 0.818651, 0.980134, 0.024989, -0.887762)
+
+[node name="rock5" parent="Well_area" instance=ExtResource("21_7ic2p")]
+transform = Transform3D(0.373781, -0.00281819, 0.927513, 0.000806702, 0.999996, 0.00271334, -0.927517, -0.000265977, 0.373782, 0.395383, 0.024989, -1.10737)
+
+[node name="rock7" parent="Well_area" instance=ExtResource("21_7ic2p")]
+transform = Transform3D(0.968648, -0.000107306, -0.248438, 0.000806702, 0.999996, 0.00271334, 0.248436, -0.00282868, 0.968644, -0.762352, 0.0249892, -0.741854)
+
+[node name="rock9" parent="Well_area" instance=ExtResource("21_7ic2p")]
+transform = Transform3D(0.968648, -0.000107306, -0.248438, 0.000806702, 0.999996, 0.00271334, 0.248436, -0.00282868, 0.968644, -0.926531, 0.035719, 0.726437)
+
+[node name="rock1" parent="Well_area" instance=ExtResource("22_v75mx")]
+transform = Transform3D(0.644938, 0, -0.764235, 0, 1, 0, 0.764235, 0, 0.644938, 1.87588, 0.024989, 0.584951)
+
+[node name="rock6" parent="Well_area" instance=ExtResource("22_v75mx")]
+transform = Transform3D(-0.591943, 0, -0.80598, 0, 1, 0, 0.80598, 0, -0.591943, -0.318722, 0.024989, -1.15008)
+
+[node name="rock8" parent="Well_area" instance=ExtResource("22_v75mx")]
+transform = Transform3D(-0.999985, 0.00243135, -0.00488469, 0.00242589, 0.999997, 0.00112205, 0.00488737, 0.00111017, -0.999988, -1.24664, 0.0451208, -0.495068)
+
+[node name="rock3" parent="Well_area" instance=ExtResource("22_v75mx")]
+transform = Transform3D(-0.910467, 0, -0.413581, 0, 1, 0, 0.413581, 0, -0.910467, 1.64357, 0.024989, -0.148516)
+
+[node name="Well" parent="Well_area" instance=ExtResource("21_enjj1")]
 
 [connection signal="picked_up" from="GoldCoin" to="Manbroom Fourpwood" method="_on_gold_coin_picked_up"]
 [connection signal="picked_up" from="GoldCoin" to="CollectCoinAchievement" method="_on_gold_coin_picked_up"]
