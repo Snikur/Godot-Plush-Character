@@ -16,8 +16,8 @@ func add_spell(newSpell: SpellResource):
 	
 	var TB = GridButton.instantiate()
 	TB.texture_normal = newSpell.texture
-	TB.setPositionInGrid(newPosition)
-	TB.setGridContainer(self)
+	TB.set_position_in_grid(newPosition)
+	TB.set_grid_container(self)
 	self.add_child(TB)
 
 func set_active_spell(spellLocationInArray: int):

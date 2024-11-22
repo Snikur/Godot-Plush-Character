@@ -45,9 +45,6 @@ func _process(delta):
 	var zoom_input = int(Input.is_action_just_released("zoom_camera_out")) - int(Input.is_action_just_released("zoom_camera_in"))
 	spring_length += zoom_input * delta * zoom_sensitivity
 	spring_length = clamp(spring_length, zoom_minimum, zoom_maximum)
-	set_late_position.call_deferred()
-
-func set_late_position():
 	global_position = parent.global_position + Vector3.UP
 
 func rotate_from_vector(v : Vector2):

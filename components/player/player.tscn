@@ -243,6 +243,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_xhngq")
 
 [node name="OrbitView" parent="." instance=ExtResource("3_hcr6r")]
+process_priority = 1
+process_physics_priority = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="MovementDust" type="GPUParticles3D" parent="."]
