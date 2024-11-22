@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://spellManager/spells/Blink/blink.gd" id="10_vn22s"]
 [ext_resource type="Script" path="res://spellManager/spells/Sprint/sprint.gd" id="11_w0gtx"]
 [ext_resource type="Script" path="res://spellManager/spells/TimeTravel/time_travel.gd" id="12_kkanx"]
-[ext_resource type="PackedScene" path="res://assets/scenes/ship_large_2.tscn" id="13_prpo3"]
+[ext_resource type="PackedScene" uid="uid://deukppkq0x40j" path="res://assets/scenes/ship_large_2.tscn" id="13_prpo3"]
 [ext_resource type="Script" path="res://ship_follow.gd" id="13_s4wdj"]
 [ext_resource type="PackedScene" uid="uid://ck4vyygcpqi3b" path="res://NPCS/QuestGiver/quest_giver.tscn" id="15_0n2kh"]
 [ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="15_xgh2i"]
@@ -378,7 +378,7 @@ wanted_target = NodePath("../../TargetDummy")
 script = ExtResource("16_c87p0")
 
 [node name="Threepy Woody the Second" parent="." node_paths=PackedStringArray("kill_target", "pickup_coin") instance=ExtResource("21_hg3nl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 8, 24)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 8.76237, 1, 51.4617)
 kill_target = NodePath("../TargetDummy")
 pickup_coin = NodePath("../GoldCoin")
 

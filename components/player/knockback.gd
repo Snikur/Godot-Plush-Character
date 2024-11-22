@@ -19,7 +19,7 @@ func state_physics_process(delta: float) -> void:
 	target_angle = parent.camera.global_rotation.y + PI
 	parent.visual_root.rotation.y = rotate_toward(parent.visual_root.rotation.y, target_angle, 6.0 * delta)
 	var angle_diff = angle_difference(parent.visual_root.rotation.y, target_angle)
-	parent.godot_plush_skin.tilt = move_toward(parent.godot_plush_skin.tilt, angle_diff, 2.0 * delta)
+	parent.skin.tilt = move_toward(parent.skin.tilt, angle_diff, 2.0 * delta)
 	var was_in_air: bool = not parent.is_on_floor()
 	parent.velocity.y -= parent.fall_gravity * delta
 	parent.move_and_slide()
