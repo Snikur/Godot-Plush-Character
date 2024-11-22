@@ -4,11 +4,16 @@ var is_open: bool = false
 var tween: Tween
 
 @onready var door = $Door
+@onready var secret = $SecretEntered
 
 func _ready() -> void:
 	$Area3D.area_entered.connect(func(body: Node3D):
 		if (body is Projectile):
 			toggle_door()
+	)
+	$SecretEntered.body_entered.connect(func(body: Node3D):
+		if (body is Player and body.id == multiplayer.get_unique_id()):
+			$SecretAudio.play()
 	)
 
 func toggle_door():
