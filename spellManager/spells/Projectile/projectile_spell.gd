@@ -11,7 +11,7 @@ func cast_spell(owner: SpellManager, index: int):
 	if (vfx_scene):
 		var vfx = vfx_scene.instantiate()
 		projectile.vfx.add_child.call_deferred(vfx)
-	projectile.global_rotation.y = owner.source.godot_plush_skin.global_rotation.y
+	projectile.global_rotation.y = owner.source.skin.global_rotation.y
 	projectile.global_position = owner.global_position + Vector3(0.0, 1.0, 0.0)
 	projectile.name = str(index)
 	if (owner.source.id == owner.multiplayer.get_unique_id()):

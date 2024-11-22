@@ -71,7 +71,7 @@ func state_physics_process(delta: float) -> void:
 	
 	parent.visual_root.rotation.y = rotate_toward(parent.visual_root.rotation.y, target_angle, 6.0 * delta)
 	#var angle_diff = angle_difference(parent.visual_root.rotation.y, target_angle)
-	#parent.godot_plush_skin.tilt = move_toward(parent.godot_plush_skin.tilt, angle_diff, 2.0 * delta)
+	#parent.skin.tilt = move_toward(parent.skin.tilt, angle_diff, 2.0 * delta)
 
 func _on_hit_floor(y_vel : float):
 	y_vel = clamp(abs(y_vel), 0.0, parent.fall_gravity)
@@ -86,5 +86,5 @@ func _on_hit_floor(y_vel : float):
 func do_squash_and_stretch(value : float, timing : float = 0.1):
 	var t = create_tween()
 	t.set_ease(Tween.EASE_OUT)
-	t.tween_property(parent.godot_plush_skin, "squash_and_stretch", value, timing)
-	t.tween_property(parent.godot_plush_skin, "squash_and_stretch", 1.0, timing * 1.8)
+	t.tween_property(parent.skin, "squash_and_stretch", value, timing)
+	t.tween_property(parent.skin, "squash_and_stretch", 1.0, timing * 1.8)

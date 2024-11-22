@@ -25,7 +25,7 @@ var run_speed = 8.0
 var speed_modifier: float = 1.0
 
 @onready var visual_root = %VisualRoot
-@onready var godot_plush_skin = $VisualRoot/Dude
+@onready var skin = $VisualRoot/Dude
 @onready var movement_dust = %MovementDust
 @onready var foot_step_audio = %FootStepAudio
 @onready var impact_audio = %ImpactAudio
@@ -102,26 +102,26 @@ func teleport_to(destination: Vector3):
 @rpc("any_peer", "reliable", "call_local")
 func send_transition_to(state: ANIMATION_STATE):
 	movement_dust.emitting = false
-	godot_plush_skin.left_hand.visible = false
+	skin.left_hand.visible = false
 	current_state = state
 	match(current_state):
 		ANIMATION_STATE.IDLE:
-			godot_plush_skin.set_state("idle")
+			skin.set_state("idle")
 		ANIMATION_STATE.WALK:
-			godot_plush_skin.set_state("walk")
+			skin.set_state("walk")
 			movement_dust.emitting = true
 		ANIMATION_STATE.RUN:
-			godot_plush_skin.set_state("run")
+			skin.set_state("run")
 			movement_dust.emitting = true
 		ANIMATION_STATE.FALL:
-			godot_plush_skin.set_state("fall")
+			skin.set_state("fall")
 		ANIMATION_STATE.JUMP:
-			godot_plush_skin.set_state("jump")
+			skin.set_state("jump")
 		ANIMATION_STATE.FISH:
-			godot_plush_skin.left_hand.visible = true
-			godot_plush_skin.fish()
+			skin.left_hand.visible = true
+			skin.fish()
 		_:
-			godot_plush_skin.set_state("idle")
+			skin.set_state("idle")
 
 @rpc("any_peer", "call_remote", "unreliable_ordered")
 func client_state(new_position: Vector3, new_rotation: Vector3):
