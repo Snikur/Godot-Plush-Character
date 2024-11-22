@@ -1,6 +1,7 @@
 extends Area3D
 
 @onready var anim: AnimationPlayer = $treasure_chest/AnimationPlayer
+@onready var particles: GPUParticles3D = $GPUParticles3D
 var is_open: bool = false
 func _ready() -> void:
 	body_entered.connect(func(body: Node3D):
@@ -9,4 +10,5 @@ func _ready() -> void:
 				return
 			is_open = not is_open
 			anim.play("open" if is_open else "close")
+			particles.emitting = is_open
 	)

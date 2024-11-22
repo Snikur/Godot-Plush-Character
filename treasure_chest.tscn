@@ -1,10 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd5ou12phj0df"]
+[gd_scene load_steps=7 format=3 uid="uid://bd5ou12phj0df"]
 
 [ext_resource type="Script" path="res://treasure_chest.gd" id="1_aocqc"]
 [ext_resource type="PackedScene" uid="uid://1jyp011gow8y" path="res://treasure_chest_model.tscn" id="2_l4exx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_767fq"]
 radius = 2.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kravk"]
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(0, 1, 1)
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, -5, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 5.0
+turbulence_noise_strength = 9.49
+turbulence_noise_scale = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kewr"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.713726, 0.168627, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ubum7"]
+material = SubResource("StandardMaterial3D_3kewr")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.1
+radial_segments = 8
+rings = 1
 
 [node name="TreasureChest" type="Area3D"]
 script = ExtResource("1_aocqc")
@@ -14,3 +37,9 @@ script = ExtResource("1_aocqc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_767fq")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_kravk")
+draw_pass_1 = SubResource("CylinderMesh_ubum7")
