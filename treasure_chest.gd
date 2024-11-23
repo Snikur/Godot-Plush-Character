@@ -1,6 +1,6 @@
 extends Area3D
 
-@onready var anim: AnimationPlayer = $chest/AnimationPlayer
+@onready var anim: AnimationPlayer = $chest/AnimationPlayer	
 @onready var particles: GPUParticles3D = $GPUParticles3D
 var is_open: bool = false
 func _ready() -> void:
