@@ -1,22 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://sg3pog51w0uy"]
+[gd_scene load_steps=4 format=3 uid="uid://sg3pog51w0uy"]
 
 [ext_resource type="PackedScene" uid="uid://c25fss6gkmvsy" path="res://assets/models/chest.fbx" id="1_2klyf"]
+[ext_resource type="Material" uid="uid://j1y1ewu7q77q" path="res://assets/materials/pile_of_gold.tres" id="2_3my1f"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_irmpb"]
+material = ExtResource("2_3my1f")
+size = Vector2(1, 1)
 
 [node name="chest" instance=ExtResource("1_2klyf")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0.00159399, -0.00110448, -0.0175854)
 bones/0/rotation = Quaternion(0.999892, 3.63798e-12, -6.56542e-11, -0.0146828)
-bones/1/rotation = Quaternion(-0.0275925, 4.33421e-15, -1.20011e-16, 0.999619)
+bones/1/rotation = Quaternion(-0.882353, 0.0017556, -0.00266806, 0.470577)
 bones/5/rotation = Quaternion(-2.55549e-08, 0.998483, 0.0550572, -4.0149e-07)
 
-[node name="Cube_001" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, -6.64721e-13, -3.34671e-10, 6.64672e-13, 1, -1.02445e-07, 3.34671e-10, 9.12696e-08, 1, -2.97295e-05, -0.00942353, -0.018169)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 8.47557e-08, 7.42158e-08, -8.47559e-08, 1, 4.76837e-07, -7.42162e-08, -3.72529e-07, 0.999994, -2.97306e-05, -0.0106823, -0.0181689)
+bone_name = "Cube"
+bone_idx = 6
+
+[node name="Gold" type="MeshInstance3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(0.0288405, -2.4609e-16, 3.33067e-16, 0, -4.37115e-10, -0.0149388, -7.57926e-16, 0.01, -6.52993e-10, -2.77556e-16, -4.65661e-10, 0.01)
+mesh = SubResource("PlaneMesh_irmpb")
+skeleton = NodePath("../../../..")
+
+[node name="Cube_001" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.999979, 0.000422616, -0.00637367, 0.00569648, -0.510451, 0.859888, -0.00289004, -0.859907, -0.510443, 8.2092e-05, -0.012072, 0.0173777)
 bone_idx = 2
 
-[node name="Cube_002" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, -6.64721e-13, -3.34671e-10, 6.64672e-13, 1, -1.02445e-07, 3.34671e-10, 9.12696e-08, 1, -2.97295e-05, -0.00942353, -0.018169)
+[node name="Cube_002" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.999979, 0.000422616, -0.00637367, 0.00569648, -0.510451, 0.859888, -0.00289004, -0.859907, -0.510443, 8.2092e-05, -0.012072, 0.0173777)
 bone_idx = 3
 
-[node name="Cube" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, 8.47557e-08, 7.42158e-08, -8.47559e-08, 1, 4.76837e-07, -7.42162e-08, -3.72529e-07, 0.999994, -2.97306e-05, -0.00942356, -0.0181689)
+[node name="Cube" parent="Armature/Skeleton3D" index="3"]
+transform = Transform3D(1, 8.47557e-08, 7.42158e-08, -8.47559e-08, 1, 4.76837e-07, -7.42162e-08, -3.72529e-07, 0.999994, -2.97306e-05, -0.0106823, -0.0181689)
 bone_idx = 6

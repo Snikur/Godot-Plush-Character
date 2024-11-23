@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://j1y1ewu7q77q"]
+
+[ext_resource type="Texture2D" uid="uid://c2dxdk5jp2wab" path="res://assets/materials/ai_pile_of_gold.jpg" id="1_6k3ou"]
+
+[resource]
+albedo_texture = ExtResource("1_6k3ou")
+uv1_scale = Vector3(2, 2, 2)
