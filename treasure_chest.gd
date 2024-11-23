@@ -10,6 +10,7 @@ func _ready() -> void:
 			if (anim.is_playing()):
 				return
 			is_open = not is_open
-			anim.play("open" if is_open else "close")
+			#anim.play("open" if is_open else "close")
+			anim.play("Armature|ArmatureAction")
 			particles.emitting = is_open
 	)

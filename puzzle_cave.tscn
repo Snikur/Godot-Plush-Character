@@ -23,7 +23,7 @@ radius = 2.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_x3vny"]
 radius = 2.0
 
-[sub_resource type="Resource" id="Resource_6gtq4"]
+[sub_resource type="Resource" id="Resource_re1dk"]
 script = ExtResource("5_0gnwa")
 amount = 50
 enabled = true
@@ -32,7 +32,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_kt45o"]
+[sub_resource type="Resource" id="Resource_82sjh"]
 script = ExtResource("6_j67v8")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -43,7 +43,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_2b7eq"]
+[sub_resource type="Resource" id="Resource_rimio"]
 script = ExtResource("7_s0opl")
 iterations = 3
 offset_step = 0.2
@@ -55,7 +55,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_67s30"]
+[sub_resource type="Resource" id="Resource_4cp1g"]
 script = ExtResource("8_nwqhh")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -71,9 +71,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_4ttkq"]
+[sub_resource type="Resource" id="Resource_wv2to"]
 script = ExtResource("3_3ettk")
-stack = Array[ExtResource("4_aa851")]([SubResource("Resource_6gtq4"), SubResource("Resource_kt45o"), SubResource("Resource_2b7eq"), SubResource("Resource_67s30")])
+stack = Array[ExtResource("4_aa851")]([SubResource("Resource_re1dk"), SubResource("Resource_82sjh"), SubResource("Resource_rimio"), SubResource("Resource_4cp1g")])
 
 [sub_resource type="Resource" id="Resource_gc8e1"]
 script = ExtResource("11_gfhxx")
@@ -195,7 +195,7 @@ light_color = Color(0.60176, 0, 0.11147, 1)
 [node name="ProtonScatter" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)
 script = ExtResource("2_ofa7j")
-modifier_stack = SubResource("Resource_4ttkq")
+modifier_stack = SubResource("Resource_wv2to")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ddnfcwas38yb4"]
 
 [ext_resource type="Texture2D" uid="uid://dmc7y5uantv50" path="res://assets/textures/grass_packed.png" id="1_nm8o4"]
-[ext_resource type="PackedScene" uid="uid://bd5ou12phj0df" path="res://treasure_chest.tscn" id="2_pyie7"]
+[ext_resource type="PackedScene" uid="uid://drx18je47jke4" path="res://treasure_chest.tscn" id="2_pyie7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvaia"]
 albedo_texture = ExtResource("1_nm8o4")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd5ou12phj0df"]
+[gd_scene load_steps=8 format=3 uid="uid://drx18je47jke4"]
 
 [ext_resource type="Script" path="res://treasure_chest.gd" id="1_aocqc"]
-[ext_resource type="PackedScene" uid="uid://1jyp011gow8y" path="res://treasure_chest_model.tscn" id="2_l4exx"]
+[ext_resource type="PackedScene" uid="uid://sg3pog51w0uy" path="res://treasure_chest_model.tscn" id="2_l4exx"]
+[ext_resource type="PackedScene" uid="uid://c25fss6gkmvsy" path="res://assets/models/chest.fbx" id="3_m8ryl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_767fq"]
 radius = 2.0
@@ -32,7 +33,8 @@ rings = 1
 [node name="TreasureChest" type="Area3D"]
 script = ExtResource("1_aocqc")
 
-[node name="treasure_chest" parent="." instance=ExtResource("2_l4exx")]
+[node name="treasure_chest" parent="." instance=ExtResource("3_m8ryl")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -42,3 +44,6 @@ shape = SubResource("SphereShape3D_767fq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, 0)
 process_material = SubResource("ParticleProcessMaterial_kravk")
 draw_pass_1 = SubResource("CylinderMesh_ubum7")
+
+[node name="treasure_chest2" parent="." instance=ExtResource("2_l4exx")]
+visible = false
