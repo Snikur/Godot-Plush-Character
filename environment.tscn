@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://da7sfaw8wlv0e" path="res://assets/models/well/Well.fbx" id="24_6i7n3"]
 [ext_resource type="PackedScene" uid="uid://dpk4tv1skm6kn" path="res://assets/models/wood/wooden_frame.fbx" id="28_2sm0v"]
 [ext_resource type="PackedScene" uid="uid://dtjtgl0n8o0vr" path="res://assets/models/wood/wooden_handle.fbx" id="29_p1nvo"]
-[ext_resource type="PackedScene" path="res://well_area.tscn" id="30_2krhf"]
+[ext_resource type="PackedScene" uid="uid://cpilug0dp0p8l" path="res://well_area.tscn" id="30_2krhf"]
 [ext_resource type="PackedScene" uid="uid://dw21kvioyg70v" path="res://assets/models/wood/wooden_plank.fbx" id="30_y8xy0"]
 [ext_resource type="PackedScene" uid="uid://bpt4nynf57ye3" path="res://assets/models/wood/wooden_plank_2.fbx" id="31_nsg06"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="32_8dgxn"]
@@ -148,7 +148,7 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="Resource" id="Resource_p2rla"]
+[sub_resource type="Resource" id="Resource_j5epv"]
 script = ExtResource("35_7ms7s")
 amount = 50
 enabled = true
@@ -157,7 +157,7 @@ custom_seed = 1
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_ca7hq"]
+[sub_resource type="Resource" id="Resource_ktfiq"]
 script = ExtResource("36_tvw27")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 360, 0)
@@ -168,7 +168,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_nq6na"]
+[sub_resource type="Resource" id="Resource_ndh7v"]
 script = ExtResource("37_kj128")
 iterations = 3
 offset_step = 0.2
@@ -180,7 +180,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ios1g"]
+[sub_resource type="Resource" id="Resource_lednj"]
 script = ExtResource("38_p57g3")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 40.0
@@ -196,9 +196,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_p45yn"]
+[sub_resource type="Resource" id="Resource_3c561"]
 script = ExtResource("33_ub0t1")
-stack = Array[ExtResource("34_veukp")]([SubResource("Resource_p2rla"), SubResource("Resource_ca7hq"), SubResource("Resource_nq6na"), SubResource("Resource_ios1g")])
+stack = Array[ExtResource("34_veukp")]([SubResource("Resource_j5epv"), SubResource("Resource_ktfiq"), SubResource("Resource_ndh7v"), SubResource("Resource_lednj")])
 
 [sub_resource type="Resource" id="Resource_45i8o"]
 script = ExtResource("41_nkvsb")
@@ -495,7 +495,7 @@ transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
 script = ExtResource("32_8dgxn")
 keep_static_colliders = true
-modifier_stack = SubResource("Resource_p45yn")
+modifier_stack = SubResource("Resource_3c561")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
