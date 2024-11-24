@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://da7sfaw8wlv0e" path="res://assets/models/well/Well.fbx" id="24_6i7n3"]
 [ext_resource type="PackedScene" uid="uid://dpk4tv1skm6kn" path="res://assets/models/wood/wooden_frame.fbx" id="28_2sm0v"]
 [ext_resource type="PackedScene" uid="uid://dtjtgl0n8o0vr" path="res://assets/models/wood/wooden_handle.fbx" id="29_p1nvo"]
-[ext_resource type="PackedScene" uid="uid://cpilug0dp0p8l" path="res://well_area.tscn" id="30_2krhf"]
+[ext_resource type="PackedScene" path="res://well_area.tscn" id="30_2krhf"]
 [ext_resource type="PackedScene" uid="uid://dw21kvioyg70v" path="res://assets/models/wood/wooden_plank.fbx" id="30_y8xy0"]
 [ext_resource type="PackedScene" uid="uid://bpt4nynf57ye3" path="res://assets/models/wood/wooden_plank_2.fbx" id="31_nsg06"]
 [ext_resource type="PackedScene" uid="uid://cap7ti4b8sxh7" path="res://assets/models/wood/wooden_stick.fbx" id="32_gteod"]
