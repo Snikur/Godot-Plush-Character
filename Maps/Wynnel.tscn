@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="1_2jxg7"]
 [ext_resource type="Texture2D" uid="uid://dmc7y5uantv50" path="res://assets/textures/grass_packed.png" id="1_7wp12"]
+[ext_resource type="Texture2D" uid="uid://c08mm3p2ehvr6" path="res://addons/proton_scatter/demos/assets/textures/t_grass.png" id="1_ytmhr"]
 [ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="2_7iby0"]
 [ext_resource type="Texture2D" uid="uid://5n0l31kob34f" path="res://assets/textures/grass_packed_normal_roughness.png" id="2_jr820"]
+[ext_resource type="Texture2D" uid="uid://d23p13yi7asw0" path="res://addons/proton_scatter/demos/assets/textures/t_grass_2.png" id="2_qjsry"]
 [ext_resource type="Texture2D" uid="uid://crxxegs7swke2" path="res://assets/textures/ground_packed.png" id="3_3nnnk"]
 [ext_resource type="PackedScene" uid="uid://c7v0482cqqwj2" path="res://NPCS/QuestGiver/help_threepwood_quest_chain.tscn" id="3_4vpep"]
 [ext_resource type="PackedScene" uid="uid://dh8yyt6ppkk6n" path="res://puzzle_cave.tscn" id="3_pxqyh"]
@@ -196,6 +198,8 @@ auto_shader = true
 transparency = 4
 cull_mode = 2
 vertex_color_use_as_albedo = true
+albedo_color = Color(0.301961, 0.552941, 0.258824, 1)
+albedo_texture = ExtResource("1_ytmhr")
 backlight_enabled = true
 backlight = Color(0.5, 0.5, 0.5, 1)
 distance_fade_mode = 1
@@ -206,6 +210,25 @@ distance_fade_max_distance = 480.0
 height_offset = 0.5
 density = 10.0
 material_override = SubResource("StandardMaterial3D_sssw0")
+generated_type = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3yww"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.301961, 0.552941, 0.258824, 1)
+albedo_texture = ExtResource("2_qjsry")
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 960.0
+distance_fade_max_distance = 480.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_u8knu"]
+id = 1
+height_offset = 0.5
+density = 10.0
+material_override = SubResource("StandardMaterial3D_g3yww")
 generated_type = 1
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_5s7o6"]
@@ -226,23 +249,23 @@ albedo_texture = ExtResource("5_lvt2j")
 normal_texture = ExtResource("6_3ascd")
 
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_osash"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_crisp")])
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_crisp"), SubResource("Terrain3DMeshAsset_u8knu")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_5s7o6"), SubResource("Terrain3DTextureAsset_iwlya"), SubResource("Terrain3DTextureAsset_eevho")])
 
 [sub_resource type="Resource" id="Resource_8q3ui"]
 script = ExtResource("10_mkeed")
-amount = 1024
+amount = 16
 enabled = true
-override_global_seed = true
-custom_seed = 1
+override_global_seed = false
+custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
 [sub_resource type="Resource" id="Resource_kht8b"]
 script = ExtResource("11_bek6v")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 360, 0)
-scale = Vector3(25, 8, 25)
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(0.1, 0.1, 0.1)
 enabled = true
 override_global_seed = false
 custom_seed = 0
@@ -398,6 +421,13 @@ description = ""
 
 [node name="Wynnel" type="Node3D"]
 
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://terrain3d"
+material = SubResource("Terrain3DMaterial_luiw5")
+assets = SubResource("Terrain3DAssets_osash")
+top_level = true
+metadata/_edit_lock_ = true
+
 [node name="PuzzleCave" parent="." instance=ExtResource("3_pxqyh")]
 transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 131.485, 3.5588, 139.175)
 
@@ -411,12 +441,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4, 80)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.7355, 4.37893, 69.1751)
 
 [node name="Threepy Woody the Second" parent="." node_paths=PackedStringArray("kill_target", "pickup_coin") instance=ExtResource("3_4vpep")]
-transform = Transform3D(-0.965925, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965925, 16.4941, 3.66152, 60.8476)
+transform = Transform3D(-0.965925, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965925, 16.494, 3, 60.848)
 kill_target = NodePath("../TargetDummy")
 pickup_coin = NodePath("../GoldCoin")
 
 [node name="Well_area" parent="." instance=ExtResource("4_y2tun")]
-transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 19.418, 3.18914, 61.857)
+transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 19.418, 3, 61.857)
 
 [node name="ProtonScatter" parent="Well_area" index="0"]
 modifier_stack = SubResource("Resource_b304j")
@@ -443,14 +473,8 @@ environment = SubResource("Environment_p6loe")
 transform = Transform3D(-0.573577, 0.579228, -0.579228, 0, 0.707107, 0.707107, 0.819152, 0.40558, -0.40558, 0, 50, 0)
 shadow_enabled = true
 
-[node name="Terrain3D" type="Terrain3D" parent="."]
-data_directory = "res://terrain3d"
-material = SubResource("Terrain3DMaterial_luiw5")
-assets = SubResource("Terrain3DAssets_osash")
-top_level = true
-metadata/_edit_lock_ = true
-
 [node name="TreeScatter" type="Node3D" parent="."]
+visible = false
 script = ExtResource("7_1a8bg")
 keep_static_colliders = true
 modifier_stack = SubResource("Resource_wxmls")
@@ -478,6 +502,7 @@ negative = true
 shape = SubResource("Resource_34sda")
 
 [node name="GrassScatter" type="Node3D" parent="."]
+visible = false
 script = ExtResource("7_1a8bg")
 modifier_stack = SubResource("Resource_1tjun")
 Performance/use_chunks = true
