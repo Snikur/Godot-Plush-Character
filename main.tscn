@@ -11,5 +11,6 @@ script = ExtResource("1_1n13w")
 [node name="MainMenu" parent="." instance=ExtResource("4_bs742")]
 
 [node name="Environment" parent="." instance=ExtResource("2_ubish")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
 
 [node name="Elwynn" parent="." instance=ExtResource("4_qaaa4")]

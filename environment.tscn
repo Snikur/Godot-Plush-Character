@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=62 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="Texture2D" uid="uid://dmc7y5uantv50" path="res://assets/textures/grass_packed.png" id="1_yqylo"]
@@ -30,17 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://cpilug0dp0p8l" path="res://well_area.tscn" id="30_2krhf"]
 [ext_resource type="PackedScene" uid="uid://dw21kvioyg70v" path="res://assets/models/wood/wooden_plank.fbx" id="30_y8xy0"]
 [ext_resource type="PackedScene" uid="uid://bpt4nynf57ye3" path="res://assets/models/wood/wooden_plank_2.fbx" id="31_nsg06"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="32_8dgxn"]
 [ext_resource type="PackedScene" uid="uid://cap7ti4b8sxh7" path="res://assets/models/wood/wooden_stick.fbx" id="32_gteod"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="33_ub0t1"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="34_veukp"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="35_7ms7s"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="36_tvw27"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="37_kj128"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="38_p57g3"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="39_3j0xg"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="40_xcbpm"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="41_nkvsb"]
 [ext_resource type="PackedScene" uid="uid://dh8yyt6ppkk6n" path="res://puzzle_cave.tscn" id="42_4t0sm"]
 [ext_resource type="PackedScene" uid="uid://ddnfcwas38yb4" path="res://floating_island.tscn" id="43_insow"]
 [ext_resource type="PackedScene" uid="uid://n4kw0dvgtun0" path="res://assets/models/fence_post.glb" id="44_skuex"]
@@ -100,7 +90,7 @@ material = SubResource("StandardMaterial3D_nq38v")
 size = Vector3(2, 14, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c2hmr"]
-size = Vector3(256, 10, 256)
+size = Vector3(256, 10, 512)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3osiu"]
 transparency = 1
@@ -109,7 +99,7 @@ albedo_color = Color(0.180392, 0, 0.858824, 0.537255)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2p506"]
 material = SubResource("StandardMaterial3D_3osiu")
-size = Vector3(256, 10, 256)
+size = Vector3(256, 10, 512)
 
 [sub_resource type="Resource" id="Resource_ea36u"]
 script = ExtResource("10_vn22s")
@@ -153,66 +143,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
-
-[sub_resource type="Resource" id="Resource_5wnrp"]
-script = ExtResource("35_7ms7s")
-amount = 50
-enabled = true
-override_global_seed = true
-custom_seed = 1
-restrict_height = true
-reference_frame = 1
-
-[sub_resource type="Resource" id="Resource_5wrd0"]
-script = ExtResource("36_tvw27")
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 360, 0)
-scale = Vector3(4, 4, 4)
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = false
-reference_frame = 2
-
-[sub_resource type="Resource" id="Resource_w5lng"]
-script = ExtResource("37_kj128")
-iterations = 3
-offset_step = 0.2
-consecutive_step_multiplier = 0.75
-use_computeshader = true
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = true
-reference_frame = 0
-
-[sub_resource type="Resource" id="Resource_edasm"]
-script = ExtResource("38_p57g3")
-ray_direction = Vector3(0, -1, 0)
-ray_length = 40.0
-ray_offset = 20.0
-remove_points_on_miss = false
-align_with_collision_normal = false
-max_slope = 90.0
-collision_mask = 1
-exclude_mask = 0
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = false
-reference_frame = 0
-
-[sub_resource type="Resource" id="Resource_lrtq7"]
-script = ExtResource("33_ub0t1")
-stack = Array[ExtResource("34_veukp")]([SubResource("Resource_5wnrp"), SubResource("Resource_5wrd0"), SubResource("Resource_w5lng"), SubResource("Resource_edasm")])
-
-[sub_resource type="Resource" id="Resource_45i8o"]
-script = ExtResource("41_nkvsb")
-radius = 40.0
-
-[sub_resource type="Resource" id="Resource_3yafv"]
-script = ExtResource("41_nkvsb")
-radius = 25.0
 
 [node name="Environment" type="Node3D"]
 
@@ -387,7 +317,7 @@ mesh = SubResource("BoxMesh_aexy6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1, 0.5, 50.5)
 
 [node name="WaterArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, -5, 128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, -5, 256)
 script = ExtResource("6_rmd8c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea"]
@@ -496,36 +426,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5182, 0.024989, 0.231199)
 
 [node name="Well_area" parent="." instance=ExtResource("30_2krhf")]
 transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 19.418, 0.838422, 61.857)
-
-[node name="ProtonScatter" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 40)
-script = ExtResource("32_8dgxn")
-keep_static_colliders = true
-modifier_stack = SubResource("Resource_lrtq7")
-Performance/use_chunks = true
-Performance/chunk_dimensions = Vector3(15, 15, 15)
-
-[node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
-script = ExtResource("39_3j0xg")
-path = "res://addons/proton_scatter/demos/assets/pine_tree.tscn"
-
-[node name="ScatterItem2" type="Node3D" parent="ProtonScatter"]
-script = ExtResource("39_3j0xg")
-proportion = 2
-path = "res://addons/proton_scatter/demos/assets/large_rock.tscn"
-
-[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
-visible = false
-script = ExtResource("40_xcbpm")
-shape = SubResource("Resource_45i8o")
-
-[node name="ScatterShape2" type="Node3D" parent="ProtonScatter"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
-visible = false
-script = ExtResource("40_xcbpm")
-negative = true
-shape = SubResource("Resource_3yafv")
 
 [node name="PuzzleCave" parent="." instance=ExtResource("42_4t0sm")]
 transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 75, 1, 52)
