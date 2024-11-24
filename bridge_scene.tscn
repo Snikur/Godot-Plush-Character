@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://bdq3nugyp5byd"]
+[gd_scene load_steps=22 format=3 uid="uid://bdq3nugyp5byd"]
 
 [ext_resource type="PackedScene" uid="uid://ce058jpt2iem2" path="res://assets/models/wood/bridge.glb" id="1_k5p3o"]
+[ext_resource type="PackedScene" uid="uid://c31xeuhu6y6co" path="res://assets/models/fence_modular.glb" id="2_1dt3g"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dx8vd"]
 data = PackedVector3Array(0.0114, -0.1458, -3.0015, 0.9886, 0.1458, -3.0015, -0.0071, 0.0534, -3.0015, 0.0114, -0.1458, -3.0015, 1.0071, -0.0534, -3.0015, 0.9886, 0.1458, -3.0015, 1.0071, -0.0534, -3.0015, 0.9886, 0.1458, 3.0015, 0.9886, 0.1458, -3.0015, 1.0071, -0.0534, -3.0015, 1.0071, -0.0534, 3.0015, 0.9886, 0.1458, 3.0015, 1.0071, -0.0534, 3.0015, -0.0071, 0.0534, 3.0015, 0.9886, 0.1458, 3.0015, 1.0071, -0.0534, 3.0015, 0.0114, -0.1458, 3.0015, -0.0071, 0.0534, 3.0015, 0.0114, -0.1458, 3.0015, -0.0071, 0.0534, -3.0015, -0.0071, 0.0534, 3.0015, 0.0114, -0.1458, 3.0015, 0.0114, -0.1458, -3.0015, -0.0071, 0.0534, -3.0015, 1.0071, -0.0534, -3.0015, 0.0114, -0.1458, 3.0015, 1.0071, -0.0534, 3.0015, 1.0071, -0.0534, -3.0015, 0.0114, -0.1458, -3.0015, 0.0114, -0.1458, 3.0015, 0.9886, 0.1458, 3.0015, -0.0071, 0.0534, -3.0015, 0.9886, 0.1458, -3.0015, 0.9886, 0.1458, 3.0015, -0.0071, 0.0534, 3.0015, -0.0071, 0.0534, -3.0015)
@@ -155,3 +156,27 @@ shape = SubResource("ConcavePolygonShape3D_83scc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_029/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_c7iny")
+
+[node name="fence_modular" parent="." index="19" instance=ExtResource("2_1dt3g")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10.4116, 1.14084, 3.0895)
+
+[node name="fence_modular2" parent="." index="20" instance=ExtResource("2_1dt3g")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 7.41158, 1.14084, 3.0895)
+
+[node name="fence_modular3" parent="." index="21" instance=ExtResource("2_1dt3g")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 4.41158, 1.14084, 3.0895)
+
+[node name="fence_modular4" parent="." index="22" instance=ExtResource("2_1dt3g")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 1.41158, 1.14084, 3.0895)
+
+[node name="fence_modular5" parent="." index="23" instance=ExtResource("2_1dt3g")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10.4116, 1.14084, -3.01852)
+
+[node name="fence_modular6" parent="." index="24" instance=ExtResource("2_1dt3g")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 7.41158, 1.14084, -3.01852)
+
+[node name="fence_modular7" parent="." index="25" instance=ExtResource("2_1dt3g")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 4.41158, 1.14084, -3.01852)
+
+[node name="fence_modular8" parent="." index="26" instance=ExtResource("2_1dt3g")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 1.41158, 1.14084, -3.01852)
