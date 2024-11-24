@@ -11,6 +11,7 @@ var movement_input: Vector2 = Vector2.ZERO
 var auto_run_input: Vector2 = Vector2.ZERO
 var is_running: bool = true
 var is_autorunning: bool = false
+@onready var current_max_speed: float = parent.run_speed
 
 func _ready():
 	state.state_physics_processing.connect(state_physics_process)
@@ -36,7 +37,9 @@ func state_physics_process(delta: float) -> void:
 		if parent.is_on_floor():
 			parent.transition_to(parent.ANIMATION_STATE.RUN if is_running else parent.ANIMATION_STATE.WALK)
 		vel_2d += movement_input * parent.acceleration * delta
-		vel_2d = vel_2d.limit_length((parent.run_speed if is_running else parent.base_speed) * parent.speed_modifier)
+		var desired_max_speed: float = ((parent.run_speed if is_running else parent.base_speed) * parent.speed_modifier)
+		current_max_speed = desired_max_speed #TODO: do some magic here
+		vel_2d = vel_2d.limit_length(current_max_speed)
 		parent.velocity.x = vel_2d.x
 		parent.velocity.z = vel_2d.y
 		target_angle = -movement_input.orthogonal().angle() #TODO: fix 0.15 radians off center
