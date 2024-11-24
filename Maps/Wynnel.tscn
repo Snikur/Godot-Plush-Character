@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://dnfnvbxqdp5l1"]
+[gd_scene load_steps=105 format=3 uid="uid://dnfnvbxqdp5l1"]
 
 [ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="1_2jxg7"]
 [ext_resource type="Texture2D" uid="uid://dmc7y5uantv50" path="res://assets/textures/grass_packed.png" id="1_7wp12"]
@@ -160,7 +160,7 @@ normal_texture = ExtResource("6_3ascd")
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_crisp"), SubResource("Terrain3DMeshAsset_u8knu")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_5s7o6"), SubResource("Terrain3DTextureAsset_iwlya"), SubResource("Terrain3DTextureAsset_eevho")])
 
-[sub_resource type="Resource" id="Resource_54g4x"]
+[sub_resource type="Resource" id="Resource_4kh7b"]
 script = ExtResource("10_mkeed")
 amount = 16
 enabled = true
@@ -169,7 +169,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_opusg"]
+[sub_resource type="Resource" id="Resource_kyw2t"]
 script = ExtResource("11_bek6v")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -180,7 +180,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_nrbpm"]
+[sub_resource type="Resource" id="Resource_x4ahh"]
 script = ExtResource("12_r8k1m")
 iterations = 3
 offset_step = 0.2
@@ -192,7 +192,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_dci0e"]
+[sub_resource type="Resource" id="Resource_5gy20"]
 script = ExtResource("13_gssfn")
 terrain_node = NodePath("../../Terrain3D")
 align_with_collision_normal = true
@@ -202,11 +202,11 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_6rubu"]
+[sub_resource type="Resource" id="Resource_aa58l"]
 script = ExtResource("8_4tte5")
-stack = Array[ExtResource("9_3hccy")]([SubResource("Resource_54g4x"), SubResource("Resource_opusg"), SubResource("Resource_nrbpm"), SubResource("Resource_dci0e")])
+stack = Array[ExtResource("9_3hccy")]([SubResource("Resource_4kh7b"), SubResource("Resource_kyw2t"), SubResource("Resource_x4ahh"), SubResource("Resource_5gy20")])
 
-[sub_resource type="Resource" id="Resource_p33kn"]
+[sub_resource type="Resource" id="Resource_34wsj"]
 script = ExtResource("10_mkeed")
 amount = 512
 enabled = true
@@ -215,7 +215,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_e2qtq"]
+[sub_resource type="Resource" id="Resource_67xec"]
 script = ExtResource("11_bek6v")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -226,7 +226,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_54bf6"]
+[sub_resource type="Resource" id="Resource_pg0vu"]
 script = ExtResource("12_r8k1m")
 iterations = 3
 offset_step = 0.2
@@ -238,7 +238,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_78av5"]
+[sub_resource type="Resource" id="Resource_h0kln"]
 script = ExtResource("13_gssfn")
 terrain_node = NodePath("../../Terrain3D")
 align_with_collision_normal = true
@@ -248,11 +248,19 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_3ewcc"]
+[sub_resource type="Resource" id="Resource_n31qt"]
 script = ExtResource("8_4tte5")
-stack = Array[ExtResource("9_3hccy")]([SubResource("Resource_p33kn"), SubResource("Resource_e2qtq"), SubResource("Resource_54bf6"), SubResource("Resource_78av5")])
+stack = Array[ExtResource("9_3hccy")]([SubResource("Resource_34wsj"), SubResource("Resource_67xec"), SubResource("Resource_pg0vu"), SubResource("Resource_h0kln")])
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xgbos"]
+energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_m0hi7"]
+sky_material = SubResource("PhysicalSkyMaterial_xgbos")
 
 [sub_resource type="Environment" id="Environment_p6loe"]
+background_mode = 2
+sky = SubResource("Sky_m0hi7")
 ambient_light_source = 2
 ambient_light_color = Color(0.745007, 0.765678, 0.514464, 1)
 tonemap_mode = 2
@@ -263,7 +271,7 @@ fog_light_color = Color(0.407843, 0.647059, 0.823529, 1)
 fog_density = 1.0
 fog_depth_begin = 50.0
 
-[sub_resource type="Resource" id="Resource_1ht8n"]
+[sub_resource type="Resource" id="Resource_orucu"]
 script = ExtResource("10_mkeed")
 amount = 1024
 enabled = true
@@ -272,7 +280,7 @@ custom_seed = 1
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_l78nu"]
+[sub_resource type="Resource" id="Resource_caexb"]
 script = ExtResource("11_bek6v")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 360, 0)
@@ -283,7 +291,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_f68w4"]
+[sub_resource type="Resource" id="Resource_n31im"]
 script = ExtResource("12_r8k1m")
 iterations = 3
 offset_step = 0.2
@@ -295,7 +303,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_8ubit"]
+[sub_resource type="Resource" id="Resource_1akoj"]
 script = ExtResource("13_gssfn")
 terrain_node = NodePath("../Terrain3D")
 align_with_collision_normal = false
@@ -305,9 +313,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_3jf0n"]
+[sub_resource type="Resource" id="Resource_u8mwl"]
 script = ExtResource("8_4tte5")
-stack = Array[ExtResource("9_3hccy")]([SubResource("Resource_1ht8n"), SubResource("Resource_l78nu"), SubResource("Resource_f68w4"), SubResource("Resource_8ubit")])
+stack = Array[ExtResource("9_3hccy")]([SubResource("Resource_orucu"), SubResource("Resource_caexb"), SubResource("Resource_n31im"), SubResource("Resource_1akoj")])
 
 [sub_resource type="Resource" id="Resource_nlusc"]
 script = ExtResource("16_0slpt")
@@ -330,7 +338,7 @@ curve = SubResource("Curve3D_d5dgx")
 script = ExtResource("24_gwt6y")
 radius = 24.0
 
-[sub_resource type="Resource" id="Resource_fqilk"]
+[sub_resource type="Resource" id="Resource_jouml"]
 script = ExtResource("10_mkeed")
 amount = 10000
 enabled = true
@@ -339,7 +347,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_6o37b"]
+[sub_resource type="Resource" id="Resource_cg4kc"]
 script = ExtResource("11_bek6v")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -350,7 +358,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_m0pun"]
+[sub_resource type="Resource" id="Resource_0itan"]
 script = ExtResource("12_r8k1m")
 iterations = 3
 offset_step = 0.2
@@ -362,7 +370,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_7t3n5"]
+[sub_resource type="Resource" id="Resource_ee078"]
 script = ExtResource("13_gssfn")
 terrain_node = NodePath("../Terrain3D")
 align_with_collision_normal = false
@@ -372,9 +380,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_na4r8"]
+[sub_resource type="Resource" id="Resource_bucp2"]
 script = ExtResource("8_4tte5")
-stack = Array[ExtResource("9_3hccy")]([SubResource("Resource_fqilk"), SubResource("Resource_6o37b"), SubResource("Resource_m0pun"), SubResource("Resource_7t3n5")])
+stack = Array[ExtResource("9_3hccy")]([SubResource("Resource_jouml"), SubResource("Resource_cg4kc"), SubResource("Resource_0itan"), SubResource("Resource_ee078")])
 
 [sub_resource type="Resource" id="Resource_0f8ah"]
 script = ExtResource("16_0slpt")
@@ -487,7 +495,7 @@ pickup_coin = NodePath("../GoldCoin")
 transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 19.418, 3, 61.857)
 
 [node name="ProtonScatter" parent="Well_area" index="0"]
-modifier_stack = SubResource("Resource_6rubu")
+modifier_stack = SubResource("Resource_aa58l")
 
 [node name="ScatterShape" parent="Well_area/ProtonScatter" index="2"]
 visible = true
@@ -496,7 +504,7 @@ visible = true
 visible = true
 
 [node name="ProtonScatter2" parent="Well_area" index="1"]
-modifier_stack = SubResource("Resource_3ewcc")
+modifier_stack = SubResource("Resource_n31qt")
 
 [node name="ScatterShape" parent="Well_area/ProtonScatter2" index="1"]
 visible = true
@@ -514,7 +522,7 @@ shadow_enabled = true
 [node name="TreeScatter" type="Node3D" parent="."]
 script = ExtResource("7_1a8bg")
 keep_static_colliders = true
-modifier_stack = SubResource("Resource_3jf0n")
+modifier_stack = SubResource("Resource_u8mwl")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -540,7 +548,7 @@ shape = SubResource("Resource_34sda")
 
 [node name="GrassScatter" type="Node3D" parent="."]
 script = ExtResource("7_1a8bg")
-modifier_stack = SubResource("Resource_na4r8")
+modifier_stack = SubResource("Resource_bucp2")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
