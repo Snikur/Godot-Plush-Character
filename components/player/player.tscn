@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=31 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
@@ -20,8 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://cj0qhdy1mlbrh" path="res://dude_visual.tscn" id="11_y57ib"]
 [ext_resource type="PackedScene" uid="uid://cbaabmsqd66rd" path="res://spellManager/spell_manager.tscn" id="17_1hwc1"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_c7m1c"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_slah2"]
-radius = 1.0
+radius = 0.2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhngq"]
 
@@ -67,6 +69,7 @@ stream_1/stream = ExtResource("6_nlp36")
 stream_2/stream = ExtResource("7_4283i")
 
 [node name="Player" type="CharacterBody3D"]
+floor_constant_speed = true
 script = ExtResource("1_ms4x1")
 
 [node name="Fishing" type="Node3D" parent="."]
@@ -98,9 +101,15 @@ script = ExtResource("5_8s7e8")
 state_path = NodePath("../StateChart/CompoundState/Water")
 
 [node name="WaterRay" type="RayCast3D" parent="Water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 target_position = Vector3(0, -2, 0)
 collide_with_areas = true
+
+[node name="HeadCollider" type="Area3D" parent="Water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/HeadCollider"]
+shape = SubResource("SphereShape3D_c7m1c")
 
 [node name="Knockback" type="Node3D" parent="."]
 script = ExtResource("5_c3oes")
@@ -220,7 +229,7 @@ unique_name_in_owner = true
 [node name="AutoAttack" type="ShapeCast3D" parent="VisualRoot/Dude"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_slah2")
-target_position = Vector3(0, 0, 10)
+target_position = Vector3(0, 0, 2)
 max_results = 1
 collide_with_areas = true
 script = ExtResource("9_ghftm")

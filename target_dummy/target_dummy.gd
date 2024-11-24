@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	if is_queued_for_deletion():
 		return
 	if (target and not combat.evading):
-		velocity = (target.global_position - self.global_position).limit_length()
+		velocity = (target.global_position - self.global_position).normalized()
 		if (target.global_position.distance_to(global_position) < 2.0):
 			if (swing_timer.is_paused()):
 				swing_timer.set_paused(false)
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			swing_timer.set_paused(true)
 	elif (combat.evading):
-		velocity = (spawn_position - self.global_position).limit_length()
+		velocity = (spawn_position - self.global_position).normalized()
 		if (spawn_position.distance_to(global_position) < 1.0):
 			combat.evading = false
 			combat.request_change.rpc(combat.max_health)

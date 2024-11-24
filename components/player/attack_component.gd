@@ -21,13 +21,13 @@ func _physics_process(_delta: float) -> void:
 			if (swing_timer.is_stopped()):
 				swing_timer.start()
 		else:
-			#spell_manager.target = null
+			spell_manager.target = null
 			swing_timer.paused = true
 	else:
-		#spell_manager.target = null
+		spell_manager.target = null
 		swing_timer.paused = true
 
 func swing():
 	var distance = (spell_manager.target.global_position - self.global_position).length()
-	if spell_manager.target and distance < 3.0:
+	if spell_manager.target:
 		spell_manager.target.combat.request_change.rpc_id(1, -damage)

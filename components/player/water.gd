@@ -13,6 +13,27 @@ var target_angle
 func _ready():
 	state.state_physics_processing.connect(state_physics_process)
 
+func can_enter() -> bool:
+	var shape_cast: ShapeCast3D = ShapeCast3D.new()
+	self.add_child(shape_cast)
+	shape_cast.add_exception(parent)
+	shape_cast.shape = SphereShape3D.new()
+	shape_cast.collide_with_areas = false
+	shape_cast.collide_with_bodies = true
+	shape_cast.position = Vector3(0.0, 0.0, 0.0)
+	shape_cast.target_position = Vector3(0.0, -2.0, 0.0)
+	shape_cast.force_shapecast_update()
+	if (shape_cast.is_colliding()):
+		for i in shape_cast.get_collision_count():
+			print(shape_cast.get_collider(i))
+	shape_cast.queue_free()
+	if (water_ray.is_colliding() and water_ray.get_collider() is Terrain3D):
+		print("collided with Terrain3D")
+		return false
+	else:
+		print("can enter water")
+		return true
+
 func state_physics_process(delta: float) -> void:
 	movement_input = Input.get_vector("left", "right", "up", "down")
 	var swim_up = Input.is_action_pressed("jump")
@@ -33,10 +54,10 @@ func state_physics_process(delta: float) -> void:
 	#parent.skin.tilt = move_toward(parent.skin.tilt, angle_diff, 2.0 * delta)
 	parent.move_and_slide()
 	var at_surface: bool = false
-	if (water_ray.is_colliding() and water_ray.get_collider() is WaterArea):
+	if (parent.velocity.y > 0.0 and water_ray.is_colliding() and water_ray.get_collider() is WaterArea):
 		var distance = water_ray.get_collision_point().distance_to(water_ray.global_position)
-		if (distance > 1.0):
-			parent.global_position.y -= distance - 1.0
+		if (distance > 0.1):
+			parent.global_position.y -= distance
 			at_surface = true
 	
 	if (swim_up and at_surface):

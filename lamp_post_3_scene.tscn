@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvdx7rkounuv3"]
+
+[ext_resource type="PackedScene" uid="uid://dhxsc1bv2ymwa" path="res://assets/models/lamp_post_3.glb" id="1_yjtrr"]
+
+[node name="lamp_post_3" instance=ExtResource("1_yjtrr")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.936925, 2.98105, 0)
+omni_range = 10.0
