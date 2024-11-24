@@ -1,56 +1,19 @@
-[gd_scene load_steps=62 format=3 uid="uid://h017mwpcdc1e"]
+[gd_scene load_steps=31 format=3 uid="uid://h017mwpcdc1e"]
 
 [ext_resource type="Material" uid="uid://coy4nf1ts2u0q" path="res://assets/materials/grid_mat.tres" id="1_aup37"]
 [ext_resource type="Texture2D" uid="uid://dmc7y5uantv50" path="res://assets/textures/grass_packed.png" id="1_yqylo"]
 [ext_resource type="Script" path="res://ladder.gd" id="3_kdg1s"]
 [ext_resource type="PackedScene" uid="uid://bouvidg64dqet" path="res://assets/models/ladder/CartoonLader/CartoonLadder.fbx" id="4_qdqii"]
 [ext_resource type="PackedScene" uid="uid://b1b0nka3xayeg" path="res://bounce.tscn" id="5_ca51l"]
-[ext_resource type="PackedScene" uid="uid://cy7y0irkl6w2r" path="res://spellManager/spell_pickup.tscn" id="5_gipfr"]
 [ext_resource type="Script" path="res://water_area.gd" id="6_rmd8c"]
-[ext_resource type="PackedScene" uid="uid://ckcqtdfka0v40" path="res://target_dummy/target_dummy.tscn" id="7_vo52k"]
 [ext_resource type="Script" path="res://elevator.gd" id="8_0dlt5"]
-[ext_resource type="Script" path="res://spellManager/spells/Blink/blink.gd" id="10_vn22s"]
-[ext_resource type="Script" path="res://spellManager/spells/Sprint/sprint.gd" id="11_w0gtx"]
-[ext_resource type="Script" path="res://spellManager/spells/TimeTravel/time_travel.gd" id="12_kkanx"]
 [ext_resource type="PackedScene" uid="uid://deukppkq0x40j" path="res://assets/scenes/ship_large_2.tscn" id="13_prpo3"]
 [ext_resource type="Script" path="res://ship_follow.gd" id="13_s4wdj"]
 [ext_resource type="PackedScene" uid="uid://ck4vyygcpqi3b" path="res://NPCS/QuestGiver/quest_giver.tscn" id="15_0n2kh"]
-[ext_resource type="PackedScene" uid="uid://du2d5wxly6byu" path="res://assets/scenes/gold_coin.tscn" id="15_xgh2i"]
 [ext_resource type="Script" path="res://questManager/search_quest.gd" id="16_4amj3"]
 [ext_resource type="Script" path="res://collect_coin_achievement.gd" id="16_c87p0"]
 [ext_resource type="Script" path="res://questManager/target_dummy_quest.gd" id="17_apl3q"]
 [ext_resource type="Resource" uid="uid://j22w3y71oya0" path="res://questManager/PirateCoinQuest.tres" id="18_pmxdd"]
-[ext_resource type="PackedScene" uid="uid://5mio7j2k5bci" path="res://assets/models/stone bricks/stone_brick.fbx" id="21_bjn37"]
-[ext_resource type="PackedScene" uid="uid://c7v0482cqqwj2" path="res://NPCS/QuestGiver/help_threepwood_quest_chain.tscn" id="21_hg3nl"]
-[ext_resource type="PackedScene" uid="uid://bhla6p5ksim1b" path="res://assets/models/stone bricks/stone_brick_2.fbx" id="22_mra1j"]
-[ext_resource type="PackedScene" uid="uid://byw56cxh01o3w" path="res://assets/models/stone bricks/stone_brick_3.fbx" id="23_nmwji"]
-[ext_resource type="PackedScene" uid="uid://da7sfaw8wlv0e" path="res://assets/models/well/Well.fbx" id="24_6i7n3"]
-[ext_resource type="PackedScene" uid="uid://dpk4tv1skm6kn" path="res://assets/models/wood/wooden_frame.fbx" id="28_2sm0v"]
-[ext_resource type="PackedScene" uid="uid://dtjtgl0n8o0vr" path="res://assets/models/wood/wooden_handle.fbx" id="29_p1nvo"]
-[ext_resource type="PackedScene" path="res://well_area.tscn" id="30_2krhf"]
-[ext_resource type="PackedScene" uid="uid://dw21kvioyg70v" path="res://assets/models/wood/wooden_plank.fbx" id="30_y8xy0"]
-[ext_resource type="PackedScene" uid="uid://bpt4nynf57ye3" path="res://assets/models/wood/wooden_plank_2.fbx" id="31_nsg06"]
-[ext_resource type="PackedScene" uid="uid://cap7ti4b8sxh7" path="res://assets/models/wood/wooden_stick.fbx" id="32_gteod"]
-[ext_resource type="PackedScene" uid="uid://dh8yyt6ppkk6n" path="res://puzzle_cave.tscn" id="42_4t0sm"]
-[ext_resource type="PackedScene" uid="uid://ddnfcwas38yb4" path="res://floating_island.tscn" id="43_insow"]
-[ext_resource type="PackedScene" uid="uid://n4kw0dvgtun0" path="res://assets/models/fence_post.glb" id="44_skuex"]
-[ext_resource type="PackedScene" uid="uid://c31xeuhu6y6co" path="res://assets/models/fence_modular.glb" id="45_87g3u"]
-[ext_resource type="PackedScene" uid="uid://dhxsc1bv2ymwa" path="res://assets/models/lamp_post_3.glb" id="46_728gc"]
-[ext_resource type="PackedScene" uid="uid://clcryykmruh11" path="res://assets/models/lantern.glb" id="47_qgos8"]
-[ext_resource type="PackedScene" uid="uid://c6gbx45sxt78y" path="res://assets/models/lamp_post_2.glb" id="48_8ljk1"]
-[ext_resource type="PackedScene" uid="uid://b0bsxtl3f05" path="res://assets/models/post.glb" id="49_vmbkn"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g1m0j"]
-
-[sub_resource type="Sky" id="Sky_hn4vd"]
-sky_material = SubResource("ProceduralSkyMaterial_g1m0j")
-
-[sub_resource type="Environment" id="Environment_v8o6g"]
-background_mode = 2
-sky = SubResource("Sky_hn4vd")
-ambient_light_source = 3
-reflected_light_source = 2
-tonemap_mode = 1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hl4yo"]
 radius = 40.0
@@ -101,36 +64,6 @@ albedo_color = Color(0.180392, 0, 0.858824, 0.537255)
 material = SubResource("StandardMaterial3D_3osiu")
 size = Vector3(256, 10, 512)
 
-[sub_resource type="Resource" id="Resource_ea36u"]
-script = ExtResource("10_vn22s")
-type = 1
-projectile_type = 2
-cooldown = 0.0
-maxCharges = 1
-isActivateSpell = false
-name = ""
-description = ""
-
-[sub_resource type="Resource" id="Resource_yv8lr"]
-script = ExtResource("11_w0gtx")
-type = 1
-projectile_type = 2
-cooldown = 0.0
-maxCharges = 1
-isActivateSpell = false
-name = ""
-description = ""
-
-[sub_resource type="Resource" id="Resource_lrbf8"]
-script = ExtResource("12_kkanx")
-type = 1
-projectile_type = 2
-cooldown = 60.0
-maxCharges = 1
-isActivateSpell = true
-name = ""
-description = ""
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_g6hs7"]
 size = Vector3(3, 1, 3)
 
@@ -145,13 +78,6 @@ _data = {
 point_count = 6
 
 [node name="Environment" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_v8o6g")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.422618, 0.640856, -0.640857, 0, 0.707107, 0.707106, 0.906308, -0.298836, 0.298836, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, 40)
@@ -317,32 +243,16 @@ mesh = SubResource("BoxMesh_aexy6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1, 0.5, 50.5)
 
 [node name="WaterArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, -5, 256)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 256)
 script = ExtResource("6_rmd8c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 shape = SubResource("BoxShape3D_c2hmr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WaterArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 mesh = SubResource("BoxMesh_2p506")
-
-[node name="TargetDummy" parent="." instance=ExtResource("7_vo52k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 2, 58.6)
-
-[node name="Spells" type="Node3D" parent="."]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 35.3392, 7.59046, 35.1449)
-
-[node name="Blink" parent="Spells" instance=ExtResource("5_gipfr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
-spell = SubResource("Resource_ea36u")
-
-[node name="Sprint" parent="Spells" instance=ExtResource("5_gipfr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
-spell = SubResource("Resource_yv8lr")
-
-[node name="TimeTravel" parent="Spells" instance=ExtResource("5_gipfr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
-spell = SubResource("Resource_lrbf8")
 
 [node name="Elevator" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1.5, 22.5)
@@ -368,118 +278,21 @@ script = ExtResource("13_s4wdj")
 
 [node name="Ship" parent="ShipPath/ShipFollow" instance=ExtResource("13_prpo3")]
 
-[node name="GoldCoin" parent="." instance=ExtResource("15_xgh2i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 16, 30)
-
 [node name="Manbroom Fourpwood" parent="." instance=ExtResource("15_0n2kh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 8, 26)
 
-[node name="Quest" type="Node" parent="Manbroom Fourpwood" node_paths=PackedStringArray("item_to_find")]
+[node name="Quest" type="Node" parent="Manbroom Fourpwood"]
 script = ExtResource("16_4amj3")
 quest_information = ExtResource("18_pmxdd")
-item_to_find = NodePath("../../GoldCoin")
 
 [node name="Manbrush Twowood" parent="." instance=ExtResource("15_0n2kh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 8, 26)
 
-[node name="Quest" type="Node" parent="Manbrush Twowood" node_paths=PackedStringArray("wanted_target")]
+[node name="Quest" type="Node" parent="Manbrush Twowood"]
 script = ExtResource("17_apl3q")
-wanted_target = NodePath("../../TargetDummy")
 
 [node name="CollectCoinAchievement" type="Node3D" parent="."]
 script = ExtResource("16_c87p0")
-
-[node name="Threepy Woody the Second" parent="." node_paths=PackedStringArray("kill_target", "pickup_coin") instance=ExtResource("21_hg3nl")]
-transform = Transform3D(-0.965925, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965925, 16.4941, 1, 60.8476)
-kill_target = NodePath("../TargetDummy")
-pickup_coin = NodePath("../GoldCoin")
-
-[node name="test_stuff" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.2302, 0.950022, 12.9665)
-
-[node name="stone_brick" parent="test_stuff" instance=ExtResource("21_bjn37")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1086, 0.0241303, 0.878)
-
-[node name="stone_brick_2" parent="test_stuff" instance=ExtResource("22_mra1j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4339, 0.0245433, 0.6926)
-
-[node name="stone_brick_3" parent="test_stuff" instance=ExtResource("23_nmwji")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4727, 0.0274935, -0.1252)
-
-[node name="Well" parent="test_stuff" instance=ExtResource("24_6i7n3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9751, 0.0270852, -1.8449)
-
-[node name="wooden_frame" parent="test_stuff" instance=ExtResource("28_2sm0v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1084, 0.024989, -0.8978)
-
-[node name="wooden_handle" parent="test_stuff" instance=ExtResource("29_p1nvo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6209, 0.024989, 0.146)
-
-[node name="wooden_plank" parent="test_stuff" instance=ExtResource("30_y8xy0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6691, 0.024989, 0.6196)
-
-[node name="wooden_plank_2" parent="test_stuff" instance=ExtResource("31_nsg06")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.122299, 0.024989, 1.4502)
-
-[node name="wooden_stick" parent="test_stuff" instance=ExtResource("32_gteod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5182, 0.024989, 0.231199)
-
-[node name="Well_area" parent="." instance=ExtResource("30_2krhf")]
-transform = Transform3D(-1.93185, 0, -0.517638, 0, 2, 0, 0.517638, 0, -1.93185, 19.418, 0.838422, 61.857)
-
-[node name="PuzzleCave" parent="." instance=ExtResource("42_4t0sm")]
-transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 75, 1, 52)
-
-[node name="Island" parent="." instance=ExtResource("43_insow")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 83, 40, 53)
-
-[node name="fence and stuff" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.2302, 0.950022, 71.5317)
-
-[node name="fence_post" parent="fence and stuff" instance=ExtResource("44_skuex")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 3.36948, 0.0507338, -0.0204926)
-
-[node name="fence_modular" parent="fence and stuff" instance=ExtResource("45_87g3u")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.20216, 0.0576458, -0.0103073)
-
-[node name="fence_modular2" parent="fence and stuff" instance=ExtResource("45_87g3u")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -3.77152, 0.0576458, -0.0103073)
-
-[node name="fence_modular3" parent="fence and stuff" instance=ExtResource("45_87g3u")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -7.28577, 0.0576458, -0.0103073)
-
-[node name="fence_modular4" parent="fence and stuff" instance=ExtResource("45_87g3u")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -10.7696, 0.0576458, 0.0487518)
-
-[node name="lamp_post_3" parent="fence and stuff" instance=ExtResource("46_728gc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.02792, 0.0313551, 0.0329514)
-
-[node name="lantern" parent="fence and stuff" instance=ExtResource("47_qgos8")]
-transform = Transform3D(0.109943, -0.993938, 0, 0.993938, 0.109943, 0, 0, 0, 1, 5.8824, 0.212593, 4.81355)
-
-[node name="lamp_post_2" parent="fence and stuff" instance=ExtResource("48_8ljk1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11061, 0.0313551, 5.19646)
-
-[node name="post" parent="fence and stuff" instance=ExtResource("49_vmbkn")]
-transform = Transform3D(-0.0145828, 0.327058, 0.944892, -0.973906, -0.218693, 0.0606661, 0.226482, -0.919351, 0.321713, 0.672642, 1.11605, 8.00564)
-
-[node name="post2" parent="fence and stuff" instance=ExtResource("49_vmbkn")]
-transform = Transform3D(-0.0115363, 0.999933, 0, -0.999933, -0.0115363, 0, 0, 0, 1, -2.46077, 0.262706, 6.97861)
-
-[node name="post3" parent="fence and stuff" instance=ExtResource("49_vmbkn")]
-transform = Transform3D(-0.00982177, 0.983802, -0.178991, -0.99992, -0.0110909, -0.00609098, -0.00797747, 0.178916, 0.983832, -2.46077, 0.262248, 5.68635)
-
-[node name="fence_post2" parent="fence and stuff" instance=ExtResource("44_skuex")]
-transform = Transform3D(-0.0226747, -1.41202, -0.505643, 1.49981, -0.0240844, 0, -0.00811873, -0.505578, 1.41221, -0.0661621, 0.158378, 4.43945)
-
-[node name="fence_post3" parent="fence and stuff" instance=ExtResource("44_skuex")]
-transform = Transform3D(-0.0178011, -1.10853, 1.01037, 1.49981, -0.0240844, 0, 0.0162228, 1.01024, 1.10867, -0.145603, 0.485726, 3.84509)
-
-[node name="fence_post4" parent="fence and stuff" instance=ExtResource("44_skuex")]
-transform = Transform3D(-0.0240844, -1.49981, 0, 1.49981, -0.0240844, 0, 0, 0, 1.5, -0.0661621, 0.158378, 4.99707)
-
-[connection signal="picked_up" from="GoldCoin" to="Manbroom Fourpwood" method="_on_gold_coin_picked_up"]
-[connection signal="picked_up" from="GoldCoin" to="CollectCoinAchievement" method="_on_gold_coin_picked_up"]
 
 [editable path="Manbroom Fourpwood"]
 [editable path="Manbrush Twowood"]

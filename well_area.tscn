@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cpilug0dp0p8l"]
+[gd_scene load_steps=27 format=3 uid="uid://cpilug0dp0p8l"]
 
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_x7epq"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_6yq8x"]
@@ -6,13 +6,14 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="4_sj68n"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="5_rdfhc"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="6_oaa7e"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="7_4norx"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_terrain3d.gd" id="8_hth4v"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="8_ob1pe"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="9_wt766"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="10_llbtl"]
 [ext_resource type="PackedScene" uid="uid://ds1f4doiy0pgn" path="res://well_full_scene.tscn" id="11_mbd8h"]
+[ext_resource type="PackedScene" uid="uid://cvdx7rkounuv3" path="res://lamp_post_3_scene.tscn" id="12_1i7x5"]
 
-[sub_resource type="Resource" id="Resource_efl6o"]
+[sub_resource type="Resource" id="Resource_27erj"]
 script = ExtResource("4_sj68n")
 amount = 16
 enabled = true
@@ -21,7 +22,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_57l27"]
+[sub_resource type="Resource" id="Resource_k6g11"]
 script = ExtResource("5_rdfhc")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -32,7 +33,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_5kbqp"]
+[sub_resource type="Resource" id="Resource_hgmsh"]
 script = ExtResource("6_oaa7e")
 iterations = 3
 offset_step = 0.2
@@ -44,35 +45,29 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_vnhf2"]
-script = ExtResource("7_4norx")
-ray_direction = Vector3(0, -1, 0)
-ray_length = 5.0
-ray_offset = 5.0
-remove_points_on_miss = false
+[sub_resource type="Resource" id="Resource_ddk0d"]
+script = ExtResource("8_hth4v")
+terrain_node = NodePath("")
 align_with_collision_normal = false
-max_slope = 90.0
-collision_mask = 1
-exclude_mask = 0
 enabled = true
 override_global_seed = false
 custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_45fwn"]
+[sub_resource type="Resource" id="Resource_g030f"]
 script = ExtResource("2_6yq8x")
-stack = Array[ExtResource("3_c3rjo")]([SubResource("Resource_efl6o"), SubResource("Resource_57l27"), SubResource("Resource_5kbqp"), SubResource("Resource_vnhf2")])
+stack = Array[ExtResource("3_c3rjo")]([SubResource("Resource_27erj"), SubResource("Resource_k6g11"), SubResource("Resource_hgmsh"), SubResource("Resource_ddk0d")])
 
 [sub_resource type="Resource" id="Resource_qx21d"]
 script = ExtResource("10_llbtl")
-radius = 4.0
+radius = 8.0
 
 [sub_resource type="Resource" id="Resource_ihbn0"]
 script = ExtResource("10_llbtl")
-radius = 1.5
+radius = 3.0
 
-[sub_resource type="Resource" id="Resource_bemwx"]
+[sub_resource type="Resource" id="Resource_l5xd8"]
 script = ExtResource("4_sj68n")
 amount = 512
 enabled = true
@@ -81,7 +76,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_m3ebf"]
+[sub_resource type="Resource" id="Resource_633w3"]
 script = ExtResource("5_rdfhc")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -92,7 +87,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_ajllt"]
+[sub_resource type="Resource" id="Resource_l73sv"]
 script = ExtResource("6_oaa7e")
 iterations = 3
 offset_step = 0.2
@@ -104,39 +99,33 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_4aevn"]
-script = ExtResource("7_4norx")
-ray_direction = Vector3(0, -1, 0)
-ray_length = 5.0
-ray_offset = 5.0
-remove_points_on_miss = false
+[sub_resource type="Resource" id="Resource_qljqe"]
+script = ExtResource("8_hth4v")
+terrain_node = NodePath("")
 align_with_collision_normal = false
-max_slope = 90.0
-collision_mask = 1
-exclude_mask = 0
 enabled = true
 override_global_seed = false
 custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_vluus"]
+[sub_resource type="Resource" id="Resource_i5umv"]
 script = ExtResource("2_6yq8x")
-stack = Array[ExtResource("3_c3rjo")]([SubResource("Resource_bemwx"), SubResource("Resource_m3ebf"), SubResource("Resource_ajllt"), SubResource("Resource_4aevn")])
+stack = Array[ExtResource("3_c3rjo")]([SubResource("Resource_l5xd8"), SubResource("Resource_633w3"), SubResource("Resource_l73sv"), SubResource("Resource_qljqe")])
 
 [sub_resource type="Resource" id="Resource_ql2gd"]
 script = ExtResource("10_llbtl")
-radius = 4.0
+radius = 8.0
 
 [sub_resource type="Resource" id="Resource_om868"]
 script = ExtResource("10_llbtl")
-radius = 1.5
+radius = 3.0
 
 [node name="Well_area" type="Node3D"]
 
 [node name="ProtonScatter" type="Node3D" parent="."]
 script = ExtResource("1_x7epq")
-modifier_stack = SubResource("Resource_45fwn")
+modifier_stack = SubResource("Resource_g030f")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -163,7 +152,7 @@ shape = SubResource("Resource_ihbn0")
 
 [node name="ProtonScatter2" type="Node3D" parent="."]
 script = ExtResource("1_x7epq")
-modifier_stack = SubResource("Resource_vluus")
+modifier_stack = SubResource("Resource_i5umv")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -185,3 +174,6 @@ negative = true
 shape = SubResource("Resource_om868")
 
 [node name="Well_full" parent="." instance=ExtResource("11_mbd8h")]
+
+[node name="lamp_post_3" parent="." instance=ExtResource("12_1i7x5")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1.77908, 0, -3.39212)
