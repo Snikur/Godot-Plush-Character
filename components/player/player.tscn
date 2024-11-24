@@ -23,7 +23,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_c7m1c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_slah2"]
-radius = 1.0
+radius = 0.2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhngq"]
 
@@ -229,7 +229,7 @@ unique_name_in_owner = true
 [node name="AutoAttack" type="ShapeCast3D" parent="VisualRoot/Dude"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_slah2")
-target_position = Vector3(0, 0, 10)
+target_position = Vector3(0, 0, 2)
 max_results = 1
 collide_with_areas = true
 script = ExtResource("9_ghftm")

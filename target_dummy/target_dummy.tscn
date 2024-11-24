@@ -19,6 +19,7 @@ size = Vector3(0.66, 0.1, 0.1)
 radius = 15.0
 
 [node name="TargetDummy" type="CharacterBody3D"]
+floor_constant_speed = true
 script = ExtResource("1_nhe4d")
 
 [node name="SyncTransform" type="Node3D" parent="."]
@@ -31,6 +32,7 @@ one_shot = true
 wait_time = 5.0
 
 [node name="CombatComponent" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_mslhc")
 
 [node name="Status" type="Label3D" parent="CombatComponent"]
@@ -39,6 +41,7 @@ billboard = 2
 text = "HP: 100/100"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_alqak")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
@@ -46,6 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.466926, 0.418833)
 mesh = SubResource("BoxMesh_vwkcl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_8rcei")
 
 [node name="AggroArea" type="Area3D" parent="."]
