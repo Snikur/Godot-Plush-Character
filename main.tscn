@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cla33c2qqx78a"]
+[gd_scene load_steps=5 format=3 uid="uid://cla33c2qqx78a"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_1n13w"]
 [ext_resource type="PackedScene" uid="uid://h017mwpcdc1e" path="res://environment.tscn" id="2_ubish"]
 [ext_resource type="PackedScene" uid="uid://bxlfmqa5r8ta2" path="res://MainMenu.tscn" id="4_bs742"]
+[ext_resource type="PackedScene" uid="uid://dnfnvbxqdp5l1" path="res://Maps/Wynnel.tscn" id="4_qaaa4"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_1n13w")
@@ -10,3 +11,5 @@ script = ExtResource("1_1n13w")
 [node name="MainMenu" parent="." instance=ExtResource("4_bs742")]
 
 [node name="Environment" parent="." instance=ExtResource("2_ubish")]
+
+[node name="Elwynn" parent="." instance=ExtResource("4_qaaa4")]

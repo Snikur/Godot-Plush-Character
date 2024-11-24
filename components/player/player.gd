@@ -20,8 +20,8 @@ var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_tim
 var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 var acceleration = 128.0
-var base_speed = 2.0
-var run_speed = 8.0
+var base_speed = 2.5
+var run_speed = 7.0
 var speed_modifier: float = 1.0
 
 @onready var visual_root = %VisualRoot

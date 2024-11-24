@@ -8,7 +8,9 @@ class_name GroundState
 @onready var coyote_timer: Timer = $CoyoteJump
 var target_angle: float = 0.0
 var movement_input: Vector2 = Vector2.ZERO
+var auto_run_input: Vector2 = Vector2.ZERO
 var is_running: bool = true
+var is_autorunning: bool = false
 
 func _ready():
 	state.state_physics_processing.connect(state_physics_process)
@@ -16,6 +18,17 @@ func _ready():
 func state_physics_process(delta: float) -> void:
 	movement_input = Input.get_vector("left", "right", "up", "down").rotated(-parent.camera.global_rotation.y)
 	#var is_running: bool = Input.is_action_pressed("run") #hold to run
+	if (Input.is_action_just_pressed("auto_run")):
+		is_autorunning = not is_autorunning
+		if (movement_input == Vector2.ZERO):
+			auto_run_input = Vector2(0.0, -1.0).rotated(-parent.camera.global_rotation.y)
+		else:
+			auto_run_input = movement_input
+	if (is_autorunning):
+		if (movement_input == Vector2.ZERO):
+			movement_input = auto_run_input
+		else:
+			is_autorunning = false
 	if (Input.is_action_just_pressed("run")): #toggle run
 		is_running = !is_running
 	var vel_2d = Vector2(parent.velocity.x, parent.velocity.z)
