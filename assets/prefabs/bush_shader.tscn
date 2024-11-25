@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1t0gggktlfjy"]
+
+[ext_resource type="PackedScene" uid="uid://bo8pb32mpyce1" path="res://assets/models/bush.glb" id="1_tt03y"]
+[ext_resource type="Material" uid="uid://boufgp0qh0uyl" path="res://assets/bush_shader/bush_material.material" id="2_0miie"]
+
+[node name="bush" instance=ExtResource("1_tt03y")]
+
+[node name="BushGround" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_0miie")
