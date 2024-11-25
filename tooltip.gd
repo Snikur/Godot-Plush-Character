@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+@onready var root: Control = $Control
+@onready var panel: PanelContainer = $Control/PanelContainer
+
 @onready var item_name = %Title
 @onready var item_level = %ItemLevel
 @onready var description = %Description
@@ -7,8 +10,15 @@ extends CanvasLayer
 @onready var sell_price: RichTextLabel = %SellPrice
 var item: ItemResource
 
+var margin_offset: Vector2 = Vector2(24, 24)
+
 func _ready():
 	visible = false
+
+func _process(delta: float) -> void:
+	var mouse_pos = get_viewport().get_mouse_position()
+	var viewport_size: Vector2 = get_viewport().size
+	root.position = mouse_pos - (panel.size / 2) - margin_offset #TODO: Check which quadrant the mouse is within, currently works for bottom-right
 
 func set_tooltip(new_item: ItemResource):
 	self.item = new_item

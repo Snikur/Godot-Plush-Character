@@ -9,51 +9,69 @@ font_color = Color(1, 0.819608, 0, 1)
 font_color = Color(0.117647, 1, 0, 1)
 
 [node name="Tooltip" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_3qnd0")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -163.0
-offset_right = 399.0
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 8
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Minor Healing Potion"
 
-[node name="ItemLevel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ItemLevel" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Item Level 5"
 label_settings = SubResource("LabelSettings_ko3fd")
 
-[node name="Description" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Description" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Use: Restores 70 to 90 health. (2 Min Cooldown)"
 label_settings = SubResource("LabelSettings_pqcct")
 
-[node name="MaxStack" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MaxStack" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Max Stack: 5"
 
-[node name="SellPrice" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SellPrice" type="RichTextLabel" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
