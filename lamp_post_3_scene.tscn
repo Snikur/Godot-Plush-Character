@@ -4,6 +4,10 @@
 
 [node name="lamp_post_3" instance=ExtResource("1_yjtrr")]
 
+[node name="Cube_008" parent="." index="4"]
+cast_shadow = 0
+
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.936925, 2.98105, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.936925, 3.00472, 0)
+visible = false
 omni_range = 10.0

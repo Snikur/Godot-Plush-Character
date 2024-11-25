@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwirtg1m6q65w"]
 
 [ext_resource type="PackedScene" uid="uid://5pljp48ug2k2" path="res://assets/models/tree.glb" id="1_5rq3h"]
-[ext_resource type="Material" path="res://assets/textures/stylized_bark.tres" id="2_w4lar"]
+[ext_resource type="Material" uid="uid://bftfo8bi33qiq" path="res://assets/textures/stylized_bark.tres" id="2_w4lar"]
 [ext_resource type="Material" uid="uid://boufgp0qh0uyl" path="res://assets/bush_shader/bush_material.material" id="3_g1o2w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_etx3o"]

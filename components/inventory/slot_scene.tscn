@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://5k8nejr5fwfd"]
+
+[ext_resource type="Texture2D" uid="uid://da3u5d155gftr" path="res://components/inventory/user_interface/base.png" id="1_w8yg3"]
+[ext_resource type="Texture2D" uid="uid://mjquuhnaf2rf" path="res://components/inventory/user_interface/hover.png" id="2_dskf7"]
+[ext_resource type="Texture2D" uid="uid://c2tyuas1i0r3q" path="res://assets/textures/bottles/1.png" id="3_25k1i"]
+[ext_resource type="Script" path="res://components/inventory/inventory_slot.gd" id="3_yvd5f"]
+
+[node name="InventorySlot" type="TextureButton"]
+custom_minimum_size = Vector2(64, 64)
+texture_normal = ExtResource("1_w8yg3")
+texture_hover = ExtResource("2_dskf7")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("3_yvd5f")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="InventorySlotIcon" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_25k1i")
+expand_mode = 3
+
+[node name="AmountLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 2

@@ -31,6 +31,7 @@ script = ExtResource("4_v7oq1")
 script = ExtResource("5_qwp21")
 to = NodePath("../../C")
 event = &"c_button_pressed"
+delay_in_seconds = "0.0"
 
 [node name="C" type="Node" parent="StateChart/A"]
 script = ExtResource("2_oks48")
@@ -43,6 +44,7 @@ script = ExtResource("4_v7oq1")
 editor_description = "This transition will immediately transition this state to the C2 state."
 script = ExtResource("5_qwp21")
 to = NodePath("../../C2")
+delay_in_seconds = "0.0"
 
 [node name="C2" type="Node" parent="StateChart/A/C"]
 editor_description = "This state has it's state_entered signal connected. The receiver of this signal will immediately trigger the \"To C3\" transition below."
@@ -53,6 +55,7 @@ editor_description = "This transition will be called by a signal receiver connec
 script = ExtResource("5_qwp21")
 to = NodePath("../../C3")
 event = &"c2_entered"
+delay_in_seconds = "0.0"
 
 [node name="C3" type="Node" parent="StateChart/A/C"]
 script = ExtResource("4_v7oq1")
@@ -61,7 +64,7 @@ script = ExtResource("4_v7oq1")
 editor_description = "Another automatic transition, this time with a delay."
 script = ExtResource("5_qwp21")
 to = NodePath("../../C4")
-delay_seconds = 0.5
+delay_in_seconds = "0.5"
 
 [node name="C4" type="Node" parent="StateChart/A/C"]
 script = ExtResource("4_v7oq1")
@@ -70,6 +73,7 @@ script = ExtResource("4_v7oq1")
 script = ExtResource("5_qwp21")
 to = NodePath("../../../B")
 event = &"b_button_pressed"
+delay_in_seconds = "0.0"
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("5_xychp")]
 offset_left = 201.0

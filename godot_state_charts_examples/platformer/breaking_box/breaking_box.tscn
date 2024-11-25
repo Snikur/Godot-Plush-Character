@@ -391,6 +391,7 @@ script = ExtResource("7_1ecad")
 to = NodePath("../../Dead")
 event = &"health_changed"
 guard = SubResource("Resource_v858x")
+delay_in_seconds = "0.0"
 
 [node name="Dead" type="Node" parent="StateChart/ParallelState/Root"]
 script = ExtResource("6_p4jwe")
@@ -408,6 +409,7 @@ script = ExtResource("7_1ecad")
 to = NodePath("../../Hit")
 event = &"health_changed"
 guard = SubResource("Resource_ble3h")
+delay_in_seconds = "0.0"
 
 [node name="On Break" type="Node" parent="StateChart/ParallelState/Animations/Idle"]
 editor_description = "When the health is 0 we move to the break state."
@@ -415,6 +417,7 @@ script = ExtResource("7_1ecad")
 to = NodePath("../../Break")
 event = &"health_changed"
 guard = SubResource("Resource_wd8gp")
+delay_in_seconds = "0.0"
 
 [node name="Hit" type="Node" parent="StateChart/ParallelState/Animations"]
 script = ExtResource("9_dgb23")
@@ -425,6 +428,7 @@ editor_description = "The \"animation_finished\" event is sent by the animation 
 script = ExtResource("7_1ecad")
 to = NodePath("../../Idle")
 event = &"animation_finished"
+delay_in_seconds = "0.0"
 
 [node name="Break" type="Node" parent="StateChart/ParallelState/Animations"]
 editor_description = "The break animation is final, so we stay in this state indefinitely.

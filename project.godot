@@ -21,6 +21,7 @@ MM="*res://MultiplayerManager.tscn"
 Achievements="*res://achievement/achievements.tscn"
 Global="*res://global.gd"
 QuestManager="*res://questManager/quest_manager.tscn"
+Tooltip="*res://tooltip.tscn"
 
 [editor_plugins]
 

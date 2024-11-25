@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://4q85d1wx6a28"]
+
+[ext_resource type="Script" path="res://tooltip.gd" id="1_3qnd0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ko3fd"]
+font_color = Color(1, 0.819608, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pqcct"]
+font_color = Color(0.117647, 1, 0, 1)
+
+[node name="Tooltip" type="CanvasLayer"]
+script = ExtResource("1_3qnd0")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -163.0
+offset_right = 399.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Minor Healing Potion"
+
+[node name="ItemLevel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Item Level 5"
+label_settings = SubResource("LabelSettings_ko3fd")
+
+[node name="Description" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Use: Restores 70 to 90 health. (2 Min Cooldown)"
+label_settings = SubResource("LabelSettings_pqcct")
+
+[node name="MaxStack" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Max Stack: 5"
+
+[node name="SellPrice" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Sell Price: 1 [color=gold]gold[/color] 5 [color=silver]silver[/color] 13 [color=orange]copper[/color]"
+fit_content = true

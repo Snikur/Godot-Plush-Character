@@ -53,6 +53,7 @@ script = ExtResource("6_n6kwq")
 script = ExtResource("7_78ppn")
 to = NodePath("../../Drill Has No Coal")
 event = &"coal_depleted"
+delay_in_seconds = "0.0"
 
 [node name="Drill Has No Coal" type="Node" parent="StateChart/Root/Drill"]
 editor_description = "When in this state, the drill will do nothing."
@@ -62,6 +63,7 @@ script = ExtResource("6_n6kwq")
 script = ExtResource("7_78ppn")
 to = NodePath("../../Drill Has Coal")
 event = &"coal_available"
+delay_in_seconds = "0.0"
 
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_left = 366.0

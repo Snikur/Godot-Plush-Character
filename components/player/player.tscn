@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=34 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
@@ -19,6 +19,9 @@
 [ext_resource type="Script" path="res://components/player/attack_component.gd" id="9_ghftm"]
 [ext_resource type="PackedScene" uid="uid://cj0qhdy1mlbrh" path="res://dude_visual.tscn" id="11_y57ib"]
 [ext_resource type="PackedScene" uid="uid://cbaabmsqd66rd" path="res://spellManager/spell_manager.tscn" id="17_1hwc1"]
+[ext_resource type="Script" path="res://components/player/inventory.gd" id="20_f3y5p"]
+[ext_resource type="PackedScene" uid="uid://5k8nejr5fwfd" path="res://components/inventory/slot_scene.tscn" id="21_5ihsq"]
+[ext_resource type="Resource" uid="uid://grek6cbc1fe6" path="res://components/inventory/items/healing_potion.tres" id="22_e5sja"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c7m1c"]
 
@@ -270,3 +273,37 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_3vpnr")
 volume_db = 5.0
 max_polyphony = 3
+
+[node name="Inventory" type="Node3D" parent="."]
+script = ExtResource("20_f3y5p")
+slot_scene = ExtResource("21_5ihsq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Inventory"]
+
+[node name="PanelContainer" type="PanelContainer" parent="Inventory/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="Inventory/CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+columns = 4
+
+[node name="InventorySlot" parent="Inventory/CanvasLayer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("21_5ihsq")]
+layout_mode = 2
+inventory_item = ExtResource("22_e5sja")
