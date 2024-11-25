@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ds1f4doiy0pgn" path="res://well_full_scene.tscn" id="11_mbd8h"]
 [ext_resource type="PackedScene" uid="uid://cvdx7rkounuv3" path="res://lamp_post_3_scene.tscn" id="12_1i7x5"]
 
-[sub_resource type="Resource" id="Resource_v8y01"]
+[sub_resource type="Resource" id="Resource_4t65e"]
 script = ExtResource("4_sj68n")
 amount = 16
 enabled = true
@@ -22,7 +22,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_8ngqu"]
+[sub_resource type="Resource" id="Resource_6tb14"]
 script = ExtResource("5_rdfhc")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -33,7 +33,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_rco3g"]
+[sub_resource type="Resource" id="Resource_1jort"]
 script = ExtResource("6_oaa7e")
 iterations = 3
 offset_step = 0.2
@@ -45,7 +45,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_58nx3"]
+[sub_resource type="Resource" id="Resource_0mke6"]
 script = ExtResource("8_hth4v")
 terrain_node = NodePath("")
 align_with_collision_normal = false
@@ -55,9 +55,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_klxgr"]
+[sub_resource type="Resource" id="Resource_4fycm"]
 script = ExtResource("2_6yq8x")
-stack = Array[ExtResource("3_c3rjo")]([SubResource("Resource_v8y01"), SubResource("Resource_8ngqu"), SubResource("Resource_rco3g"), SubResource("Resource_58nx3")])
+stack = Array[ExtResource("3_c3rjo")]([SubResource("Resource_4t65e"), SubResource("Resource_6tb14"), SubResource("Resource_1jort"), SubResource("Resource_0mke6")])
 
 [sub_resource type="Resource" id="Resource_qx21d"]
 script = ExtResource("10_llbtl")
@@ -67,7 +67,7 @@ radius = 8.0
 script = ExtResource("10_llbtl")
 radius = 3.0
 
-[sub_resource type="Resource" id="Resource_2u644"]
+[sub_resource type="Resource" id="Resource_6sl14"]
 script = ExtResource("4_sj68n")
 amount = 512
 enabled = true
@@ -76,7 +76,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_n2wic"]
+[sub_resource type="Resource" id="Resource_0qdgn"]
 script = ExtResource("5_rdfhc")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -87,7 +87,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_3ha1e"]
+[sub_resource type="Resource" id="Resource_6kgl5"]
 script = ExtResource("6_oaa7e")
 iterations = 3
 offset_step = 0.2
@@ -99,7 +99,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ntrl5"]
+[sub_resource type="Resource" id="Resource_dht33"]
 script = ExtResource("8_hth4v")
 terrain_node = NodePath("")
 align_with_collision_normal = false
@@ -109,9 +109,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_4txff"]
+[sub_resource type="Resource" id="Resource_5mr1x"]
 script = ExtResource("2_6yq8x")
-stack = Array[ExtResource("3_c3rjo")]([SubResource("Resource_2u644"), SubResource("Resource_n2wic"), SubResource("Resource_3ha1e"), SubResource("Resource_ntrl5")])
+stack = Array[ExtResource("3_c3rjo")]([SubResource("Resource_6sl14"), SubResource("Resource_0qdgn"), SubResource("Resource_6kgl5"), SubResource("Resource_dht33")])
 
 [sub_resource type="Resource" id="Resource_ql2gd"]
 script = ExtResource("10_llbtl")
@@ -125,7 +125,7 @@ radius = 3.0
 
 [node name="ProtonScatter" type="Node3D" parent="."]
 script = ExtResource("1_x7epq")
-modifier_stack = SubResource("Resource_klxgr")
+modifier_stack = SubResource("Resource_4fycm")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -152,7 +152,7 @@ shape = SubResource("Resource_ihbn0")
 
 [node name="ProtonScatter2" type="Node3D" parent="."]
 script = ExtResource("1_x7epq")
-modifier_stack = SubResource("Resource_4txff")
+modifier_stack = SubResource("Resource_5mr1x")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

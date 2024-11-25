@@ -1,0 +1,37 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dadgw8iiv67a5"]
+
+[ext_resource type="Shader" path="res://assets/bush_shader/bush_shader.gdshader" id="1_kswap"]
+[ext_resource type="Texture2D" uid="uid://cba8d4oxvqsks" path="res://assets/bush_shader/bush_leaves.png" id="2_eeuke"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_307fk"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8acqm"]
+noise = SubResource("FastNoiseLite_307fk")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_kswap")
+shader_parameter/TopColor = Color(0.24, 0.47, 0.27, 1)
+shader_parameter/BottomColor = Color(0.13, 0.33, 0.25, 1)
+shader_parameter/FresnelColor = Color(0.58, 0.65, 0.33, 1)
+shader_parameter/WindScale = 1.71
+shader_parameter/WindSpeed = 4.0
+shader_parameter/WindStrength = 1.0
+shader_parameter/WindDensity = 5.0
+shader_parameter/ClampTop = 1.0
+shader_parameter/ClampBtm = 0.0
+shader_parameter/MeshScale = 2.0
+shader_parameter/ColorRamp = 0.3
+shader_parameter/FaceRoationVariation = 1.0
+shader_parameter/FresnelStrength = 0.5
+shader_parameter/FresnelBlend = 0.0700001
+shader_parameter/DeactivateGlobalVariation = false
+shader_parameter/WiggleFrequency = 3.0
+shader_parameter/WiggleStrength = 0.1
+shader_parameter/WiggleSpeed = 1.0
+shader_parameter/WiggleScale = 3.0
+shader_parameter/DistanceScale = 0.5
+shader_parameter/DistanceStart = 0.0
+shader_parameter/DistanceScaleRange = 70.0
+shader_parameter/Alpha = ExtResource("2_eeuke")
+shader_parameter/WiggleNoise = SubResource("NoiseTexture2D_8acqm")

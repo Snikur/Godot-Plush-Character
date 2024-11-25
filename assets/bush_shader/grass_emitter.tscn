@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcsx33upyp0nm"]
+
+[ext_resource type="Material" uid="uid://d0tq20smg4kp1" path="res://assets/bush_shader/foliage_material.tres" id="1_xvro0"]
+[ext_resource type="ArrayMesh" uid="uid://gj0h2ijcmuu7" path="res://assets/models/glTF/kenney/grass_large_mesh.res" id="2_68yvt"]
+
+[node name="GrassEmitter" type="GPUParticles3D"]
+extra_cull_margin = 20.0
+amount = 10000
+lifetime = 0.01
+explosiveness = 1.0
+interpolate = false
+fract_delta = false
+process_material = ExtResource("1_xvro0")
+draw_pass_1 = ExtResource("2_68yvt")
