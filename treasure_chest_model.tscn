@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://sg3pog51w0uy"]
 
 [ext_resource type="PackedScene" uid="uid://c25fss6gkmvsy" path="res://assets/models/chest.fbx" id="1_2klyf"]
-[ext_resource type="Material" uid="uid://j1y1ewu7q77q" path="res://assets/materials/pile_of_gold.tres" id="2_3my1f"]
+[ext_resource type="Material" path="res://assets/materials/pile_of_gold.tres" id="2_3my1f"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_irmpb"]
 material = ExtResource("2_3my1f")
