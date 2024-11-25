@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckcqtdfka0v40"]
+[gd_scene load_steps=10 format=3 uid="uid://ckcqtdfka0v40"]
 
 [ext_resource type="Script" path="res://target_dummy/target_dummy.gd" id="1_nhe4d"]
+[ext_resource type="PackedScene" uid="uid://c4ydqoek6v1dq" path="res://NPCS/BlackKnight/black_knight.fbx" id="2_0r23h"]
 [ext_resource type="Script" path="res://SyncTransform.gd" id="2_m5sep"]
 [ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="2_mslhc"]
 
@@ -22,6 +23,8 @@ radius = 15.0
 floor_constant_speed = true
 script = ExtResource("1_nhe4d")
 
+[node name="black_knight" parent="." instance=ExtResource("2_0r23h")]
+
 [node name="SyncTransform" type="Node3D" parent="."]
 script = ExtResource("2_m5sep")
 
@@ -42,6 +45,7 @@ text = "HP: 100/100"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_alqak")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
