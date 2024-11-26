@@ -19,7 +19,7 @@
 [ext_resource type="Script" path="res://components/player/attack_component.gd" id="9_ghftm"]
 [ext_resource type="PackedScene" uid="uid://cj0qhdy1mlbrh" path="res://dude_visual.tscn" id="11_y57ib"]
 [ext_resource type="PackedScene" uid="uid://cbaabmsqd66rd" path="res://spellManager/spell_manager.tscn" id="17_1hwc1"]
-[ext_resource type="Script" path="res://components/player/inventory.gd" id="20_f3y5p"]
+[ext_resource type="Script" path="res://components/inventory/inventory.gd" id="20_f3y5p"]
 [ext_resource type="PackedScene" uid="uid://5k8nejr5fwfd" path="res://components/inventory/slot_scene.tscn" id="21_5ihsq"]
 [ext_resource type="Resource" uid="uid://grek6cbc1fe6" path="res://components/inventory/items/healing_potion.tres" id="22_e5sja"]
 
@@ -75,9 +75,39 @@ stream_2/stream = ExtResource("7_4283i")
 floor_constant_speed = true
 script = ExtResource("1_ms4x1")
 
-[node name="Fishing" type="Node3D" parent="."]
-script = ExtResource("2_r84ta")
-state_path = NodePath("../StateChart/CompoundState/Fishing")
+[node name="Inventory" type="Node3D" parent="."]
+script = ExtResource("20_f3y5p")
+slot_scene = ExtResource("21_5ihsq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Inventory"]
+
+[node name="PanelContainer" type="PanelContainer" parent="Inventory/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="Inventory/CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+columns = 4
+
+[node name="InventorySlot" parent="Inventory/CanvasLayer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("21_5ihsq")]
+layout_mode = 2
+inventory_item = ExtResource("22_e5sja")
 
 [node name="CombatComponent" type="Node3D" parent="."]
 script = ExtResource("2_qqd5t")
@@ -86,37 +116,6 @@ script = ExtResource("2_qqd5t")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
 billboard = 2
 text = "HP: 100/100"
-
-[node name="Ground" type="Node3D" parent="."]
-script = ExtResource("3_t572a")
-state_path = NodePath("../StateChart/CompoundState/Ground")
-
-[node name="CoyoteJump" type="Timer" parent="Ground"]
-wait_time = 0.5
-one_shot = true
-
-[node name="Climbing" type="Node3D" parent="."]
-script = ExtResource("2_bbc06")
-state_path = NodePath("../StateChart/CompoundState/Climbing")
-
-[node name="Water" type="Node3D" parent="."]
-script = ExtResource("5_8s7e8")
-state_path = NodePath("../StateChart/CompoundState/Water")
-
-[node name="WaterRay" type="RayCast3D" parent="Water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
-target_position = Vector3(0, -2, 0)
-collide_with_areas = true
-
-[node name="HeadCollider" type="Area3D" parent="Water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/HeadCollider"]
-shape = SubResource("SphereShape3D_c7m1c")
-
-[node name="Knockback" type="Node3D" parent="."]
-script = ExtResource("5_c3oes")
-state_path = NodePath("../StateChart/CompoundState/Knockback")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("2_c1ftv")
@@ -224,6 +223,41 @@ to = NodePath("../../Ground")
 event = &"to_ground"
 delay_in_seconds = "0.0"
 
+[node name="Fishing" type="Node3D" parent="."]
+script = ExtResource("2_r84ta")
+state_path = NodePath("../StateChart/CompoundState/Fishing")
+
+[node name="Ground" type="Node3D" parent="."]
+script = ExtResource("3_t572a")
+state_path = NodePath("../StateChart/CompoundState/Ground")
+
+[node name="CoyoteJump" type="Timer" parent="Ground"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Climbing" type="Node3D" parent="."]
+script = ExtResource("2_bbc06")
+state_path = NodePath("../StateChart/CompoundState/Climbing")
+
+[node name="Water" type="Node3D" parent="."]
+script = ExtResource("5_8s7e8")
+state_path = NodePath("../StateChart/CompoundState/Water")
+
+[node name="WaterRay" type="RayCast3D" parent="Water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+target_position = Vector3(0, -2, 0)
+collide_with_areas = true
+
+[node name="HeadCollider" type="Area3D" parent="Water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/HeadCollider"]
+shape = SubResource("SphereShape3D_c7m1c")
+
+[node name="Knockback" type="Node3D" parent="."]
+script = ExtResource("5_c3oes")
+state_path = NodePath("../StateChart/CompoundState/Knockback")
+
 [node name="VisualRoot" type="Node3D" parent="."]
 unique_name_in_owner = true
 
@@ -273,37 +307,3 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_3vpnr")
 volume_db = 5.0
 max_polyphony = 3
-
-[node name="Inventory" type="Node3D" parent="."]
-script = ExtResource("20_f3y5p")
-slot_scene = ExtResource("21_5ihsq")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Inventory"]
-
-[node name="PanelContainer" type="PanelContainer" parent="Inventory/CanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="Inventory/CanvasLayer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="GridContainer" type="GridContainer" parent="Inventory/CanvasLayer/PanelContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-columns = 4
-
-[node name="InventorySlot" parent="Inventory/CanvasLayer/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("21_5ihsq")]
-layout_mode = 2
-inventory_item = ExtResource("22_e5sja")

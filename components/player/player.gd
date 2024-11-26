@@ -29,7 +29,6 @@ var speed_modifier: float = 1.0
 @onready var movement_dust = %MovementDust
 @onready var foot_step_audio = %FootStepAudio
 @onready var impact_audio = %ImpactAudio
-@onready var spell_manager: SpellManager = %SpellManager
 @onready var combat: CombatComponent = $CombatComponent
 
 const JUMP_PARTICLES_SCENE = preload("./vfx/jump_particles.tscn")
@@ -54,7 +53,6 @@ func _ready():
 	if data.has("position"):
 		global_position = data["position"]
 	if (multiplayer.is_server()):
-		print("connect die for ", name)
 		combat.died.connect(func():
 			teleport_to.rpc_id(id, data["position"])
 			combat.request_change.rpc(combat.max_health)
@@ -66,7 +64,6 @@ func _ready():
 		Global.fov_changed.connect(func(new_fov):
 			camera.fov = new_fov
 		)
-		spell_manager.setup_action_bar()
 	else: #if other clients and server
 		set_process_unhandled_input(false)
 		$OrbitView.queue_free()

@@ -17,6 +17,4 @@ enum Rarity {
 @export var cooldown: int = 120
 @export var max_stack: int = 5
 @export var sell_price: int = 10507
-
-func on_use() -> void:
-	pass
+@export var actions: Array[ItemOnUse]

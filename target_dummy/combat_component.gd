@@ -4,6 +4,8 @@ class_name CombatComponent
 @onready var status_label: Label3D = $Status
 var max_health: int = 100
 var health: int = 100
+var max_mana: int = 100
+var mana: int = 100
 var changes_received: Dictionary = {}
 var threat: Dictionary = {}
 var evading: bool = false
@@ -11,7 +13,7 @@ signal died
 signal health_changed(change)
 
 func _ready():
-	if (not get_parent() is Player): # hacky solution
+	if (not get_parent() is Player): #TODO: hacky solution
 		await MM.connected
 	if (multiplayer.is_server()):
 		print("connect slow tick from ", get_parent().name)
@@ -20,8 +22,12 @@ func _ready():
 @rpc("authority", "reliable", "call_local")
 func change_health(value: int):
 	health = value
-	status_label.text = "HP: " + str(health) + "/" + str(max_health)
+	update_label()
 	health_changed.emit(health)
+
+func update_label():
+	status_label.text = "HP: " + str(health) + "/" + str(max_health)
+	status_label.text += "\nMANA: " + str(mana) + "/" + str(max_mana)
 
 @rpc("any_peer", "reliable", "call_local")
 func request_change(value: int):

@@ -1,6 +1,7 @@
 extends TextureButton
 class_name InventorySlot
 
+var inventory: Inventory
 @export var inventory_item: ItemResource = null
 @export var amount: int = 1
 @onready var amount_label: Label = $MarginContainer/AmountLabel

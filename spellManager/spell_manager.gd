@@ -30,9 +30,6 @@ func send_spell(type: int, projectile_type: int , index: int):
 		casted_spell.init(null)
 		casted_spell.cast_spell(self, index)
 
-func setup_action_bar():
-	action_bar.init()
-
 func get_next_spell_index() -> int:
 	spell_index = spell_index + 1
 	return spell_index
