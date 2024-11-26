@@ -9,7 +9,7 @@ enum TYPE {
 }
 
 @export var type: TYPE = TYPE.HEALTH
-@export var effect_range: Vector2 = Vector2(70, 90)
+@export var effect_range: Vector2i = Vector2i(70, 90)
 
 func on_use(inventory: Inventory):
 	var player: Player = inventory.parent

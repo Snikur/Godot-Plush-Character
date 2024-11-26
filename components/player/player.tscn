@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=33 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
@@ -22,8 +22,6 @@
 [ext_resource type="Script" path="res://components/inventory/inventory.gd" id="20_f3y5p"]
 [ext_resource type="PackedScene" uid="uid://5k8nejr5fwfd" path="res://components/inventory/slot_scene.tscn" id="21_5ihsq"]
 [ext_resource type="Resource" uid="uid://grek6cbc1fe6" path="res://components/inventory/items/healing_potion.tres" id="22_e5sja"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_c7m1c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_slah2"]
 radius = 0.2
@@ -247,12 +245,6 @@ state_path = NodePath("../StateChart/CompoundState/Water")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 target_position = Vector3(0, -2, 0)
 collide_with_areas = true
-
-[node name="HeadCollider" type="Area3D" parent="Water"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/HeadCollider"]
-shape = SubResource("SphereShape3D_c7m1c")
 
 [node name="Knockback" type="Node3D" parent="."]
 script = ExtResource("5_c3oes")

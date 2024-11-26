@@ -42,10 +42,10 @@ func get_sell_price(value: int) -> String:
 	var gold = 0
 	if (value > 0):
 		copper = value % 100
-		value = int(value / 100)
+		value = floori(value / 100.0)
 	if (value > 0):
 		silver = value % 100
-		value = int(value / 100)
+		value = floori(value / 100.0)
 	if (value > 0):
 		gold = value
 	if (gold > 0):
