@@ -15,6 +15,7 @@ signal health_changed(change)
 func _ready():
 	if (not get_parent() is Player): #TODO: hacky solution
 		await MM.connected
+	update_label()
 	if (multiplayer.is_server()):
 		print("connect slow tick from ", get_parent().name)
 		MM.slow_tick.connect(handle_changes)
@@ -48,7 +49,7 @@ func die():
 	threat = {}
 	changes_received = {}
 	health = 0
-	status_label.text = "HP: " + str(health) + "/" + str(max_health)
+	update_label()
 	died.emit()
 
 func reset():

@@ -30,6 +30,7 @@ var speed_modifier: float = 1.0
 @onready var foot_step_audio = %FootStepAudio
 @onready var impact_audio = %ImpactAudio
 @onready var combat: CombatComponent = $CombatComponent
+@onready var spell_manager: SpellManager = $VisualRoot/Dude/AutoAttack/SpellManager
 
 const JUMP_PARTICLES_SCENE = preload("./vfx/jump_particles.tscn")
 const LAND_PARTICLES_SCENE = preload("./vfx/land_particles.tscn")

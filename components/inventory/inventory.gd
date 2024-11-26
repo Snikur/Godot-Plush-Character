@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 		add_item(potion, randi_range(1, 5))
 	if (Input.is_action_just_pressed("ui_text_submit")):
 		var slots: Array[Node] = grid.get_children()
-		if slots[0] is InventorySlot:
+		if slots.size() > 0 and slots[0] is InventorySlot:
 			for actions in slots[0].inventory_item.actions:
 				actions.on_use(self)
 			slots[0].queue_free()

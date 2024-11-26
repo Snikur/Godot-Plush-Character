@@ -15,9 +15,9 @@ var margin_offset: Vector2 = Vector2(24, 24)
 func _ready():
 	visible = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
-	var viewport_size: Vector2 = get_viewport().size
+	#var viewport_size: Vector2 = get_viewport().size
 	root.position = mouse_pos - (panel.size / 2) - margin_offset #TODO: Check which quadrant the mouse is within, currently works for bottom-right
 
 func set_tooltip(new_item: ItemResource):
@@ -42,10 +42,10 @@ func get_sell_price(value: int) -> String:
 	var gold = 0
 	if (value > 0):
 		copper = value % 100
-		value = value / 100
+		value = int(value / 100)
 	if (value > 0):
 		silver = value % 100
-		value = value / 100
+		value = int(value / 100)
 	if (value > 0):
 		gold = value
 	if (gold > 0):

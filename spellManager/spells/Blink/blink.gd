@@ -17,7 +17,7 @@ func cast_spell(owner: SpellManager, index: int):
 		owner.source.skin.add_child(shape_cast)
 		shape_cast.add_exception(owner.source)
 		shape_cast.shape = SphereShape3D.new()
-		shape_cast.collide_with_areas = true
+		#shape_cast.collide_with_areas = true
 		shape_cast.position = Vector3(0.0, 1.0, 0.0)
 		shape_cast.target_position = Vector3(0.0, 0.0, 30.0)
 		shape_cast.force_shapecast_update()
