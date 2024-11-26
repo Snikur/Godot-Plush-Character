@@ -1,9 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=35 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_c1ftv"]
-[ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="2_qqd5t"]
 [ext_resource type="Script" path="res://components/player/fishing.gd" id="2_r84ta"]
 [ext_resource type="PackedScene" uid="uid://c0b71d2b1hdp6" path="res://components/orbit_control/orbit_view.tscn" id="3_hcr6r"]
 [ext_resource type="Script" path="res://components/player/ground.gd" id="3_t572a"]
@@ -14,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b7q12qmsksbc7" path="res://assets/sounds/footstep_concrete_000.ogg" id="5_8ixl8"]
 [ext_resource type="Script" path="res://components/player/water.gd" id="5_8s7e8"]
 [ext_resource type="Script" path="res://components/player/knockback.gd" id="5_c3oes"]
+[ext_resource type="Script" path="res://components/player/player_combat.gd" id="5_l04yq"]
 [ext_resource type="AudioStream" uid="uid://c6unhc5lontfn" path="res://assets/sounds/footstep_concrete_001.ogg" id="6_nlp36"]
 [ext_resource type="AudioStream" uid="uid://byg4lkp3ws8kt" path="res://assets/sounds/footstep_concrete_002.ogg" id="7_4283i"]
 [ext_resource type="Script" path="res://components/player/attack_component.gd" id="9_ghftm"]
@@ -22,6 +22,12 @@
 [ext_resource type="Script" path="res://components/inventory/inventory.gd" id="20_f3y5p"]
 [ext_resource type="PackedScene" uid="uid://5k8nejr5fwfd" path="res://components/inventory/slot_scene.tscn" id="21_5ihsq"]
 [ext_resource type="Resource" uid="uid://grek6cbc1fe6" path="res://components/inventory/items/healing_potion.tres" id="22_e5sja"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ms0n1"]
+bg_color = Color(0.185315, 0.463066, 2.88785e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ejxx"]
+bg_color = Color(0.184314, 0.462745, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_slah2"]
 radius = 0.2
@@ -108,12 +114,51 @@ layout_mode = 2
 inventory_item = ExtResource("22_e5sja")
 
 [node name="CombatComponent" type="Node3D" parent="."]
-script = ExtResource("2_qqd5t")
+script = ExtResource("5_l04yq")
 
 [node name="Status" type="Label3D" parent="CombatComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
 billboard = 2
 text = "HP: 100/100"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CombatComponent"]
+
+[node name="Control" type="Control" parent="CombatComponent/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CombatComponent/CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CombatComponent/CanvasLayer/Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CombatComponent/CanvasLayer/Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="CombatComponent/CanvasLayer/Control/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ms0n1")
+step = 1.0
+value = 66.0
+
+[node name="ManaBar" type="ProgressBar" parent="CombatComponent/CanvasLayer/Control/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_6ejxx")
+step = 1.0
+value = 33.0
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("2_c1ftv")
