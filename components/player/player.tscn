@@ -1,17 +1,24 @@
-[gd_scene load_steps=35 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=42 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
+[ext_resource type="Texture2D" uid="uid://c2tyuas1i0r3q" path="res://assets/textures/bottles/1.png" id="2_0yeev"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_c1ftv"]
 [ext_resource type="Script" path="res://components/player/fishing.gd" id="2_r84ta"]
+[ext_resource type="Script" path="res://components/player/buffs.gd" id="2_yyepl"]
+[ext_resource type="Texture2D" uid="uid://u3203rujva66" path="res://assets/textures/bottles/2.png" id="3_8htp3"]
+[ext_resource type="Texture2D" uid="uid://dkc6wtqem4kej" path="res://components/inventory/user_interface/hover_white.png" id="3_ab2uj"]
 [ext_resource type="PackedScene" uid="uid://c0b71d2b1hdp6" path="res://components/orbit_control/orbit_view.tscn" id="3_hcr6r"]
+[ext_resource type="Texture2D" uid="uid://b1l0vw5piiapr" path="res://spellManager/actionBar/blank_spell.png" id="3_nrhex"]
 [ext_resource type="Script" path="res://components/player/ground.gd" id="3_t572a"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_w7ieo"]
 [ext_resource type="Material" uid="uid://fkuklawrv3wp" path="res://components/player/vfx/dust_mat.tres" id="4_j7qt1"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_kvrxs"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_4c8au"]
+[ext_resource type="Texture2D" uid="uid://d0ewvjdkls8cq" path="res://assets/textures/bottles/3.png" id="5_4fitj"]
 [ext_resource type="AudioStream" uid="uid://b7q12qmsksbc7" path="res://assets/sounds/footstep_concrete_000.ogg" id="5_8ixl8"]
 [ext_resource type="Script" path="res://components/player/water.gd" id="5_8s7e8"]
+[ext_resource type="Texture2D" uid="uid://cvfmsnrnyugkp" path="res://assets/textures/bottles/5.png" id="5_75qdn"]
 [ext_resource type="Script" path="res://components/player/knockback.gd" id="5_c3oes"]
 [ext_resource type="Script" path="res://components/player/player_combat.gd" id="5_l04yq"]
 [ext_resource type="AudioStream" uid="uid://c6unhc5lontfn" path="res://assets/sounds/footstep_concrete_001.ogg" id="6_nlp36"]
@@ -79,6 +86,236 @@ stream_2/stream = ExtResource("7_4283i")
 floor_constant_speed = true
 script = ExtResource("1_ms4x1")
 
+[node name="Buffs" type="Node3D" parent="."]
+script = ExtResource("2_yyepl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Buffs"]
+
+[node name="PanelContainer" type="PanelContainer" parent="Buffs/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 58.0
+offset_top = 94.0
+offset_right = 198.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Buffs/CanvasLayer/PanelContainer"]
+layout_mode = 2
+
+[node name="Stack" type="VBoxContainer" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Buffs" type="HBoxContainer" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack"]
+layout_mode = 2
+alignment = 2
+
+[node name="Slot" type="TextureButton" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Buffs"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("2_0yeev")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Border" type="TextureRect" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Buffs/Slot"]
+modulate = Color(0.196078, 0.588235, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ab2uj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Duration" type="TextureProgressBar" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Buffs/Slot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+value = 33.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("3_nrhex")
+tint_progress = Color(0.0784314, 0.0784314, 0.0784314, 0.85098)
+
+[node name="Slot2" type="TextureButton" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Buffs"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("5_75qdn")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Border" type="TextureRect" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Buffs/Slot2"]
+modulate = Color(0, 0.588235, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ab2uj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Duration" type="TextureProgressBar" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Buffs/Slot2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+value = 66.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("3_nrhex")
+tint_progress = Color(0.0784314, 0.0784314, 0.0784314, 0.85098)
+
+[node name="Debuffs" type="HBoxContainer" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack"]
+layout_mode = 2
+alignment = 2
+
+[node name="Slot" type="TextureButton" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("5_4fitj")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Border" type="TextureRect" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs/Slot"]
+modulate = Color(0.784314, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ab2uj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Duration" type="TextureProgressBar" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs/Slot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+value = 75.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("3_nrhex")
+tint_progress = Color(0.0784314, 0.0784314, 0.0784314, 0.85098)
+
+[node name="Slot2" type="TextureButton" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("3_8htp3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Border" type="TextureRect" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs/Slot2"]
+modulate = Color(0.784314, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ab2uj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Duration" type="TextureProgressBar" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs/Slot2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+value = 25.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("3_nrhex")
+tint_progress = Color(0.0784314, 0.0784314, 0.0784314, 0.85098)
+
+[node name="Slot3" type="TextureButton" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("3_8htp3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Border" type="TextureRect" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs/Slot3"]
+modulate = Color(1, 0.588235, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ab2uj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Duration" type="TextureProgressBar" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs/Slot3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+value = 25.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("3_nrhex")
+tint_progress = Color(0.0784314, 0.0784314, 0.0784314, 0.85098)
+
+[node name="Slot4" type="TextureButton" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("3_8htp3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Border" type="TextureRect" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs/Slot4"]
+modulate = Color(0.588235, 0, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ab2uj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Duration" type="TextureProgressBar" parent="Buffs/CanvasLayer/PanelContainer/MarginContainer/Stack/Debuffs/Slot4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+value = 25.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("3_nrhex")
+tint_progress = Color(0.0784314, 0.0784314, 0.0784314, 0.85098)
+
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("20_f3y5p")
 slot_scene = ExtResource("21_5ihsq")
@@ -91,8 +328,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
+offset_left = -128.0
+offset_top = -128.0
+offset_right = -32.0
+offset_bottom = -32.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -123,28 +362,30 @@ text = "HP: 100/100"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CombatComponent"]
 
-[node name="Control" type="Control" parent="CombatComponent/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PanelContainer" type="PanelContainer" parent="CombatComponent/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = 78.0
+offset_right = -48.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CombatComponent/CanvasLayer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="CombatComponent/CanvasLayer/Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CombatComponent/CanvasLayer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CombatComponent/CanvasLayer/Control/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CombatComponent/CanvasLayer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HealthBar" type="ProgressBar" parent="CombatComponent/CanvasLayer/Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HealthBar" type="ProgressBar" parent="CombatComponent/CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
@@ -152,7 +393,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ms0n1")
 step = 1.0
 value = 66.0
 
-[node name="ManaBar" type="ProgressBar" parent="CombatComponent/CanvasLayer/Control/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ManaBar" type="ProgressBar" parent="CombatComponent/CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
