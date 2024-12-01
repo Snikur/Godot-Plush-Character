@@ -6,6 +6,8 @@ var alreadyPlayed : bool = false
 var originalFilePath : String = "res://achievement/achievements.json"
 var userFilePath : String = "user://achievements.json"
 @onready var popup = $Panel
+@onready var title = $Panel/VBoxContainer/Title
+@onready var description = $Panel/VBoxContainer/Description
 @onready var timer = $Timer
 
 
@@ -45,19 +47,18 @@ func modifyAchievements(achievement, value):
 			showPopup(dict[achievement].name, dict[achievement].description)
 			dict[achievement].completed = true
 			
-func showPopup(title, description):
-	popup.get_node("Title").text = title
-	popup.get_node("Description").text = description
+func showPopup(new_title, new_description):
+	title.text = new_title
+	description.text = new_description
 	popup.show()
-	var tween = get_tree().create_tween()
-	tween.tween_property(popup, "position", popup.position + Vector2(0, -200), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	var tween = create_tween()
+	tween.tween_property(popup, "position", popup.position + Vector2(0, -300), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	timer.start()
 	
 func hidePopup():
-	var tween = get_tree().create_tween()
-	tween.tween_property(popup, "position", popup.position + Vector2(0, 200), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	await tween.finished
-	popup.hide()
+	var tween = create_tween()
+	tween.tween_property(popup, "position", popup.position + Vector2(0, 300), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tween.tween_callback(popup.hide)
 	
 func _on_timer_timeout():
 	hidePopup()

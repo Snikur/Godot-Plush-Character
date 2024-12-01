@@ -6,7 +6,7 @@
 layer = 10
 script = ExtResource("1_kuvcx")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -20,34 +20,24 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 
-[node name="AchivementUnlocked" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_right = 150.0
-offset_bottom = 23.0
-grow_horizontal = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="AchivementUnlocked" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
 text = "Achivement unlocked"
 horizontal_alignment = 1
 
-[node name="Title" type="Label" parent="Panel"]
-layout_mode = 0
-offset_top = 23.0
-offset_right = 300.0
-offset_bottom = 60.0
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.733812, 0.597717, 0.157554, 1)
 theme_override_font_sizes/font_size = 25
 text = "Placeholder title"
 horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="Panel"]
-layout_mode = 1
-offset_left = 5.0
-offset_top = 60.0
-offset_right = 295.0
-offset_bottom = 97.0
+[node name="Description" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "this is a placeholder description, that placeholders very much"
 horizontal_alignment = 1

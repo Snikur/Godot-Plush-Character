@@ -15,29 +15,30 @@ script = ExtResource("1_mdmv7")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Spellbook" type="Panel" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 225.0
-offset_top = 25.0
-offset_right = -177.0
-offset_bottom = -123.0
+[node name="Spellbook" type="PanelContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -364.5
+offset_top = -128.5
+offset_right = 364.5
+offset_bottom = 128.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_snhcv")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/Spellbook"]
-clip_contents = false
-custom_minimum_size = Vector2(375, 475)
-layout_mode = 0
-offset_left = 15.0
-offset_top = 10.0
-offset_right = 390.0
-offset_bottom = 485.0
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Spellbook"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Spellbook/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 horizontal_scroll_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/Spellbook/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Spellbook/HBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -46,68 +47,54 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="SpellGridContainer" type="GridContainer" parent="UI/Spellbook/ScrollContainer/MarginContainer"]
+[node name="SpellGridContainer" type="GridContainer" parent="UI/Spellbook/HBoxContainer/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 4)
 layout_mode = 2
 columns = 3
 script = ExtResource("3_lo8px")
 
-[node name="SpellInformation" type="Panel" parent="UI/Spellbook"]
-custom_minimum_size = Vector2(350, 475)
-layout_mode = 0
-offset_left = 390.0
-offset_top = 10.0
-offset_right = 740.0
-offset_bottom = 485.0
+[node name="SpellInformation" type="PanelContainer" parent="UI/Spellbook/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="SpellIcon" type="TextureRect" parent="UI/Spellbook/SpellInformation"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Spellbook/HBoxContainer/SpellInformation"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Spellbook/HBoxContainer/SpellInformation/MarginContainer"]
+layout_mode = 2
+
+[node name="SpellIcon" type="TextureRect" parent="UI/Spellbook/HBoxContainer/SpellInformation/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
-layout_mode = 0
-offset_left = 115.0
-offset_top = 55.0
-offset_right = 235.0
-offset_bottom = 175.0
+layout_mode = 2
 texture = ExtResource("2_s1noq")
-expand_mode = 1
+expand_mode = 2
+stretch_mode = 3
 
-[node name="SpellName" type="Label" parent="UI/Spellbook/SpellInformation"]
+[node name="SpellName" type="Label" parent="UI/Spellbook/HBoxContainer/SpellInformation/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -54.0
-offset_top = 10.0
-offset_right = 54.0
-offset_bottom = 33.0
-grow_horizontal = 2
+layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Example Spell"
 
-[node name="SpellCooldown" type="Label" parent="UI/Spellbook/SpellInformation"]
+[node name="SpellCooldown" type="Label" parent="UI/Spellbook/HBoxContainer/SpellInformation/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -57.5
-offset_right = 343.0
-offset_bottom = -15.5
-grow_vertical = 2
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Cooldown: 20s
 "
 
-[node name="SpellDescription" type="RichTextLabel" parent="UI/Spellbook/SpellInformation"]
+[node name="SpellDescription" type="RichTextLabel" parent="UI/Spellbook/HBoxContainer/SpellInformation/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 10.0
-offset_top = 216.0
-offset_right = 350.0
-offset_bottom = 464.0
-text = "example description of very dangerous spell you can write many texts wow. Do 1337 damages in your face yo."
+layout_mode = 2
+text = "Example description of very dangerous spell you can write many texts wow. Do 1337 damages in your face yo.
+This is a very long description of a spell."
+fit_content = true
 
 [node name="ActionBar" type="HBoxContainer" parent="UI"]
 anchors_preset = 7

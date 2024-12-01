@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 
 @onready var spellGridContainer = %SpellGridContainer
 func _ready():
