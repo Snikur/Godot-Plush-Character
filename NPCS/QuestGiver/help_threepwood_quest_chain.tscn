@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7v0482cqqwj2"]
+[gd_scene load_steps=17 format=3 uid="uid://c7v0482cqqwj2"]
 
 [ext_resource type="Script" path="res://help_threepwood_quest_chain.gd" id="1_srf8x"]
 [ext_resource type="Script" path="res://name.gd" id="2_0ysib"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="7_dyn4e"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/guard.gd" id="9_thgcu"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/all_of_guard.gd" id="11_smeak"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kearc"]
+font_size = 32
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_12mev"]
 radius = 2.0
@@ -47,6 +50,70 @@ pixel_size = 0.025
 billboard = 2
 alpha_cut = 1
 text = "!"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -214.5
+offset_right = 432.0
+offset_bottom = 214.5
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "WANTED: Target Dummy and the Secret Coin!"
+label_settings = SubResource("LabelSettings_kearc")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="QuestText" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+text = "Target Dummy, the scourge of the seven seas, was known for his cunning and his love of gold.
+
+Legend has it that he buried his most prized possession, a golden coin imbued with mystical powers, inside this forest.
+
+This coin, they say, could grant its holder untold riches and eternal youth. For centuries, treasure hunters have searched high and low for this elusive prize, but none have ever found it. Some believe the coin is still out there, waiting to be claimed by a worthy adventurer. Others doubt its existence, dismissing it as a pirate's tale. 
+
+But one thing is certain: the mystery of Target Dummy's Secret Golden Coin continues to captivate imaginations and drive explorers to the ends of the earth.
+
+Will you help me find his Legendary Coin and return it here?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="AcceptButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Accept"
+
+[node name="CompleteButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Complete"
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Close"
 
 [node name="PickupZone" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

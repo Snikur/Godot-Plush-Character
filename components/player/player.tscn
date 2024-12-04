@@ -1,9 +1,10 @@
-[gd_scene load_steps=42 format=3 uid="uid://bgkmxyw21pc1m"]
+[gd_scene load_steps=43 format=3 uid="uid://bgkmxyw21pc1m"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_ms4x1"]
 [ext_resource type="Texture2D" uid="uid://c2tyuas1i0r3q" path="res://assets/textures/bottles/1.png" id="2_0yeev"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_c1ftv"]
+[ext_resource type="Script" path="res://components/player/level.gd" id="2_p8b54"]
 [ext_resource type="Script" path="res://components/player/fishing.gd" id="2_r84ta"]
 [ext_resource type="Script" path="res://components/player/buffs.gd" id="2_yyepl"]
 [ext_resource type="Texture2D" uid="uid://u3203rujva66" path="res://assets/textures/bottles/2.png" id="3_8htp3"]
@@ -85,6 +86,35 @@ stream_2/stream = ExtResource("7_4283i")
 [node name="Player" type="CharacterBody3D"]
 floor_constant_speed = true
 script = ExtResource("1_ms4x1")
+
+[node name="Level" type="Node3D" parent="."]
+script = ExtResource("2_p8b54")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Level"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Level/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -229.0
+offset_top = -27.0
+offset_right = 229.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ExperienceBar" type="ProgressBar" parent="Level/CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 1
+allow_greater = true
+
+[node name="Level" type="Label" parent="Level/CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Buffs" type="Node3D" parent="."]
 script = ExtResource("2_yyepl")
