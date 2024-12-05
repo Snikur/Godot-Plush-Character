@@ -1,20 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckcqtdfka0v40"]
+[gd_scene load_steps=7 format=3 uid="uid://ckcqtdfka0v40"]
 
 [ext_resource type="Script" path="res://target_dummy/target_dummy.gd" id="1_nhe4d"]
-[ext_resource type="PackedScene" uid="uid://c4ydqoek6v1dq" path="res://NPCS/BlackKnight/black_knight.fbx" id="2_0r23h"]
+[ext_resource type="PackedScene" uid="uid://d10r68gfi4q2o" path="res://NPCS/BlackKnight/black_knight_scene.tscn" id="2_krlge"]
 [ext_resource type="Script" path="res://SyncTransform.gd" id="2_m5sep"]
-[ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="2_mslhc"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_alqak"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6p7b"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_vwkcl"]
-material = SubResource("StandardMaterial3D_p6p7b")
-size = Vector3(0.66, 0.1, 0.1)
+[ext_resource type="PackedScene" uid="uid://uyc1dprapw5c" path="res://combat_component.tscn" id="4_a5nij"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8rcei"]
+height = 4.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2j3br"]
 radius = 15.0
@@ -23,10 +15,12 @@ radius = 15.0
 floor_constant_speed = true
 script = ExtResource("1_nhe4d")
 
-[node name="black_knight" parent="." instance=ExtResource("2_0r23h")]
+[node name="black_knight" parent="." instance=ExtResource("2_krlge")]
 
 [node name="SyncTransform" type="Node3D" parent="."]
 script = ExtResource("2_m5sep")
+
+[node name="CombatComponent" parent="." instance=ExtResource("4_a5nij")]
 
 [node name="SwingTimer" type="Timer" parent="."]
 one_shot = true
@@ -34,26 +28,8 @@ one_shot = true
 [node name="LastHitTimer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="CombatComponent" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("2_mslhc")
-
-[node name="Status" type="Label3D" parent="CombatComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-billboard = 2
-text = "HP: 100/100"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_alqak")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.466926, 0.418833)
-mesh = SubResource("BoxMesh_vwkcl")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("CapsuleShape3D_8rcei")
 
 [node name="AggroArea" type="Area3D" parent="."]

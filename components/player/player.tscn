@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://c2tyuas1i0r3q" path="res://assets/textures/bottles/1.png" id="2_0yeev"]
 [ext_resource type="Script" path="res://components/player/climbing.gd" id="2_bbc06"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_c1ftv"]
-[ext_resource type="Script" path="res://components/player/level.gd" id="2_p8b54"]
 [ext_resource type="Script" path="res://components/player/fishing.gd" id="2_r84ta"]
 [ext_resource type="Script" path="res://components/player/buffs.gd" id="2_yyepl"]
 [ext_resource type="Texture2D" uid="uid://u3203rujva66" path="res://assets/textures/bottles/2.png" id="3_8htp3"]
@@ -26,15 +25,16 @@
 [ext_resource type="AudioStream" uid="uid://byg4lkp3ws8kt" path="res://assets/sounds/footstep_concrete_002.ogg" id="7_4283i"]
 [ext_resource type="Script" path="res://components/player/attack_component.gd" id="9_ghftm"]
 [ext_resource type="PackedScene" uid="uid://cj0qhdy1mlbrh" path="res://dude_visual.tscn" id="11_y57ib"]
+[ext_resource type="PackedScene" uid="uid://uyc1dprapw5c" path="res://combat_component.tscn" id="12_0nnhf"]
 [ext_resource type="PackedScene" uid="uid://cbaabmsqd66rd" path="res://spellManager/spell_manager.tscn" id="17_1hwc1"]
 [ext_resource type="Script" path="res://components/inventory/inventory.gd" id="20_f3y5p"]
 [ext_resource type="PackedScene" uid="uid://5k8nejr5fwfd" path="res://components/inventory/slot_scene.tscn" id="21_5ihsq"]
 [ext_resource type="Resource" uid="uid://grek6cbc1fe6" path="res://components/inventory/items/healing_potion.tres" id="22_e5sja"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ms0n1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8nyw"]
 bg_color = Color(0.185315, 0.463066, 2.88785e-07, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ejxx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fo8yy"]
 bg_color = Color(0.184314, 0.462745, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_slah2"]
@@ -86,35 +86,6 @@ stream_2/stream = ExtResource("7_4283i")
 [node name="Player" type="CharacterBody3D"]
 floor_constant_speed = true
 script = ExtResource("1_ms4x1")
-
-[node name="Level" type="Node3D" parent="."]
-script = ExtResource("2_p8b54")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Level"]
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Level/CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -229.0
-offset_top = -27.0
-offset_right = 229.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="ExperienceBar" type="ProgressBar" parent="Level/CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-size_flags_vertical = 1
-allow_greater = true
-
-[node name="Level" type="Label" parent="Level/CanvasLayer/HBoxContainer"]
-layout_mode = 2
-text = "Level 1"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Buffs" type="Node3D" parent="."]
 script = ExtResource("2_yyepl")
@@ -382,13 +353,8 @@ columns = 4
 layout_mode = 2
 inventory_item = ExtResource("22_e5sja")
 
-[node name="CombatComponent" type="Node3D" parent="."]
+[node name="CombatComponent" parent="." instance=ExtResource("12_0nnhf")]
 script = ExtResource("5_l04yq")
-
-[node name="Status" type="Label3D" parent="CombatComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
-billboard = 2
-text = "HP: 100/100"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CombatComponent"]
 
@@ -421,7 +387,7 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_ms0n1")
+theme_override_styles/background = SubResource("StyleBoxFlat_f8nyw")
 step = 1.0
 value = 66.0
 
@@ -429,9 +395,33 @@ value = 66.0
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_6ejxx")
+theme_override_styles/background = SubResource("StyleBoxFlat_fo8yy")
 step = 1.0
 value = 33.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CombatComponent/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -229.0
+offset_top = -27.0
+offset_right = 229.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ExperienceBar" type="ProgressBar" parent="CombatComponent/CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 1
+allow_greater = true
+
+[node name="Level" type="Label" parent="CombatComponent/CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("2_c1ftv")

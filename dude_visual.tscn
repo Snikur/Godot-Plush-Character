@@ -1,23 +1,9 @@
-[gd_scene load_steps=53 format=3 uid="uid://cj0qhdy1mlbrh"]
+[gd_scene load_steps=38 format=3 uid="uid://cj0qhdy1mlbrh"]
 
 [ext_resource type="PackedScene" uid="uid://cdpgr4gviuutg" path="res://dude/T-Pose.fbx" id="1_w0oxy"]
 [ext_resource type="Animation" uid="uid://ckhm1mm6mhfiu" path="res://dude/anim/t-_pose.res" id="2_a26x8"]
 [ext_resource type="Script" path="res://dude_visual.gd" id="2_jp4a7"]
-[ext_resource type="Animation" uid="uid://d2g1wt7t758bc" path="res://dude/anim/breathing_idle.res" id="3_op0ec"]
-[ext_resource type="Animation" uid="uid://bpsh7f62qbtlq" path="res://dude/anim/fishing_cast.res" id="4_jye48"]
-[ext_resource type="Animation" uid="uid://bo8avv3ygo1wy" path="res://dude/anim/fishing_idle.res" id="5_t7evn"]
-[ext_resource type="Animation" uid="uid://cenmi5sen8imq" path="res://dude/anim/house_dancing.res" id="6_hpbw8"]
-[ext_resource type="Animation" uid="uid://degsw2gnnn74u" path="res://dude/anim/running.res" id="7_06ooh"]
-[ext_resource type="Animation" uid="uid://bxt2qbasm0pgt" path="res://dude/anim/sneak_walk.res" id="8_1tk7k"]
-[ext_resource type="Animation" uid="uid://cbdsrio6d4ibd" path="res://dude/anim/standing_1_h_cast_spell_01.res" id="9_mwocd"]
-[ext_resource type="Animation" uid="uid://bwuk88a2tc5n0" path="res://dude/anim/standing_2_h_magic_attack_02.res" id="10_urjvq"]
-[ext_resource type="Animation" uid="uid://cpdeo1segmar7" path="res://dude/anim/standing_react_death_backward.res" id="11_2no3l"]
-[ext_resource type="Animation" uid="uid://cqhnwy3l2pc7k" path="res://dude/anim/swimming.res" id="12_85y56"]
-[ext_resource type="Animation" uid="uid://csksgdj444p46" path="res://dude/anim/walking.res" id="13_761gi"]
-[ext_resource type="Animation" uid="uid://cu73kjtokaglc" path="res://dude/anim/waving_gesture.res" id="14_hroyu"]
-[ext_resource type="Animation" uid="uid://7yu3jb02lf62" path="res://dude/anim/falling_idle.res" id="15_rjkl1"]
-[ext_resource type="Animation" uid="uid://b7iulq6hfieea" path="res://dude/anim/floating.res" id="16_2pyuo"]
-[ext_resource type="Animation" uid="uid://c0hi5nigq441k" path="res://dude/anim/jump.res" id="17_td2su"]
+[ext_resource type="AnimationLibrary" uid="uid://d4fox6j2hgxq1" path="res://mixamo_anim_library.tres" id="4_civt7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hoero"]
 radius = 0.05
@@ -25,26 +11,6 @@ radius = 0.05
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_goe7d"]
 _data = {
 "mixamo_com": ExtResource("2_a26x8")
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_oo6o1"]
-_data = {
-"breathing_idle": ExtResource("3_op0ec"),
-"falling_idle": ExtResource("15_rjkl1"),
-"fishing_cast": ExtResource("4_jye48"),
-"fishing_idle": ExtResource("5_t7evn"),
-"floating": ExtResource("16_2pyuo"),
-"house_dancing": ExtResource("6_hpbw8"),
-"jump": ExtResource("17_td2su"),
-"running": ExtResource("7_06ooh"),
-"sneak_walk": ExtResource("8_1tk7k"),
-"standing_1_h_cast_spell_01": ExtResource("9_mwocd"),
-"standing_2_h_magic_attack_02": ExtResource("10_urjvq"),
-"standing_react_death_backward": ExtResource("11_2no3l"),
-"swimming": ExtResource("12_85y56"),
-"t-_pose": ExtResource("2_a26x8"),
-"walking": ExtResource("13_761gi"),
-"waving_gesture": ExtResource("14_hroyu")
 }
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ay62n"]
@@ -172,38 +138,37 @@ script = ExtResource("2_jp4a7")
 
 [node name="Skeleton" parent="." index="0"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
-bones/0/position = Vector3(-0.00425307, 0.986657, 0.00354636)
-bones/0/rotation = Quaternion(-0.0132671, -0.00112489, -0.0087439, 0.999873)
-bones/1/rotation = Quaternion(0.00844635, -0.00105317, -0.000430995, 0.999964)
-bones/2/rotation = Quaternion(0.0088794, -0.0216358, 0.00108273, 0.999726)
-bones/3/rotation = Quaternion(0.00882675, -0.0216075, 0.00146075, 0.999727)
-bones/4/rotation = Quaternion(-0.0240902, 0.0073806, -0.0126373, 0.999603)
-bones/5/rotation = Quaternion(0.0481969, -0.0148465, 0.0315465, 0.998229)
-bones/7/rotation = Quaternion(0.53429, 0.466915, 0.466641, -0.527987)
-bones/8/rotation = Quaternion(0.1651, 0.800321, -0.560031, -0.136357)
-bones/9/rotation = Quaternion(0.18498, -0.686514, 0.168805, 0.682631)
-bones/10/rotation = Quaternion(-0.0433502, 0.736704, -0.187246, 0.648327)
-bones/11/rotation = Quaternion(0.202099, 0.0260504, -0.0800203, 0.975743)
-bones/12/rotation = Quaternion(0.280744, 0.0578935, -0.0250853, 0.957707)
-bones/13/rotation = Quaternion(0.0910912, 0.0215144, -0.0359837, 0.99496)
-bones/15/rotation = Quaternion(0.46822, -0.522996, -0.497566, -0.509581)
-bones/16/rotation = Quaternion(-0.192258, 0.782735, -0.58119, 0.112161)
-bones/17/rotation = Quaternion(0.171718, 0.689663, -0.155467, 0.686082)
-bones/18/rotation = Quaternion(-0.107853, -0.685048, 0.119538, 0.710485)
-bones/19/rotation = Quaternion(0.0929424, -0.016613, 0.113372, 0.989056)
-bones/20/rotation = Quaternion(0.338794, -0.072275, 0.0464548, 0.936929)
-bones/21/rotation = Quaternion(0.0149868, -0.00337251, 0.00419638, 0.999873)
-bones/23/rotation = Quaternion(0.0361798, 0.0494077, 0.998042, 0.0127049)
-bones/24/rotation = Quaternion(-0.0248295, 0.969035, -0.228873, 0.0892825)
-bones/25/rotation = Quaternion(0.00283571, 0.576063, -0.817098, 0.0222423)
-bones/26/rotation = Quaternion(2.82968e-08, 0.999992, 0.00405085, -8.86977e-09)
-bones/28/rotation = Quaternion(-0.120397, 0.0488147, 0.991465, 0.0108844)
-bones/29/rotation = Quaternion(0.0176351, 0.983702, -0.174111, -0.0412847)
-bones/30/rotation = Quaternion(-0.000249105, 0.626306, -0.778121, -0.047628)
-bones/31/rotation = Quaternion(5.36714e-08, 1, 5.36442e-07, 3.77017e-08)
+bones/0/position = Vector3(4.23752e-07, 1.00166, -0.000682045)
+bones/1/rotation = Quaternion(0.0112694, 0.000981888, -0.00426848, 0.999927)
+bones/2/rotation = Quaternion(0.0143395, -0.018596, -0.00406081, 0.999716)
+bones/3/rotation = Quaternion(0.0149201, -0.0187248, -0.00401887, 0.999705)
+bones/4/rotation = Quaternion(0.0177837, 0.0055533, -0.00248844, 0.999823)
+bones/5/rotation = Quaternion(0.0516997, -0.0120687, 0.0312673, 0.9981)
+bones/7/rotation = Quaternion(0.499411, 0.500588, 0.499411, -0.500588)
+bones/8/rotation = Quaternion(0.00249793, 0.999945, 0.0101681, 1.75834e-05)
+bones/9/rotation = Quaternion(0.00638618, -0.707052, -0.0103204, 0.707058)
+bones/10/rotation = Quaternion(-0.0279715, 0.706601, -0.0239994, 0.706652)
+bones/11/rotation = Quaternion(0.0208377, 0.00188312, -0.0717521, 0.997203)
+bones/12/rotation = Quaternion(-0.0178742, -0.00347067, 0.0127493, 0.999753)
+bones/13/rotation = Quaternion(-0.0563845, -0.0109889, -0.0177827, 0.99819)
+bones/15/rotation = Quaternion(0.499421, -0.500579, -0.499421, -0.500578)
+bones/16/rotation = Quaternion(-0.00217049, 0.999946, 0.0101679, -1.52886e-05)
+bones/17/rotation = Quaternion(0.00625045, 0.707043, 0.0104554, 0.707066)
+bones/18/rotation = Quaternion(-0.0242715, -0.706708, 0.0217488, 0.706755)
+bones/19/rotation = Quaternion(-0.0020943, -4.17531e-05, 0.0689637, 0.997617)
+bones/20/rotation = Quaternion(0.017442, -0.00366966, 0.00692376, 0.999817)
+bones/21/rotation = Quaternion(-0.0533984, 0.0117347, -0.00429541, 0.998495)
+bones/23/rotation = Quaternion(-0.000355787, 0.0104772, 0.999357, 0.0342827)
+bones/24/rotation = Quaternion(-0.000129413, 0.997778, -0.0666228, 0.000830473)
+bones/25/rotation = Quaternion(0.0253652, 0.665872, -0.745286, -0.0228086)
+bones/26/rotation = Quaternion(-8.03787e-08, 0.999996, 0.00282629, -2.01502e-08)
+bones/28/rotation = Quaternion(0.000354767, 0.0104436, 0.999358, -0.0342728)
+bones/29/rotation = Quaternion(9.71034e-05, 0.998041, -0.0625542, -0.000818904)
+bones/30/rotation = Quaternion(-0.0252944, 0.66888, -0.742587, 0.0229206)
+bones/31/rotation = Quaternion(3.09987e-08, 1, 0.000195007, 3.33792e-08)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Skeleton" index="2"]
-transform = Transform3D(0.561928, 0.0587431, -0.825098, -0.0902385, -0.987169, -0.131738, -0.822249, 0.148483, -0.549417, 0.3464, 1.08493, 0.219516)
+transform = Transform3D(-0.000356838, 0.999839, -0.0179131, 0.0812728, -0.0178248, -0.996532, -0.996692, -0.00181146, -0.0812535, 1.01535, 1.82111, 0.0960782)
 bone_name = "LeftHand"
 bone_idx = 10
 
@@ -219,7 +184,7 @@ skeleton = NodePath("../..")
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_goe7d"),
-"custom": SubResource("AnimationLibrary_oo6o1")
+"custom": ExtResource("4_civt7")
 }
 autoplay = "custom/t-_pose"
 

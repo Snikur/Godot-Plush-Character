@@ -12,7 +12,7 @@ extends Node3D
 @onready var quest_text: RichTextLabel = $CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/QuestText
 
 var player: Player = null
-var quest_reward_experience: int = 1337
+var quest_reward_experience: int = 1399
 var quest_start_text: String = "Target Dummy, the scourge of the seven seas, was known for his cunning and his love of gold.\n\nLegend has it that he buried his most prized possession, a golden coin imbued with mystical powers, inside this forest.\n\nThis coin, they say, could grant its holder untold riches and eternal youth. For centuries, treasure hunters have searched high and low for this elusive prize, but none have ever found it. Some believe the coin is still out there, waiting to be claimed by a worthy adventurer. Others doubt its existence, dismissing it as a pirate's tale.\n\nBut one thing is certain: the mystery of Target Dummy's Secret Golden Coin continues to captivate imaginations and drive explorers to the ends of the earth.\n\nWill you help me find his Legendary Coin and return it here?"
 var quest_end_text: String = "You beat the dummy AND found his coin?\n\nAMAZING!"
 
@@ -40,7 +40,9 @@ func complete_pressed():
 	pickup_zone.body_entered.disconnect(finished_quest)
 	quest_panel.visible = false
 	if (is_instance_valid(player)):
-		player.level.add_experience_points(quest_reward_experience)
+		var tween = create_tween()
+		tween.tween_method(player.combat.add_experience_points, 0, quest_reward_experience / 10.0, 10.0)
+		#player.combat.add_experience_points(quest_reward_experience)
 
 func accept_pressed():
 	quest_panel.visible = false
@@ -58,7 +60,8 @@ func close_pressed():
 	quest_panel.visible = false
 
 func exited_pickup_zone(body: Node3D) -> void:
-	quest_panel.visible = false
+	if (body is Player and body.id == multiplayer.get_unique_id()):
+		quest_panel.visible = false
 
 func entered_pickup_zone(body: Node3D) -> void:
 	if (body is Player and body.id == multiplayer.get_unique_id()):

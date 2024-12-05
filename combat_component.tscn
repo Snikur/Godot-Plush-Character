@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://uyc1dprapw5c"]
+
+[ext_resource type="Script" path="res://target_dummy/combat_component.gd" id="1_hd8vg"]
+
+[node name="CombatComponent" type="Node3D"]
+script = ExtResource("1_hd8vg")
+
+[node name="Status" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+billboard = 2
+no_depth_test = true
+text = "Health: 100/100
+Mana: 100/100
+Level 1"

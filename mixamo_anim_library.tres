@@ -1,0 +1,38 @@
+[gd_resource type="AnimationLibrary" load_steps=17 format=3 uid="uid://d4fox6j2hgxq1"]
+
+[ext_resource type="Animation" uid="uid://d2g1wt7t758bc" path="res://dude/anim/breathing_idle.res" id="1_g14sh"]
+[ext_resource type="Animation" uid="uid://7yu3jb02lf62" path="res://dude/anim/falling_idle.res" id="2_y2ct4"]
+[ext_resource type="Animation" uid="uid://bpsh7f62qbtlq" path="res://dude/anim/fishing_cast.res" id="3_6f5kf"]
+[ext_resource type="Animation" uid="uid://bo8avv3ygo1wy" path="res://dude/anim/fishing_idle.res" id="4_q36c0"]
+[ext_resource type="Animation" uid="uid://b7iulq6hfieea" path="res://dude/anim/floating.res" id="5_b7j4n"]
+[ext_resource type="Animation" uid="uid://cenmi5sen8imq" path="res://dude/anim/house_dancing.res" id="6_3tiej"]
+[ext_resource type="Animation" uid="uid://c0hi5nigq441k" path="res://dude/anim/jump.res" id="7_o2vwo"]
+[ext_resource type="Animation" uid="uid://degsw2gnnn74u" path="res://dude/anim/running.res" id="8_5432n"]
+[ext_resource type="Animation" uid="uid://bxt2qbasm0pgt" path="res://dude/anim/sneak_walk.res" id="9_gkncv"]
+[ext_resource type="Animation" uid="uid://cbdsrio6d4ibd" path="res://dude/anim/standing_1_h_cast_spell_01.res" id="10_v01ff"]
+[ext_resource type="Animation" uid="uid://bwuk88a2tc5n0" path="res://dude/anim/standing_2_h_magic_attack_02.res" id="11_i72bk"]
+[ext_resource type="Animation" uid="uid://cpdeo1segmar7" path="res://dude/anim/standing_react_death_backward.res" id="12_bu5sj"]
+[ext_resource type="Animation" uid="uid://cqhnwy3l2pc7k" path="res://dude/anim/swimming.res" id="13_pgr10"]
+[ext_resource type="Animation" uid="uid://ckhm1mm6mhfiu" path="res://dude/anim/t-_pose.res" id="14_5ox1d"]
+[ext_resource type="Animation" uid="uid://csksgdj444p46" path="res://dude/anim/walking.res" id="15_doaql"]
+[ext_resource type="Animation" uid="uid://cu73kjtokaglc" path="res://dude/anim/waving_gesture.res" id="16_maf1h"]
+
+[resource]
+_data = {
+"breathing_idle": ExtResource("1_g14sh"),
+"falling_idle": ExtResource("2_y2ct4"),
+"fishing_cast": ExtResource("3_6f5kf"),
+"fishing_idle": ExtResource("4_q36c0"),
+"floating": ExtResource("5_b7j4n"),
+"house_dancing": ExtResource("6_3tiej"),
+"jump": ExtResource("7_o2vwo"),
+"running": ExtResource("8_5432n"),
+"sneak_walk": ExtResource("9_gkncv"),
+"standing_1_h_cast_spell_01": ExtResource("10_v01ff"),
+"standing_2_h_magic_attack_02": ExtResource("11_i72bk"),
+"standing_react_death_backward": ExtResource("12_bu5sj"),
+"swimming": ExtResource("13_pgr10"),
+"t-_pose": ExtResource("14_5ox1d"),
+"walking": ExtResource("15_doaql"),
+"waving_gesture": ExtResource("16_maf1h")
+}
