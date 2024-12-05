@@ -93,7 +93,7 @@ func handle_changes():
 func add_experience_points(points: int) -> void:
 	experience += points
 	if (experience > required_experience):
-		required_experience *= 1.23
+		required_experience = floori(required_experience * 1.23)
 		print("DING")
 		level += 1
 		var rest = experience - required_experience
