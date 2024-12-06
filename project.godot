@@ -25,7 +25,7 @@ Tooltip="*res://tooltip.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [input]
 
