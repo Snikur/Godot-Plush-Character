@@ -6,7 +6,6 @@
 script = ExtResource("1_lpxfq")
 
 [node name="TickTimer" type="Timer" parent="."]
-wait_time = 0.1
 autostart = true
 
 [node name="SlowTickTimer" type="Timer" parent="."]

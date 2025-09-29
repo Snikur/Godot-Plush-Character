@@ -28,4 +28,4 @@ func server_state(new_position: Vector3):
 		tween.kill()
 	tween = create_tween()
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.tween_property(parent, "global_position", new_position, 0.1).from_current()
+	tween.tween_property(parent, "global_position", new_position, 1.0).from_current()
