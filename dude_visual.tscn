@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cdpgr4gviuutg" path="res://dude/T-Pose.fbx" id="1_w0oxy"]
 [ext_resource type="Animation" uid="uid://ckhm1mm6mhfiu" path="res://dude/anim/t-_pose.res" id="2_a26x8"]
-[ext_resource type="Script" path="res://dude_visual.gd" id="2_jp4a7"]
+[ext_resource type="Script" uid="uid://c6ke0tn2orldh" path="res://dude_visual.gd" id="2_jp4a7"]
 [ext_resource type="AnimationLibrary" uid="uid://d4fox6j2hgxq1" path="res://mixamo_anim_library.tres" id="4_civt7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hoero"]
@@ -10,7 +10,7 @@ radius = 0.05
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_goe7d"]
 _data = {
-"mixamo_com": ExtResource("2_a26x8")
+&"mixamo_com": ExtResource("2_a26x8")
 }
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ay62n"]

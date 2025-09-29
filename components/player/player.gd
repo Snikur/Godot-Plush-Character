@@ -31,6 +31,7 @@ var speed_modifier: float = 1.0
 @onready var impact_audio = %ImpactAudio
 @onready var combat: CombatComponent = $CombatComponent
 @onready var spell_manager: SpellManager = $VisualRoot/Dude/AutoAttack/SpellManager
+@onready var inventory: Inventory = $Inventory
 
 
 const JUMP_PARTICLES_SCENE = preload("./vfx/jump_particles.tscn")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwvn8of3bod33"]
 
-[ext_resource type="Script" path="res://spellManager/Spellbook/spell_grid_button.gd" id="1_ul77p"]
+[ext_resource type="Script" uid="uid://hvmjj4wxylle" path="res://spellManager/Spellbook/spell_grid_button.gd" id="1_ul77p"]
 
 [node name="SpellGridButton" type="TextureButton"]
 custom_minimum_size = Vector2(96, 96)

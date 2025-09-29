@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ck2ujf06pf37l"]
 
-[ext_resource type="Script" path="res://crypto_generator.gd" id="1_88y5k"]
+[ext_resource type="Script" uid="uid://bmhgoly84h80" path="res://crypto_generator.gd" id="1_88y5k"]
 
 [node name="CryptoGenerator" type="Node"]
 script = ExtResource("1_88y5k")

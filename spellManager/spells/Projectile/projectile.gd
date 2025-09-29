@@ -4,7 +4,6 @@ class_name Projectile
 @onready var vfx: Node3D = $vfx
 @onready var sync: SyncTransform = $SyncTransform
 var tween: Tween
-var target: Enemy
 var ticks: int = 0
 
 func _ready():

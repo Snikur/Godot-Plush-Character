@@ -42,7 +42,7 @@ operator = 2
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, ambient_light_disabled, shadow_to_opacity;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, ambient_light_disabled, shadow_to_opacity;
 
 uniform vec4 Fire_Color : source_color;
 uniform vec2 Speed;

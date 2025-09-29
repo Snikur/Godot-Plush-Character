@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ck4vyygcpqi3b"]
 
-[ext_resource type="Script" path="res://NPCS/QuestGiver/quest_giver.gd" id="1_7l4ku"]
-[ext_resource type="Script" path="res://name.gd" id="2_msvok"]
+[ext_resource type="Script" uid="uid://coaxt6u6rroxm" path="res://NPCS/QuestGiver/quest_giver.gd" id="1_7l4ku"]
+[ext_resource type="Script" uid="uid://cwr0x6koiw7t4" path="res://name.gd" id="2_msvok"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_btm3k"]
 size = Vector3(1, 2, 1)

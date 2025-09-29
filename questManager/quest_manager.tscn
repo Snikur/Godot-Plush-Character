@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b77bbpa63d1qr"]
 
-[ext_resource type="Script" path="res://questManager/quest_manager.gd" id="1_bl1kx"]
+[ext_resource type="Script" uid="uid://bh2m6aiierv60" path="res://questManager/quest_manager.gd" id="1_bl1kx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3krm3"]
 font_color = Color(0.627451, 0.627451, 0.627451, 1)

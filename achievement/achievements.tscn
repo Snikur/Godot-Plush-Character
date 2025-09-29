@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dckofeg56rciv"]
 
-[ext_resource type="Script" path="res://achievement/Achievements.gd" id="1_kuvcx"]
+[ext_resource type="Script" uid="uid://cth2nxvj2ib41" path="res://achievement/Achievements.gd" id="1_kuvcx"]
 
 [node name="Achievements" type="CanvasLayer"]
 layer = 10

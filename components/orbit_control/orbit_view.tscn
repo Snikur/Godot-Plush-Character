@@ -1,11 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0b71d2b1hdp6"]
 
-[ext_resource type="Script" path="res://components/orbit_control/orbit_view.gd" id="1_hg1yw"]
+[ext_resource type="Script" uid="uid://b1nxa8062ydpo" path="res://components/orbit_control/orbit_view.gd" id="1_hg1yw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wgugf"]
 radius = 0.1
 
 [node name="OrbitView" type="SpringArm3D"]
+process_priority = 1
+process_physics_priority = 1
 shape = SubResource("SphereShape3D_wgugf")
 spring_length = 8.0
 margin = 0.5

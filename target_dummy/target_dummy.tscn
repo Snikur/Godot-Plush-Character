@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://ckcqtdfka0v40"]
 
-[ext_resource type="Script" path="res://target_dummy/target_dummy.gd" id="1_nhe4d"]
+[ext_resource type="Script" uid="uid://c1dat4b7wf4cg" path="res://target_dummy/target_dummy.gd" id="1_nhe4d"]
 [ext_resource type="PackedScene" uid="uid://d10r68gfi4q2o" path="res://NPCS/BlackKnight/black_knight_scene.tscn" id="2_krlge"]
-[ext_resource type="Script" path="res://SyncTransform.gd" id="2_m5sep"]
+[ext_resource type="Script" uid="uid://dca3dn87j08n2" path="res://SyncTransform.gd" id="2_m5sep"]
 [ext_resource type="PackedScene" uid="uid://uyc1dprapw5c" path="res://combat_component.tscn" id="4_a5nij"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8rcei"]

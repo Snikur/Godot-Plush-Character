@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://drx18je47jke4"]
 
-[ext_resource type="Script" path="res://treasure_chest.gd" id="1_aocqc"]
+[ext_resource type="Script" uid="uid://dlxf8pr5du7ph" path="res://treasure_chest.gd" id="1_aocqc"]
 [ext_resource type="PackedScene" uid="uid://sg3pog51w0uy" path="res://treasure_chest_model.tscn" id="2_l4exx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_767fq"]

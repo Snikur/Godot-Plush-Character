@@ -6,7 +6,7 @@
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w8vrc"]
 _data = {
-"mixamo_com": ExtResource("2_l5dcm")
+&"mixamo_com": ExtResource("2_l5dcm")
 }
 
 [node name="T-Pose" instance=ExtResource("1_6ycdt")]

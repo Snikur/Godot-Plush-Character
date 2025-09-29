@@ -40,6 +40,7 @@ func init(button: SpellTextureButton):
 			spell_button.showCharges(true)
 
 func cast_spell(owner: SpellManager, index: int):
+	print("cast spell")
 	if isActivateSpell:
 		isActivated = false
 		spell_button.texture_normal = texture

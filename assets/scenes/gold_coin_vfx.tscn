@@ -463,9 +463,9 @@ tracks/0/keys = PackedFloat32Array(0, 1, 2.18557e-08, 0, 0, 1, 2.875, 1, 4.90399
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4hcex"]
 _data = {
-"SilverPirateCoint|PirateCoinAction": SubResource("Animation_syjq3"),
-"SilverPirateCoint|PirateCoinAction_001": SubResource("Animation_igqfk"),
-"SilverPirateCoint|PirateCoinAction_002": SubResource("Animation_056un")
+&"SilverPirateCoint|PirateCoinAction": SubResource("Animation_syjq3"),
+&"SilverPirateCoint|PirateCoinAction_001": SubResource("Animation_igqfk"),
+&"SilverPirateCoint|PirateCoinAction_002": SubResource("Animation_056un")
 }
 
 [node name="SilverPirateCoin" type="Node3D"]

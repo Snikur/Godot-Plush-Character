@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn824v3tf1bvw"]
+
+[ext_resource type="Script" uid="uid://b0w122aaqdqem" path="res://gathering_resource.gd" id="1_3fyl8"]
+[ext_resource type="Texture2D" uid="uid://dh3key88dgijt" path="res://icon.svg" id="2_4rwqt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8aooo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3f1r1"]
+
+[node name="GatheringResource" type="StaticBody3D"]
+script = ExtResource("1_3fyl8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8aooo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_3f1r1")
+
+[node name="InteractKey" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+billboard = 2
+texture = ExtResource("2_4rwqt")

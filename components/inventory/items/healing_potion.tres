@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://grek6cbc1fe6"]
 
-[ext_resource type="Script" path="res://components/inventory/items_on_use/item_on_use_base.gd" id="1_1khxl"]
+[ext_resource type="Script" uid="uid://7icfwalkf1ta" path="res://components/inventory/items_on_use/item_on_use_base.gd" id="1_1khxl"]
 [ext_resource type="Texture2D" uid="uid://d0ewvjdkls8cq" path="res://assets/textures/bottles/3.png" id="1_eh1w0"]
-[ext_resource type="Script" path="res://components/inventory/ItemResource.gd" id="1_n1jbl"]
+[ext_resource type="Script" uid="uid://2w05am8hts8r" path="res://components/inventory/ItemResource.gd" id="1_n1jbl"]
 [ext_resource type="Resource" uid="uid://cv3sh71rhl85c" path="res://components/inventory/items_on_use/change_resource_item_type.tres" id="2_ykqic"]
 
 [resource]
 script = ExtResource("1_n1jbl")
 icon = ExtResource("1_eh1w0")
-rarity = 0
+rarity = 4
 item_name = "Minor Healing Potion"
 item_level = 5
 description = "Use: Restores 70 to 90 health. (2 Min Cooldown)"

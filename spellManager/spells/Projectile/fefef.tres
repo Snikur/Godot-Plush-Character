@@ -1,10 +1,13 @@
 [gd_resource type="Resource" script_class="ProjectileSpell" load_steps=2 format=3 uid="uid://cn4ksectjvpb8"]
 
-[ext_resource type="Script" path="res://spellManager/spells/Projectile/projectile_spell.gd" id="1_txpmw"]
+[ext_resource type="Script" uid="uid://bvmvvep12grfk" path="res://spellManager/spells/Projectile/projectile_spell.gd" id="1_txpmw"]
 
 [resource]
 script = ExtResource("1_txpmw")
 type = 1
+projectile_type = 2
 cooldown = 0.0
 maxCharges = 1
 isActivateSpell = false
+name = ""
+description = ""

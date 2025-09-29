@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy7y0irkl6w2r"]
 
 [ext_resource type="PackedScene" uid="uid://bfsv4oc7y3de2" path="res://assets/scenes/gold_coin_vfx.tscn" id="2_tp2am"]
-[ext_resource type="Script" path="res://spellManager/spell_pickup.gd" id="2_wtxyg"]
+[ext_resource type="Script" uid="uid://x0iot4kq86m4" path="res://spellManager/spell_pickup.gd" id="2_wtxyg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_l0lko"]
 

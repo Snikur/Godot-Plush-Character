@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxlfmqa5r8ta2"]
 
-[ext_resource type="Script" path="res://MainMenu.gd" id="1_j6d0e"]
-[ext_resource type="Script" path="res://option_panel.gd" id="2_1kt26"]
+[ext_resource type="Script" uid="uid://bdr4l4ly86nwh" path="res://MainMenu.gd" id="1_j6d0e"]
+[ext_resource type="Script" uid="uid://bpoiemggnoibt" path="res://option_panel.gd" id="2_1kt26"]
 
 [node name="MainMenu" type="CanvasLayer"]
 
