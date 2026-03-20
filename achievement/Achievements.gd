@@ -1,6 +1,6 @@
 extends Node
 
-var clearAchivements: bool = true
+var clear_achievements: bool = true
 var dict: Dictionary
 var alreadyPlayed : bool = false
 var originalFilePath : String = "res://achievement/achievements.json"
@@ -16,7 +16,7 @@ func _ready():
 	readAchievements()
 	
 func readAchievements():
-	if FileAccess.file_exists(userFilePath) and !clearAchivements:
+	if FileAccess.file_exists(userFilePath) and !clear_achievements:
 		var file = FileAccess.open(userFilePath, FileAccess.READ)
 		dict = JSON.parse_string(file.get_as_text())
 		file.close()

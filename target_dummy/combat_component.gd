@@ -17,7 +17,7 @@ signal health_changed(change)
 
 var strength: int = 10
 var agility: int = 10
-var intelligenec: int = 10
+var intelligence: int = 10
 var mp5: int = 10
 var hp5: int = 10
 var stamina: int = 13
