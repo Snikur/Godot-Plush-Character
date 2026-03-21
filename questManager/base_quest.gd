@@ -2,28 +2,31 @@ extends Node
 class_name Quest
 
 enum QuestStatus {
-	available,
-	started,
-	reached_goal,
-	finished,
+	AVAILABLE,
+	STARTED,
+	REACHED_GOAL,
+	FINISHED,
 }
 
-var quest_name: String
-var quest_description: String
-var reached_goal_text: String
-var quest_status: QuestStatus = QuestStatus.available
+var questName: String
+var questDescription: String
+var reachedGoalText: String
+var questStatus: QuestStatus = QuestStatus.available
 
-func start_quest():
-	if quest_status == QuestStatus.available:
-		quest_status = QuestStatus.started
-		QuestManager.show_quest(quest_name, quest_description)
-	
-func update_quest():
-	if quest_status == QuestStatus.started:
-		quest_status = QuestStatus.reached_goal
-		QuestManager.update_description(reached_goal_text)
-	
-func finish_quest():
-	if quest_status == QuestStatus.reached_goal:
-		quest_status = QuestStatus.finished
-		QuestManager.hide_quest()
+
+func startQuest() -> void:
+	if questStatus == QuestStatus.available:
+		questStatus = QuestStatus.started
+		QuestManager.showQuest(questName, questDescription)
+
+
+func updateQuest() -> void:
+	if questStatus == QuestStatus.started:
+		questStatus = QuestStatus.reachedGoal
+		QuestManager.updateDescription(reachedGoalText)
+
+
+func finishQuest() -> void:
+	if questStatus == QuestStatus.reachedGoal:
+		questStatus = QuestStatus.finished
+		QuestManager.hideQuest()
