@@ -1,4 +1,3 @@
-class_name Global
 extends Node
 
 signal fov_changed(new_value)
