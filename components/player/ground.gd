@@ -11,7 +11,7 @@ var movement_input: Vector2 = Vector2.ZERO
 var auto_run_input: Vector2 = Vector2.ZERO
 var is_running: bool = true
 var is_autorunning: bool = false
-@onready var currentMaxSpeed: float = parent.runSpeed
+@onready var current_max_speed: float = parent.run_speed
 
 func _ready():
 	state.state_physics_processing.connect(state_physics_process)
@@ -32,75 +32,74 @@ func state_physics_process(delta: float) -> void:
 			is_autorunning = false
 	if (Input.is_action_just_pressed("run")): #toggle run
 		is_running = !is_running
-	var vel2d = Vector2(parent.velocity.x, parent.velocity.z)
+	var vel_2d = Vector2(parent.velocity.x, parent.velocity.z)
 	if movement_input != Vector2.ZERO:
 		if parent.is_on_floor():
 			parent.transition_to(parent.ANIMATION_STATE.RUN if is_running else parent.ANIMATION_STATE.WALK)
-		vel2d += movement_input * parent.acceleration * delta
-		var desiredMaxSpeed: float = ((parent.runSpeed if is_running else parent.baseSpeed) * parent.speedModifier)
-		currentMaxSpeed = desiredMaxSpeed # TODO: do some magic here
-		vel2d = vel2d.limit_length(currentMaxSpeed)
-		parent.velocity.x = vel2d.x
-		parent.velocity.z = vel2d.y
-		target_angle = -movement_input.orthogonal().angle() # TODO: fix 0.15 radians off center
+		vel_2d += movement_input * parent.acceleration * delta
+		var desired_max_speed: float = ((parent.run_speed if is_running else parent.base_speed) * parent.speed_modifier)
+		current_max_speed = desired_max_speed #TODO: do some magic here
+		vel_2d = vel_2d.limit_length(current_max_speed)
+		parent.velocity.x = vel_2d.x
+		parent.velocity.z = vel_2d.y
+		target_angle = -movement_input.orthogonal().angle() #TODO: fix 0.15 radians off center
 	else:
 		if parent.is_on_floor():
 			parent.velocity.x = 0.0
 			parent.velocity.z = 0.0
 		else:
-			parent.velocity.x = vel2d.x
-			parent.velocity.z = vel2d.y
-	if Input.is_action_pressed("aim"):
+			parent.velocity.x = vel_2d.x
+			parent.velocity.z = vel_2d.y
+	if (Input.is_action_pressed("aim")):
 		target_angle = parent.camera.global_rotation.y + PI
-	if parent.is_on_floor() || coyote_timer.time_left > 0.0:
+	if parent.is_on_floor() or coyote_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("jump"):
 			coyote_timer.stop()
 			parent.transition_to(parent.ANIMATION_STATE.JUMP)
-			parent.velocity.y = -parent.jumpVelocity
+			parent.velocity.y = -parent.jump_velocity
 			
-			var jumpParticles = parent.JUMP_PARTICLES_SCENE.instantiate()
-			add_sibling(jumpParticles)
-			jumpParticles.global_transform = global_transform
+			var jump_particles = parent.JUMP_PARTICLES_SCENE.instantiate()
+			add_sibling(jump_particles)
+			jump_particles.global_transform = global_transform
 			
-			doSquashAndStretch(1.2, 0.1)
+			do_squash_and_stretch(1.2, 0.1)
 		
-	var gravity = parent.jumpGravity if parent.velocity.y > 0.0 else parent.fallGravity
+	var gravity = parent.jump_gravity if parent.velocity.y > 0.0 else parent.fall_gravity
 	parent.velocity.y -= gravity * delta
 	
-	var isInAir: bool = !parent.is_on_floor()
-	var wasOnFloor: bool = parent.is_on_floor()
+	var in_the_air : bool = !parent.is_on_floor()
+	var was_on_floor: bool = parent.is_on_floor()
 	
-	var previousYVel: float = parent.velocity.y
+	var previous_y_vel : float = parent.velocity.y
 	
-	parent.velocity = parent.velocity.limit_length(parent.fallGravity)
+	parent.velocity = parent.velocity.limit_length(parent.fall_gravity)
 	parent.move_and_slide()
 	
-	if not parent.is_on_floor() && wasOnFloor && not Input.is_action_just_pressed("jump"): # walked off a ledge
+	if not parent.is_on_floor() && was_on_floor and not Input.is_action_just_pressed("jump"): #walked off a ledge
 		parent.transition_to(parent.ANIMATION_STATE.FALL)
 		coyote_timer.start()
 	
-	if parent.is_on_floor() && isInAir: # just hit floor
-		_onHitFloor(previousYVel)
+	if parent.is_on_floor() && in_the_air: #just hit floor
+		_on_hit_floor(previous_y_vel)
 	
-	if parent.velocity.is_equal_approx(Vector3.ZERO) && parent.is_on_floor():
+	if parent.velocity.is_equal_approx(Vector3.ZERO) and parent.is_on_floor():
 		parent.transition_to(parent.ANIMATION_STATE.IDLE)
 	
 	parent.visual_root.rotation.y = rotate_toward(parent.visual_root.rotation.y, target_angle, 6.0 * delta)
 	#var angle_diff = angle_difference(parent.visual_root.rotation.y, target_angle)
 	#parent.skin.tilt = move_toward(parent.skin.tilt, angle_diff, 2.0 * delta)
 
-func _onHitFloor(yVel: float) -> void:
-	yVel = clamp(abs(yVel), 0.0, parent.fallGravity)
-	var floorImpactPercent: float = yVel / parent.fallGravity
-	parent.impactAudio.volume_db = linear_to_db(remap(floorImpactPercent, 0.0, 1.0, 0.5, 2.0))
-	parent.impactAudio.play()
-	var landParticles = parent.LAND_PARTICLES_SCENE.instantiate()
-	add_sibling(landParticles)
-	landParticles.global_transform = global_transform
-	doSquashAndStretch(0.7, 0.08)
+func _on_hit_floor(y_vel : float):
+	y_vel = clamp(abs(y_vel), 0.0, parent.fall_gravity)
+	var floor_impact_percent : float = y_vel / parent.fall_gravity
+	parent.impact_audio.volume_db = linear_to_db(remap(floor_impact_percent, 0.0, 1.0, 0.5, 2.0))
+	parent.impact_audio.play()
+	var land_particles = parent.LAND_PARTICLES_SCENE.instantiate()
+	add_sibling(land_particles)
+	land_particles.global_transform = global_transform
+	do_squash_and_stretch(0.7, 0.08)
 
-
-func doSquashAndStretch(value: float, timing: float = 0.1) -> void:
+func do_squash_and_stretch(value : float, timing : float = 0.1):
 	var t = create_tween()
 	t.set_ease(Tween.EASE_OUT)
 	t.tween_property(parent.skin, "squash_and_stretch", value, timing)

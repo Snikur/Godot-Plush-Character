@@ -8,24 +8,23 @@ class_name Inventory
 const MAX_SLOTS: int = 16
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("jump"):
+	if (Input.is_action_just_pressed("jump")):
 		var potion = preload("res://components/inventory/items/healing_potion.tres").duplicate()
-		potion.sellPrice = randi_range(0, 200)
+		potion.sell_price = randi_range(0, 200)
 		add_item(potion, randi_range(1, 5))
-	if Input.is_action_just_pressed("ui_text_submit"):
+	if (Input.is_action_just_pressed("ui_text_submit")):
 		var slots: Array[Node] = grid.get_children()
-		if slots.size() > 0 && slots[0] is InventorySlot:
-			for action in slots[0].inventory_item.actions:
-				action.on_use(self)
+		if slots.size() > 0 and slots[0] is InventorySlot:
+			for actions in slots[0].inventory_item.actions:
+				actions.on_use(self)
 			slots[0].queue_free()
 
-
 func add_item(item: ItemResource, amount: int) -> bool:
-	if grid.get_child_count() >= MAX_SLOTS:
+	if (grid.get_child_count() >= MAX_SLOTS):
 		return false
-	var newSlot: InventorySlot = slot_scene.instantiate()
-	newSlot.inventoryItem = item
-	newSlot.inventory = self
-	newSlot.amount = amount
-	grid.add_child(newSlot)
+	var new_slot: InventorySlot = slot_scene.instantiate()
+	new_slot.inventory_item = item
+	new_slot.inventory = self
+	new_slot.amount = amount
+	grid.add_child(new_slot)
 	return true

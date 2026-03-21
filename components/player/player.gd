@@ -11,18 +11,18 @@ var data: Dictionary
 @onready var water_state: WaterState = $Water
 @onready var knockback_state: KnockbackState = $Knockback
 
-var jumpHeight: float = 2.5
-var jumpTimeToPeak: float = 0.4
-var jumpTimeToDescent: float = 0.3
+var jump_height : float = 2.5
+var jump_time_to_peak : float = 0.4
+var jump_time_to_descent : float = 0.3
 
-var jumpVelocity: float = ((2.0 * jumpHeight) / jumpTimeToPeak) * -1.0
-var jumpGravity: float = ((-2.0 * jumpHeight) / (jumpTimeToPeak * jumpTimeToPeak)) * -1.0
-var fallGravity: float = ((-2.0 * jumpHeight) / (jumpTimeToDescent * jumpTimeToDescent)) * -1.0
+var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
+var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
+var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 var acceleration: float = 128.0
-var baseSpeed: float = 2.5
-var runSpeed: float = 7.0
-var speedModifier: float = 1.0
+var base_speed: float = 2.5
+var run_speed: float = 7.0
+var speed_modifier: float = 1.0
 
 @onready var visual_root = %VisualRoot
 @onready var skin = $VisualRoot/Dude
@@ -46,16 +46,16 @@ enum ANIMATION_STATE {
 	FISH
 }
 
-var currentState: ANIMATION_STATE = ANIMATION_STATE.IDLE
+var current_state: ANIMATION_STATE = ANIMATION_STATE.IDLE
 
 @onready var camera: Camera3D = $OrbitView/Camera3D
 
-func _ready() -> void:
+func _ready():
 	move_and_slide()
 	
 	if data.has("position"):
 		global_position = data["position"]
-	if multiplayer.is_server():
+	if (multiplayer.is_server()):
 		combat.died.connect(func():
 			teleport_to.rpc_id(id, data["position"])
 			combat.request_change.rpc(combat.max_health)
@@ -64,10 +64,10 @@ func _ready() -> void:
 		camera.current = true
 		MM.tick.connect(send_state)
 		camera.fov = Global.get_fov()
-		Global.fov_changed.connect(func(new_fov: float):
+		Global.fov_changed.connect(func(new_fov):
 			camera.fov = new_fov
 		)
-	else: # if other clients and server
+	else: #if other clients and server
 		set_process_unhandled_input(false)
 		$OrbitView.queue_free()
 		$StateChart.queue_free()
@@ -83,31 +83,28 @@ func _unhandled_input(event: InputEvent) -> void:
 		transition_to(ANIMATION_STATE.FISH)
 		state_chart.send_event("to_fishing")
 
-func send_state() -> void:
+func send_state():
 	if multiplayer:
 		if multiplayer.is_server():
 			server_state.rpc(global_position, visual_root.rotation)
 		else:
 			client_state.rpc_id(1, global_position, visual_root.rotation)
 
-
-func transition_to(state: ANIMATION_STATE) -> void:
-	if currentState == state:
+func transition_to(state: ANIMATION_STATE):
+	if current_state == state:
 		return
 	send_transition_to.rpc(state)
 
-
 @rpc("authority", "reliable", "call_local")
-func teleport_to(destination: Vector3) -> void:
+func teleport_to(destination: Vector3):
 	global_position = destination
 
-
 @rpc("any_peer", "reliable", "call_local")
-func send_transition_to(state: ANIMATION_STATE) -> void:
+func send_transition_to(state: ANIMATION_STATE):
 	movement_dust.emitting = false
 	skin.left_hand.visible = false
-	currentState = state
-	match (currentState):
+	current_state = state
+	match(current_state):
 		ANIMATION_STATE.IDLE:
 			skin.set_state("idle")
 		ANIMATION_STATE.WALK:
@@ -126,19 +123,16 @@ func send_transition_to(state: ANIMATION_STATE) -> void:
 		_:
 			skin.set_state("idle")
 
-
 @rpc("any_peer", "call_remote", "unreliable_ordered")
-func client_state(new_position: Vector3, new_rotation: Vector3) -> void:
+func client_state(new_position: Vector3, new_rotation: Vector3):
 	server_state.rpc(new_position, new_rotation)
 
-
 @rpc("authority", "call_local", "reliable")
-func remove() -> void:
+func remove():
 	queue_free()
 
-
 @rpc("authority", "call_local", "unreliable_ordered")
-func server_state(new_position: Vector3, new_rotation: Vector3) -> void:
+func server_state(new_position: Vector3, new_rotation: Vector3):
 	if id == multiplayer.get_unique_id():
 		return
 	if tween:
@@ -148,30 +142,25 @@ func server_state(new_position: Vector3, new_rotation: Vector3) -> void:
 	tween.tween_property(self, "global_position", new_position, 0.1).from_current()
 	tween.parallel().tween_property(visual_root, "rotation", new_rotation, 0.1).from_current()
 
-func enter_climb_state(climbing: Node3D) -> void:
+func enter_climb_state(climbing: Node3D):
 	state_chart.send_event("to_climbing")
 	climb_state.climbing_object = climbing
 
-
-func exit_climb_state(climbing: Node3D) -> void:
+func exit_climb_state(climbing: Node3D):
 	state_chart.send_event("to_ground")
 	if climb_state.climbing_object == climbing:
 		climb_state.climbing_object = null
 
-
-func request_water_state() -> void:
+func request_water_state():
 	if water_state.can_enter():
 		state_chart.send_event("to_water")
 
-
-func exit_water_state() -> void:
+func exit_water_state():
 	state_chart.send_event("to_ground")
 
-
-func enter_knockback_state(force: Vector3) -> void:
+func enter_knockback_state(force: Vector3):
 	knockback_state.knockback_force = force
 	state_chart.send_event("to_knockback")
 
-
-func exit_knockback_state() -> void:
+func exit_knockback_state():
 	state_chart.send_event("to_ground")

@@ -1,10 +1,10 @@
 extends Node
 
-var clearAchievements: bool = true
+var clear_achievements: bool = true
 var dict: Dictionary
-var alreadyPlayed: bool = false
-var originalFilePath: String = "res://achievement/achievements.json"
-var userFilePath: String = "user://achievements.json"
+var alreadyPlayed : bool = false
+var originalFilePath : String = "res://achievement/achievements.json"
+var userFilePath : String = "user://achievements.json"
 @onready var popup = $Panel
 @onready var title = $Panel/VBoxContainer/Title
 @onready var description = $Panel/VBoxContainer/Description
@@ -15,27 +15,26 @@ func _ready():
 	popup.visible = false
 	readAchievements()
 	
-func readAchievements() -> void:
-	if FileAccess.file_exists(userFilePath) && !clearAchievements:
+func readAchievements():
+	if FileAccess.file_exists(userFilePath) and !clear_achievements:
 		var file = FileAccess.open(userFilePath, FileAccess.READ)
-		dict = JSON.parse_string(file.get_asText())
+		dict = JSON.parse_string(file.get_as_text())
 		file.close()
 	else:
-		var originalFile = FileAccess.open(originalFilePath, FileAccess.READ)
-		var text = originalFile.get_asText()
+		var originalFile = FileAccess.open(originalFilePath, FileAccess.READ) 
+		var text = originalFile.get_as_text()
 		writeAchievements(text)
 		dict = JSON.parse_string(text)
+			
 		originalFile.close()
-
-
-func writeAchievements(content: String) -> void:
+		
+func writeAchievements(content):
 	var file = FileAccess.open(userFilePath, FileAccess.WRITE)
-	file.storeString(content)
+	file.store_string(content)
 	file.close()
 
-
-func modifyAchievements(achievement: String, value) -> void:
-	if not dict.has(achievement):
+func modifyAchievements(achievement, value):
+	if (not dict.has(achievement)):
 		print("No achievement with id ", achievement)
 		return
 	if dict[achievement].completed:
@@ -47,22 +46,19 @@ func modifyAchievements(achievement: String, value) -> void:
 		if dict[achievement].currentAmount >= dict[achievement].neededAmount:
 			showPopup(dict[achievement].name, dict[achievement].description)
 			dict[achievement].completed = true
-
-
-func showPopup(newTitle: String, newDescription: String) -> void:
-	title.text = newTitle
-	description.text = newDescription
+			
+func showPopup(new_title, new_description):
+	title.text = new_title
+	description.text = new_description
 	popup.show()
 	var tween = create_tween()
 	tween.tween_property(popup, "position", popup.position + Vector2(0, -300), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	timer.start()
-
-
-func hidePopup() -> void:
+	
+func hidePopup():
 	var tween = create_tween()
 	tween.tween_property(popup, "position", popup.position + Vector2(0, 300), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.tween_callback(popup.hide)
-
-
-func _onTimerTimeout() -> void:
+	
+func _on_timer_timeout():
 	hidePopup()
