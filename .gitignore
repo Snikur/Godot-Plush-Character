@@ -1,3 +1,24 @@
 # Godot 4+ specific ignores
-.godot/
+.godot/**/editor/
+.godot/**/editor.lock
+.godot/user/
+
+# Temp files
+*.tmp
+*.config
+
+# Platform exports
 /android/
+/ios/
+/windows/
+/linux/
+
+# IDE
+.vscode/
+.idea/
+
+# Assets
+*.import
+
+# Git LFS
+*.tscn.lfs
