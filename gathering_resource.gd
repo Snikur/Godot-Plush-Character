@@ -17,11 +17,11 @@ func _ready() -> void:
 	)
 	input_event.connect(_input_event)
 
-func _input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_indx: int):
+func _input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_indx: int) -> void:
 	if (event is InputEventMouseButton):
 		print(event)
 
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "reliable", "call_remote")
 func interact(player: Player) -> void:
 	if (player.id == multiplayer.get_unique_id()):
 		player.inventory.add_item(loot, amount)

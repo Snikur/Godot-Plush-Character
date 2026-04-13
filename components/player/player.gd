@@ -50,7 +50,7 @@ var current_state: ANIMATION_STATE = ANIMATION_STATE.IDLE
 
 @onready var camera: Camera3D = $OrbitView/Camera3D
 
-func _ready():
+func _ready() -> void:
 	move_and_slide()
 	
 	if data.has("position"):
@@ -78,12 +78,12 @@ func _ready():
 		$VisualRoot/Dude/AutoAttack.enabled = false
 		$VisualRoot/Dude/AutoAttack/SpellManager/UI.queue_free()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent):
 	if (event.is_action_released("fish")):
 		transition_to(ANIMATION_STATE.FISH)
 		state_chart.send_event("to_fishing")
 
-func send_state():
+func send_state() -> void:
 	if multiplayer:
 		if multiplayer.is_server():
 			server_state.rpc(global_position, visual_root.rotation)
@@ -123,16 +123,16 @@ func send_transition_to(state: ANIMATION_STATE):
 		_:
 			skin.set_state("idle")
 
-@rpc("any_peer", "call_remote", "unreliable_ordered")
-func client_state(new_position: Vector3, new_rotation: Vector3):
+@rpc("any_peer", "unreliable_ordered", "call_remote")
+func client_state(new_position: Vector3, new_rotation: Vector3) -> void:
 	server_state.rpc(new_position, new_rotation)
 
-@rpc("authority", "call_local", "reliable")
-func remove():
+@rpc("authority", "reliable", "call_local")
+func remove() -> void:
 	queue_free()
 
-@rpc("authority", "call_local", "unreliable_ordered")
-func server_state(new_position: Vector3, new_rotation: Vector3):
+@rpc("authority", "unreliable_ordered", "call_local")
+func server_state(new_position: Vector3, new_rotation: Vector3) -> void:
 	if id == multiplayer.get_unique_id():
 		return
 	if tween:

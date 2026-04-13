@@ -37,7 +37,7 @@ func calculate_stats():
 	max_health = floori(stamina * 10)
 
 @rpc("authority", "reliable", "call_local")
-func change_health(value: int):
+func change_health(value: int) -> void:
 	health = value
 	update_label()
 	health_changed.emit(health)
@@ -48,7 +48,7 @@ func update_label():
 	status_label.text += "\nLevel: " + str(level)
 
 @rpc("any_peer", "reliable", "call_local")
-func request_change(value: int):
+func request_change(value: int) -> void:
 	if (evading):
 		return
 	var id = multiplayer.get_remote_sender_id()
@@ -61,7 +61,7 @@ func request_change(value: int):
 	prints(get_parent().name, "changes for id", id, changes_received[id])
 
 @rpc("authority", "reliable", "call_local")
-func die():
+func die() -> void:
 	prints(get_parent().name, "died")
 	threat = {}
 	changes_received = {}

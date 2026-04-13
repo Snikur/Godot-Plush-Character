@@ -11,8 +11,8 @@ var spell_index: int = -1
 func add_spell(new_spell: SpellResource):
 	action_bar.add_spell(new_spell)
 
-@rpc("any_peer", "call_remote", "reliable")
-func send_spell(type: int, projectile_type: int , index: int):
+@rpc("any_peer", "reliable", "call_remote")
+func send_spell(type: int, projectile_type: int, index: int) -> void:
 	print(multiplayer.get_remote_sender_id(), " want to cast type ", type, " projectile ", projectile_type)
 	var casted_spell: SpellResource = null
 	match(type):

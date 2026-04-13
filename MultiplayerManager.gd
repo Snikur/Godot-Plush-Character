@@ -50,7 +50,7 @@ func add_client(id: int, data: Dictionary):
 		DisplayServer.window_set_title(str("HOST Connections: ", list_of_players.size()))
 
 @rpc("authority", "reliable", "call_remote")
-func remote_add_client(id: int, data: Dictionary):
+func remote_add_client(id: int, data: Dictionary) -> void:
 	print("added client ", id)
 	add_client(id, data)
 

@@ -13,17 +13,17 @@ func _ready() -> void:
 	if (multiplayer.is_server()):
 		MM.tick.connect(_tick)
 
-func _tick():
+func _tick() -> void:
 	server_state.rpc(parent.global_position)
 	ticks = ticks + 1
 	tick.emit(ticks)
 
-@rpc("authority", "call_local", "reliable")
-func delete():
+@rpc("authority", "reliable", "call_local")
+func delete() -> void:
 	parent.queue_free()
 
-@rpc("authority", "call_remote", "unreliable_ordered")
-func server_state(new_position: Vector3):
+@rpc("authority", "unreliable_ordered", "call_remote")
+func server_state(new_position: Vector3) -> void:
 	if tween:
 		tween.kill()
 	tween = create_tween()

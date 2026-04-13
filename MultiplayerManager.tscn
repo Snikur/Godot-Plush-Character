@@ -1,13 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp52somki7sg2"]
+[gd_scene format=3 uid="uid://dp52somki7sg2"]
 
-[ext_resource type="Script" uid="uid://cxnj7vwlux5oc" path="res://MultiplayerManager.gd" id="1_lpxfq"]
+[ext_resource type="Script" uid="uid://bxnv3upr2nfbq" path="res://MultiplayerManager.gd" id="1_lpxfq"]
 
-[node name="MultiplayerManager" type="Node"]
+[node name="MultiplayerManager" type="Node" unique_id=663868935]
 script = ExtResource("1_lpxfq")
 
-[node name="TickTimer" type="Timer" parent="."]
+[node name="TickTimer" type="Timer" parent="." unique_id=478147453]
+wait_time = 0.1
 autostart = true
 
-[node name="SlowTickTimer" type="Timer" parent="."]
+[node name="SlowTickTimer" type="Timer" parent="." unique_id=1853711534]
 wait_time = 0.6
 autostart = true

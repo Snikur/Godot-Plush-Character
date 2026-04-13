@@ -13,11 +13,11 @@ func _ready() -> void:
 		tween.tween_property(self, "global_position:y", original_height, 5.0).from(destination_height).set_delay(2.0)
 		tween.set_loops(0)
 
-func tick():
+func tick() -> void:
 	server_state.rpc(global_position)
 
-@rpc("authority", "call_remote", "unreliable_ordered")
-func server_state(new_position: Vector3):
+@rpc("authority", "unreliable_ordered", "call_remote")
+func server_state(new_position: Vector3) -> void:
 	if tween:
 		tween.kill()
 	tween = create_tween()

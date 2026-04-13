@@ -10,11 +10,11 @@ func _ready() -> void:
 		tween.tween_property(self, "progress_ratio", 1.0, 20.0).from(0.8).set_delay(10.0)
 		tween.set_loops(0)
 
-func tick():
+func tick() -> void:
 	server_state.rpc(progress_ratio)
 
-@rpc("authority", "call_remote", "unreliable_ordered")
-func server_state(new_progress_ratio: float):
+@rpc("authority", "unreliable_ordered", "call_remote")
+func server_state(new_progress_ratio: float) -> void:
 	if tween:
 		tween.kill()
 	tween = create_tween()
