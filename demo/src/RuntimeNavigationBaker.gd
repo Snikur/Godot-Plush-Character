@@ -24,7 +24,7 @@ var _bake_cooldown_timer: float = 0.0
 var _nav_region: NavigationRegion3D
 
 
-func _ready():
+func _ready() -> void:
 	_nav_region = NavigationRegion3D.new()
 	_nav_region.navigation_layers = navigation_layers
 	_nav_region.enabled = enabled

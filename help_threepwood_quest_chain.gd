@@ -2,14 +2,15 @@ extends Node3D
 
 @onready var state_chart: StateChart = $SC
 @onready var quest_marker: Label3D = $QuestMarker
-@export var kill_target: Enemy
-@export var pickup_coin: GoldCoin
 @onready var pickup_zone: Area3D = $PickupZone
 @onready var quest_panel: PanelContainer = $CanvasLayer/PanelContainer
 @onready var accept_button: Button = $CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AcceptButton
 @onready var close_button: Button = $CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CloseButton
 @onready var complete_button: Button = $CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CompleteButton
 @onready var quest_text: RichTextLabel = $CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/QuestText
+
+@export var kill_target: Enemy
+@export var pickup_coin: GoldCoin
 
 var player: Player = null
 var quest_reward_experience: int = 1399
@@ -32,73 +33,71 @@ func _ready() -> void:
 	accept_button.pressed.connect(accept_pressed)
 	close_button.pressed.connect(close_pressed)
 	complete_button.pressed.connect(complete_pressed)
-	
 	complete_button.visible = false
 
-func complete_pressed():
-	state_chart.send_event("reward_collected")
+func complete_pressed() -> void:
+	state_chart.send_event(&"reward_collected")
 	pickup_zone.body_entered.disconnect(finished_quest)
 	quest_panel.visible = false
-	if (is_instance_valid(player)):
-		var tween = create_tween()
+	if is_instance_valid(player):
+		var tween: Tween = create_tween()
 		tween.tween_method(player.combat.add_experience_points, 0, quest_reward_experience / 10.0, 10.0)
-		#player.combat.add_experience_points(quest_reward_experience)
 
-func accept_pressed():
+func accept_pressed() -> void:
 	quest_panel.visible = false
 	print("started quest")
-	QuestManager.show_quest("WANTED: Target Dummy and the secret Coin", "Kill the terrifying Target Dummy out in the open field and collect his hidden pirate coin.")
+	QuestManager.show_quest(&"WANTED: Target Dummy and the secret Coin", &"Kill the terrifying Target Dummy out in the open field and collect his hidden pirate coin.")
 	quest_marker.text = "?"
 	quest_marker.modulate = Color.GRAY
-	state_chart.send_event("pickup_quest")
+	state_chart.send_event(&"pickup_quest")
 	pickup_zone.body_entered.disconnect(entered_pickup_zone)
-	state_chart.set_expression_property("target_killed", false)
-	state_chart.set_expression_property("item_picked_up", false)
+	state_chart.set_expression_property(&"target_killed", false)
+	state_chart.set_expression_property(&"item_picked_up", false)
 	accept_button.visible = false
 
-func close_pressed():
+func close_pressed() -> void:
 	quest_panel.visible = false
 
 func exited_pickup_zone(body: Node3D) -> void:
-	if (body is Player and body.id == multiplayer.get_unique_id()):
+	if body is Player and body.id == multiplayer.get_unique_id():
 		quest_panel.visible = false
 
 func entered_pickup_zone(body: Node3D) -> void:
-	if (body is Player and body.id == multiplayer.get_unique_id()):
+	if body is Player and body.id == multiplayer.get_unique_id():
 		quest_panel.visible = true
 		player = body
 
 func kill_target_entered() -> void:
 	print("kill target dummy")
-	kill_target.combat.died.connect(func():
-		QuestManager.update_description("You killed the Target Dummy! Now find his coin.")
+	kill_target.combat.died.connect(func() -> void:
+		QuestManager.update_description(&"You killed the Target Dummy! Now find his coin.")
 		print("killed target dummy")
-		state_chart.set_expression_property("target_killed", true)
-		state_chart.send_event("to_reward")
+		state_chart.set_expression_property(&"target_killed", true)
+		state_chart.send_event(&"to_reward")
 	)
 
 func pickup_coin_entered() -> void:
 	print("pick up coin")
 	pickup_coin.set_visibility.call_deferred(true)
-	pickup_coin.picked_up.connect(func(body: Node3D):
-		if (body is Player and body.id == multiplayer.get_unique_id()):
-			QuestManager.update_description("You found the coin! Now go and kill the Target Dummy.")
+	pickup_coin.picked_up.connect(func(body: Node3D) -> void:
+		if body is Player and body.id == multiplayer.get_unique_id():
+			QuestManager.update_description(&"You found the coin! Now go and kill the Target Dummy.")
 			print("picked up coin")
-			state_chart.set_expression_property("item_picked_up", true)
-			state_chart.send_event("to_reward")
+			state_chart.set_expression_property(&"item_picked_up", true)
+			state_chart.send_event(&"to_reward")
 	)
 
 func completed_objectives() -> void:
 	quest_marker.text = "?"
 	quest_marker.modulate = Color.YELLOW
-	QuestManager.update_description("You found the coin and killed the Target Dummy, go collect your reward!")
+	QuestManager.update_description(&"You found the coin and killed the Target Dummy, go collect your reward!")
 	print("objectives completed, go collect reward")
 	pickup_zone.body_entered.connect(finished_quest)
 	complete_button.visible = true
 	quest_text.text = quest_end_text
 
 func finished_quest(body: Node3D) -> void:
-	if (body is Player and body.id == multiplayer.get_unique_id()):
+	if body is Player and body.id == multiplayer.get_unique_id():
 		quest_panel.visible = true
 
 func reward_collected() -> void:

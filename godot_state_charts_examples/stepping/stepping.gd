@@ -28,7 +28,7 @@ var _coal_in_drill:int = 0:
 			_state_chart.send_event("coal_available")
 
 
-func _ready():
+func _ready() -> void:
 	_coal_available = 1 # we start with 1 coal
 	
 

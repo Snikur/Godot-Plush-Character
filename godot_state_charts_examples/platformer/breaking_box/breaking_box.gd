@@ -6,7 +6,7 @@ signal clicked(node)
 @onready var _state_chart:StateChart = $StateChart
 @onready var _label:Label = $Label
 
-func _ready():
+func _ready() -> void:
 	_label.text = str(health)
 
 

@@ -1,5 +1,5 @@
-extends Resource
 class_name QuestResource
+extends Resource
 
 @export var quest_name: String
 @export var quest_description: String

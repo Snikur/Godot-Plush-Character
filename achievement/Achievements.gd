@@ -2,63 +2,62 @@ extends Node
 
 var clear_achievements: bool = true
 var dict: Dictionary
-var alreadyPlayed : bool = false
-var originalFilePath : String = "res://achievement/achievements.json"
-var userFilePath : String = "user://achievements.json"
-@onready var popup = $Panel
-@onready var title = $Panel/VBoxContainer/Title
-@onready var description = $Panel/VBoxContainer/Description
-@onready var timer = $Timer
+var already_played: bool = false
+var original_file_path: String = "res://achievement/achievements.json"
+var user_file_path: String = "user://achievements.json"
 
+@onready var popup: PanelContainer = $Panel
+@onready var title: Label = $Panel/VBoxContainer/Title
+@onready var description: Label = $Panel/VBoxContainer/Description
+@onready var timer: Timer = $Timer
 
-func _ready():
+func _ready() -> void:
 	popup.visible = false
-	readAchievements()
-	
-func readAchievements():
-	if FileAccess.file_exists(userFilePath) and !clear_achievements:
-		var file = FileAccess.open(userFilePath, FileAccess.READ)
+	read_achievements()
+
+func read_achievements() -> void:
+	if FileAccess.file_exists(user_file_path) and not clear_achievements:
+		var file: FileAccess = FileAccess.open(user_file_path, FileAccess.READ)
 		dict = JSON.parse_string(file.get_as_text())
 		file.close()
 	else:
-		var originalFile = FileAccess.open(originalFilePath, FileAccess.READ) 
-		var text = originalFile.get_as_text()
-		writeAchievements(text)
+		var original_file: FileAccess = FileAccess.open(original_file_path, FileAccess.READ)
+		var text: String = original_file.get_as_text()
+		write_achievements(text)
 		dict = JSON.parse_string(text)
-			
-		originalFile.close()
-		
-func writeAchievements(content):
-	var file = FileAccess.open(userFilePath, FileAccess.WRITE)
+		original_file.close()
+
+func write_achievements(content: String) -> void:
+	var file: FileAccess = FileAccess.open(user_file_path, FileAccess.WRITE)
 	file.store_string(content)
 	file.close()
 
-func modifyAchievements(achievement, value):
-	if (not dict.has(achievement)):
+func modify_achievement(achievement: String, value: bool) -> void:
+	if not dict.has(achievement):
 		print("No achievement with id ", achievement)
 		return
 	if dict[achievement].completed:
 		return
 	if int(value) == 0:
-		dict[achievement].currentAmount = 0
-	elif dict[achievement].currentAmount < dict[achievement].neededAmount:
-		dict[achievement].currentAmount = min(dict[achievement].currentAmount + 1, dict[achievement].neededAmount)
-		if dict[achievement].currentAmount >= dict[achievement].neededAmount:
-			showPopup(dict[achievement].name, dict[achievement].description)
+		dict[achievement].current_amount = 0
+	elif dict[achievement].current_amount < dict[achievement].needed_amount:
+		dict[achievement].current_amount = min(dict[achievement].current_amount + 1, dict[achievement].needed_amount)
+		if dict[achievement].current_amount >= dict[achievement].needed_amount:
+			show_popup(dict[achievement].name, dict[achievement].description)
 			dict[achievement].completed = true
-			
-func showPopup(new_title, new_description):
+
+func show_popup(new_title: String, new_description: String) -> void:
 	title.text = new_title
 	description.text = new_description
 	popup.show()
-	var tween = create_tween()
-	tween.tween_property(popup, "position", popup.position + Vector2(0, -300), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	var tween: Tween = create_tween()
+	tween.tween_property(popup, &"position", popup.position + Vector2(0, -300), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	timer.start()
-	
-func hidePopup():
-	var tween = create_tween()
-	tween.tween_property(popup, "position", popup.position + Vector2(0, 300), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+
+func hide_popup() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(popup, &"position", popup.position + Vector2(0, 300), 1.0).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.tween_callback(popup.hide)
-	
-func _on_timer_timeout():
-	hidePopup()
+
+func _on_timer_timeout() -> void:
+	hide_popup()

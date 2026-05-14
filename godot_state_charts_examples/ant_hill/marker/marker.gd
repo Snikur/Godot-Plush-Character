@@ -31,7 +31,7 @@ func refresh():
 	expired_time = 0
 
 ## Updates the marker and destroys it if has evaporated.
-func _process(delta):
+func _process(delta: float) -> void:
 	expired_time += delta
 	# Fade out the marker as it expires.
 	modulate.a = max(0, 1 - (expired_time / lifetime_seconds))

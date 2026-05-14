@@ -1,33 +1,31 @@
 extends GridContainer
 
-@onready var spellIcon = %SpellIcon
-@onready var spellName = %SpellName
-@onready var spellCooldown = %SpellCooldown
-@onready var spellDescription = %SpellDescription
+@onready var spell_icon: TextureRect = %SpellIcon
+@onready var spell_name: Label = %SpellName
+@onready var spell_cooldown: Label = %SpellCooldown
+@onready var spell_description: RichTextLabel = %SpellDescription
 
 const GridButton = preload("res://spellManager/Spellbook/spell_grid_button.tscn")
 
 var spells: Array[SpellResource]
-var selectedSpellLocationInArray: int = 0
+var selected_spell_index: int = 0
 
-func add_spell(newSpell: SpellResource):
-	var newPosition = spells.size()
-	spells.append(newSpell)
-	
-	var TB = GridButton.instantiate()
-	TB.texture_normal = newSpell.texture
-	TB.set_position_in_grid(newPosition)
-	TB.set_grid_container(self)
-	self.add_child(TB)
+func add_spell(new_spell: SpellResource) -> void:
+	var new_position: int = spells.size()
+	spells.append(new_spell)
 
-func set_active_spell(spellLocationInArray: int):
-	selectedSpellLocationInArray = spellLocationInArray;
-	if selectedSpellLocationInArray >= spells.size():	
-		selectedSpellLocationInArray = 0;
+	var tb: TextureButton = GridButton.instantiate()
+	tb.texture_normal = new_spell.texture
+	tb.set_position_in_grid(new_position)
+	tb.set_grid_container(self)
+	self.add_child(tb)
 
-	spellIcon.texture = spells[selectedSpellLocationInArray].texture
-	spellName.text = spells[selectedSpellLocationInArray].name
-	spellDescription.text = spells[selectedSpellLocationInArray].description
-	spellCooldown.text = "Cooldown: " + str(spells[selectedSpellLocationInArray].cooldown)
-	
-	
+func set_active_spell(spell_index: int) -> void:
+	selected_spell_index = spell_index
+	if selected_spell_index >= spells.size():
+		selected_spell_index = 0
+
+	spell_icon.texture = spells[selected_spell_index].texture
+	spell_name.text = spells[selected_spell_index].name
+	spell_description.text = spells[selected_spell_index].description
+	spell_cooldown.text = "Cooldown: " + str(spells[selected_spell_index].cooldown)

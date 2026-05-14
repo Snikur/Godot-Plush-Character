@@ -1,8 +1,12 @@
-extends Node3D
 class_name CombatComponent
+extends Node3D
+
+signal died
+signal health_changed(change: int)
 
 @onready var status_label: Label3D = $Status
-var level = 1
+
+var level: int = 1
 var experience: int = 0
 var required_experience: int = 100
 var max_health: int = 100
@@ -12,8 +16,6 @@ var mana: int = 100
 var changes_received: Dictionary = {}
 var threat: Dictionary = {}
 var evading: bool = false
-signal died
-signal health_changed(change)
 
 var strength: int = 10
 var agility: int = 10
@@ -24,16 +26,16 @@ var stamina: int = 13
 var magic_resistance: int = 10
 var poison_resistance: int = 10
 
-func _ready():
-	if (not get_parent() is Player): #TODO: hacky solution
+func _ready() -> void:
+	if not get_parent() is Player:  # TODO: hacky solution
 		await MM.connected
 	calculate_stats()
 	update_label()
-	if (multiplayer.is_server()):
+	if multiplayer.is_server():
 		print("connect slow tick from ", get_parent().name)
 		MM.slow_tick.connect(handle_changes)
 
-func calculate_stats():
+func calculate_stats() -> void:
 	max_health = floori(stamina * 10)
 
 @rpc("authority", "reliable", "call_local")
@@ -42,17 +44,17 @@ func change_health(value: int) -> void:
 	update_label()
 	health_changed.emit(health)
 
-func update_label():
+func update_label() -> void:
 	status_label.text = "HP: " + str(health) + "/" + str(max_health)
 	status_label.text += "\nMANA: " + str(mana) + "/" + str(max_mana)
 	status_label.text += "\nLevel: " + str(level)
 
 @rpc("any_peer", "reliable", "call_local")
 func request_change(value: int) -> void:
-	if (evading):
+	if evading:
 		return
-	var id = multiplayer.get_remote_sender_id()
-	if (health == 0):
+	var id: int = multiplayer.get_remote_sender_id()
+	if health == 0:
 		changes_received.clear()
 	if changes_received.has(id):
 		changes_received[id].append(value)
@@ -69,34 +71,37 @@ func die() -> void:
 	update_label()
 	died.emit()
 
-func reset():
+func reset() -> void:
 	changes_received.clear()
 	threat.clear()
 
-func handle_changes():
-	if (changes_received.size() == 0):
+func handle_changes() -> void:
+	if changes_received.size() == 0:
 		return
+
 	var new_health: int = health
 	for key in changes_received.keys():
 		for change in changes_received[key]:
 			threat[key] = threat[key] + abs(change) if threat.has(key) else abs(change)
-			new_health = max(min(new_health+change, max_health), 0)
+			new_health = max(min(new_health + change, max_health), 0)
 		changes_received[key] = []
+
 	if new_health == 0:
 		change_health.rpc(new_health)
 		die.rpc()
 	else:
 		change_health.rpc(new_health)
 		changes_received = {}
+
 	print("threat table: ", threat)
 
 func add_experience_points(points: int) -> void:
 	experience += points
-	if (experience > required_experience):
+	if experience > required_experience:
 		required_experience = floori(required_experience * 1.23)
 		print("DING")
 		level += 1
-		var rest = experience - required_experience
+		var rest: int = experience - required_experience
 		experience = 0
 		calculate_stats()
 		add_experience_points(rest)

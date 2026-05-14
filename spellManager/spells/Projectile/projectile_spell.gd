@@ -1,18 +1,18 @@
-extends SpellResource
 class_name ProjectileSpell
+extends SpellResource
 
-func init(button: SpellTextureButton):
+func init(button: SpellTextureButton) -> void:
 	super.init(button)
 
-func cast_spell(owner: SpellManager, index: int):
+func cast_spell(owner: SpellManager, index: int) -> void:
 	var projectile: Projectile = spell_scene.instantiate()
 	owner.add_child(projectile)
 	projectile.top_level = true
-	if (vfx_scene):
-		var vfx = vfx_scene.instantiate()
+	if vfx_scene:
+		var vfx: Node3D = vfx_scene.instantiate()
 		projectile.vfx.add_child.call_deferred(vfx)
 	projectile.global_rotation.y = owner.source.skin.global_rotation.y
 	projectile.global_position = owner.global_position
 	projectile.name = str(index)
-	if (owner.source.id == owner.multiplayer.get_unique_id()):
+	if owner.source.id == owner.multiplayer.get_unique_id():
 		super.cast_spell(owner, index)

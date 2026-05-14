@@ -1,11 +1,12 @@
 extends PanelContainer
 
-@onready var spellGridContainer = %SpellGridContainer
-func _ready():
+@onready var spell_grid_container: GridContainer = %SpellGridContainer
+
+func _ready() -> void:
 	self.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if (event.is_action_pressed("spellbook_menu")):
-		self.visible = !self.visible
+	if event.is_action_pressed(&"spellbook_menu"):
+		self.visible = not self.visible
 		if self.visible:
-			spellGridContainer.set_active_spell(0)
+			spell_grid_container.set_active_spell(0)

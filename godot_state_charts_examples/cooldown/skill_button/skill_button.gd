@@ -18,7 +18,7 @@ signal pressed()
 ## The button that can be pressed
 @onready var _button:Button = %Button
 
-func _ready():
+func _ready() -> void:
 	_apply_settings()
 	
 	

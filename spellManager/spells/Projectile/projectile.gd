@@ -1,19 +1,20 @@
-extends Area3D
 class_name Projectile
+extends Area3D
 
 @onready var vfx: Node3D = $vfx
 @onready var sync: SyncTransform = $SyncTransform
+
 var tween: Tween
 var ticks: int = 0
 
-func _ready():
-	if (multiplayer.is_server()):
-		sync.tick.connect(func(amount: int):
-			if (amount > 50):
+func _ready() -> void:
+	if multiplayer.is_server():
+		sync.tick.connect(func(amount: int) -> void:
+			if amount > 50:
 				sync.delete.rpc()
 		)
-		body_entered.connect(func(body: Node3D):
-			if (body is Enemy):
+		body_entered.connect(func(body: Node3D) -> void:
+			if body is Enemy:
 				body.combat.request_change(-10)
 				sync.delete.rpc()
 		)

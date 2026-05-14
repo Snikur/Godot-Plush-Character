@@ -27,7 +27,7 @@ var carried_food:Node = null
 
 const SEGMENT_LENGTH = 150
 
-func _ready():
+func _ready() -> void:
 	# start the state chart
 	state_chart.send_event.call_deferred("initialized")
 
